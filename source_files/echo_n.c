@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   echo_n.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/02 13:12:18 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/05/02 12:19:21 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/02 13:24:17 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/minishell.h"
+#include "../libft/libft.h"
 
-int main(int argc, char **argv, char **envr)
+static int	has_flag(char *str)
 {
-	char	*line;
-	char	**cmd;
-	while (1)
+	int	i;
+	
+	i = 0;
+	if (str[0] != '-')
+		return (0);
+	while (str[++i])
+		if (str[i] != 'n')
+			return (0);
+	return (1);
+}
+
+int	ft_echo_n(char **cmd, int fd)
+{
+	int i;
+
+	i = 1;
+	while (cmd[i] && has_flag(cmd[i]))
+		i++;
+	if (i != 1)
 	{
-		line = readline("Assalamu_Aleykum:> ");
-		cmd = ft_split(line, ' ');
-		
-		if (ft_echo_n(cmd, 0) == 1)
-			printf("%s\n", "echo with no '-n' flag!");
-		add_history(line);
-		
+		while (cmd[i])
+		{
+			write(fd, " ", 1);
+			write(fd, cmd[i], ft_strlen(cmd[i]));
+			i++;
+		}
+		return (0);
 	}
-	clear_history();
-	return (0);
+	return (1);
 }

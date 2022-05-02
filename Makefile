@@ -2,8 +2,7 @@ NAME			=	minishell
 
 SRC_DIR			=	./source_files
 SRC				=	$(SRC_DIR)/main.c \
-					$(SRC_DIR)/split.c \
-					$(SRC_DIR)/preparsing.c
+					$(SRC_DIR)/echo_n.c
 
 OBJ_DIR			=	./object_files
 OBJ 			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
@@ -20,7 +19,8 @@ $(OBJ_DIR)/%.o	:	$(SRC_DIR)/%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME)			:	$(OBJ)
-	@$(CC) $(OBJ) $(CFLAGS) $(LFLAGS) -o $(NAME)
+	@make -C libft/
+	@$(CC) $(OBJ_DIR)/*.o $(CFLAGS) $(LFLAGS) -o $(NAME)
 
 clean			:
 	@rm -rf $(OBJ_DIR)/*.o
