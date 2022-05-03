@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:08:12 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/03 12:12:08 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/03 15:54:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		(*lst) = new;
 		lst = &new;
 	}
-	else 
+	else
 	{
 		last = ft_lstlast(*lst);
 		last->next = new;
