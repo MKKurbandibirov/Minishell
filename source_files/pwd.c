@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/03 13:03:42 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/05/03 09:58:02 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/03 10:14:59 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../header_files/builtins.h"
 
-# include <stdio.h>
-# include <limits.h>
-# include "../libft/libft.h"
-
-typedef struct s_env
+void	ft_pwd(int fd)
 {
-	char	*key;
-	char	*value;
-}	t_env;
+	char	*p_dir;
+	char	dir[PATH_MAX];
 
-int		ft_echo_n(char **cmd, int fd);
-void	ft_pwd(int fd);
-void	ft_cd(char *path, int fd);
-void	ft_env(t_list *my_env, int fd);
-int		ft_export(char **cmd, t_list *exp, int fd);
-
-#endif
+	p_dir = getcwd(dir, PATH_MAX);
+	if (p_dir == NULL)
+		perror("[ERROR]");
+	write(fd, dir, ft_strlen(dir));
+	write(fd, "\n", 1);
+}

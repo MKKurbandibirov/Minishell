@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:08:12 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/10 17:28:02 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:12:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int		i;
 	t_list	*last;
 
-	i = 0;
-	if (!*lst)
+	if (!lst || !new)
 	{
-		*lst = new;
 		return ;
 	}
-	if (!(lst && new))
-		return ;
-	last = ft_lstlast(*lst);
-	last->next = new;
+	if (!*lst)
+	{
+		(*lst) = new;
+		lst = &new;
+	}
+	else 
+	{
+		last = ft_lstlast(*lst);
+		last->next = new;
+	}
 }

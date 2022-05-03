@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo_n.c                                           :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 12:19:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/03 10:15:10 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/03 10:22:14 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/builtins.h"
 
-static int	has_flag(char *str)
+void	ft_cd(char *path, int fd)
 {
-	int	i;
+	char	*new_path;
+	char	*home;
 
-	i = 0;
-	if (str[0] != '-')
-		return (0);
-	while (str[++i])
-		if (str[i] != 'n')
-			return (0);
-	return (1);
-}
-
-int	ft_echo_n(char **cmd, int fd)
-{
-	int	i;
-
-	i = 1;
-	while (cmd[i] && has_flag(cmd[i]))
-		i++;
-	if (i != 1)
+	if (!ft_strcmp(path, "") || !ft_strcmp(path, "~"))
 	{
-		while (cmd[i])
-		{
-			write(fd, cmd[i], ft_strlen(cmd[i]));
-			if (cmd[i + 1] != NULL)
-				write(fd, " ", 1);
-			i++;
-		}
-		return (0);
+		home = getenv("HOME");
+		if (chdir(home) == -1)
+			perror("[ERROR]");
 	}
-	return (1);
+	else if (path[0] == '~')
+	{
+		home = getenv("HOME");
+		home = ft_strjoin(home, "/");
+		new_path = ft_strjoin(home, ++path);
+		if (chdir(new_path) == -1)
+			perror("[ERROR]");
+		free(new_path);
+		free(home);
+	}
+	else if (chdir(path) == -1)
+	{
+		perror("[ERROR]");
+	}
 }
