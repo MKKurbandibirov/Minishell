@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/02 13:10:11 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/04 11:36:12 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "readline/readline.h"
 # include "readline/history.h"
 # include "builtins.h"
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 
 

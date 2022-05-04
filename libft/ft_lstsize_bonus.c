@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 14:49:52 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/10 14:59:36 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:33:35 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		i;
+	t_list	*curr;
 
 	i = 0;
-	while (lst)
+	curr = lst;
+	while (curr != NULL)
 	{
+		curr = curr->next;
 		i++;
-		lst = lst->next;
 	}
 	return (i);
 }

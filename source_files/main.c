@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/03 15:53:44 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:57:24 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envr)
 	t_list	*my_exp;
 
 	my_env = get_envr(envr);
-	my_exp = get_expt(exp_sort(envr));
+	my_exp = get_expt(envr);
 	while (1)
 	{
 		line = readline("Assalamu_Aleykum:> ");
@@ -54,7 +54,8 @@ int	main(int argc, char **argv, char **envr)
 		}
 		else if (!ft_strcmp("export", cmd[0]))
 		{
-			ft_export(cmd, my_exp, 0);
+			if (ft_export(cmd, my_exp, my_env, 0))
+				printf("%s\n", "[WARR]: export with flags!");
 		}
 		add_history(line);
 	}
