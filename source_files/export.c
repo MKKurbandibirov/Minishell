@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 16:51:12 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:38:51 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	env_check(t_list *env, char *cmd_i)
 
 	curr = env;
 	node = create_env_node(cmd_i);
-	// printf("%s%s\n", node->key, node->val);
 	while (curr != NULL)
 	{
 		if (!ft_strcmp(((t_key_val *)curr->content)->key, node->key))
