@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 15:10:28 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/10 10:30:30 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/06 15:27:13 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,17 @@ static int	char_in_set(int c, const char *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	find_head(char *s1, char const *set)
+{
+	int	head;
+
+	head = 0;
+	while (s1[head] && char_in_set(s1[head], set))
+		head++;
+	return (head);
+}
+
+char	*ft_strtrim(char *s1, char const *set)
 {
 	int		head;
 	int		tail;
@@ -35,9 +45,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!(s1 && set))
 		return (NULL);
-	head = 0;
-	while (s1[head] && char_in_set(s1[head], set))
-		head++;
+	head = find_head(s1, set);
 	tail = ft_strlen(s1) - 1;
 	while (head < tail && char_in_set(s1[tail], set))
 		tail--;
@@ -52,5 +60,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i++;
 	}
 	res[i] = '\0';
+	free(s1);
 	return (res);
 }

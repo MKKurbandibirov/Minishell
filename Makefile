@@ -2,7 +2,8 @@ NAME			=	minishell
 
 SRC_DIR			=	./source_files
 SRC				=	$(SRC_DIR)/main.c \
-					$(SRC_DIR)/echo_n.c $(SRC_DIR)/pwd.c $(SRC_DIR)/cd.c $(SRC_DIR)/env.c $(SRC_DIR)/export.c
+					$(SRC_DIR)/echo_n.c $(SRC_DIR)/pwd.c $(SRC_DIR)/cd.c $(SRC_DIR)/env.c $(SRC_DIR)/export.c\
+					$(SRC_DIR)/export_utils.c
 
 OBJ_DIR			=	./object_files
 OBJ 			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))

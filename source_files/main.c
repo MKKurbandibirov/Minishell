@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/04 13:57:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:29:23 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	main(int argc, char **argv, char **envr)
 		else if (!ft_strcmp("cd", cmd[0]))
 		{
 			if (cmd[1] == NULL)
-				ft_cd("", 0);
+				ft_cd("", my_env, my_exp, 0);
 			else
-				ft_cd(cmd[1], 0);
+				ft_cd(cmd[1], my_env, my_exp, 0);
 		}
 		else if (!ft_strcmp("env", cmd[0]))
 		{
@@ -54,7 +54,7 @@ int	main(int argc, char **argv, char **envr)
 		}
 		else if (!ft_strcmp("export", cmd[0]))
 		{
-			if (ft_export(cmd, my_exp, my_env, 0))
+			if (ft_export(cmd[1], my_exp, my_env, 0))
 				printf("%s\n", "[WARR]: export with flags!");
 		}
 		add_history(line);
