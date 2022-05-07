@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:13:31 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/12 14:21:56 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 09:53:48 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*allocate_word(char const *s, char c)
 	return (word);
 }
 
-static void	free_split(char **res)
+void	free_split(char **res)
 {
 	int	i;
 

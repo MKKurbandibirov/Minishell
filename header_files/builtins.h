@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 17:32:37 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 10:03:07 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,9 @@ void		str_bubble(char **arr);
 char		**convert_to_strarr(t_list *list);
 t_key_val	*create_exp_node(char *env_i, int option);
 int			ft_export(char *cmd_1, t_list *exp, t_list *env, int fd);
+
+int			ft_unset(t_list *env, t_list *exp, char **vars);
+
+void		ft_exit(void);
 
 #endif
