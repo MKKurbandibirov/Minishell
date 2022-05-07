@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 09:24:20 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 14:45:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_exit(void)
 {
+	g_shell->return_status = 0;
 	exit(0);
 }

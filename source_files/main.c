@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/07 13:17:59 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:28:49 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,34 +53,28 @@ int	builtin_parser(char **cmd, t_list *env, t_list *exp)
 	return (0);
 }
 
-// void	handler(int sig)
-// {
-// 	(void)sig;
-// 	rl_on_new_line();
-// 	rl_redisplay();
-// 	write(1, "  \n", 3);
-// 	rl_replace_line("", 0);
-// 	rl_on_new_line();
-// 	rl_redisplay();
-// }
-
 int	main(int argc, char **argv, char **envr)
 {
 	char	*line;
 	char	**cmd;
-	t_list	*my_env;
-	t_list	*my_exp;
 
-	my_env = get_envr(envr);
-	my_exp = get_expt(envr);
+	g_shell = (t_minishell *)malloc(sizeof(t_minishell));
+	if (!g_shell)
+		return (1);
+	g_shell->env = get_envr(envr);
+	g_shell->exp = get_expt(envr);
+	g_shell->return_status = 0;
 	while (1)
 	{
 		line = readline("Assalamu_Aleykum:> ");
 		cmd = ft_split(line, ' ');
-		builtin_parser(cmd, my_env, my_exp);
+		if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
+		{
+			char *tmp = identify_cmd(cmd[0], path_parse());
+			printf("%s\n", tmp);
+		}
 		add_history(line);
 		free_split(cmd);
-		// signal(SIGINT, handler);		
 	}
 	clear_history();
 	return (0);
