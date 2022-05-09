@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_utils.c                                     :+:      :+:    :+:   */
+/*   export_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 14:19:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 16:08:13 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:15:38 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ t_key_val	*create_exp_node(char *env_i, int option)
 	if (!exp_node)
 		return (NULL);
 	exp_node->key = ft_substr(env_i, 0, j);
+	exp_node->key = key_check(exp_node->key);
+	if (exp_node->key == NULL)
+		return (NULL);
 	if (option == 0)
 	{
 		exp_node->val = ft_substr(env_i, j + 1, ft_strlen(env_i) - j);

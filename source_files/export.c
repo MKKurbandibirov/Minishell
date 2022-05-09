@@ -6,11 +6,23 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 17:38:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 13:17:31 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/builtins.h"
+
+void	helper(t_list *curr, t_key_val *node)
+{
+	if (((t_key_val *)curr->content)->val != NULL
+		&& node->val == NULL)
+		free(node);
+	else
+	{
+		free(curr->content);
+		curr->content = node;
+	}
+}
 
 void	exp_check(t_list *exp, char *cmd_1, int option)
 {
@@ -19,6 +31,8 @@ void	exp_check(t_list *exp, char *cmd_1, int option)
 
 	curr = exp;
 	node = create_exp_node(cmd_1, option);
+	if (!node)
+		return ;
 	while (curr != NULL)
 	{
 		if (!ft_strcmp(((t_key_val *)curr->content)->key, node->key))
@@ -27,14 +41,7 @@ void	exp_check(t_list *exp, char *cmd_1, int option)
 	}
 	if (curr != NULL)
 	{
-		if (((t_key_val *)curr->content)->val != NULL
-			&& node->val == NULL)
-			free(node);
-		else
-		{
-			free(curr->content);
-			curr->content = node;
-		}
+		helper(curr, node);
 	}
 	else
 		ft_lstadd_back(&exp, ft_lstnew(node));

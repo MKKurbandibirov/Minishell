@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 15:33:31 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:39:29 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,26 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <errno.h>
+
 # include "readline/readline.h"
 # include "readline/history.h"
 # include "builtins.h"
+# include "execute.h"
+# include "pipe.h"
 # include "../libft/libft.h"
 
 typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*exp;
+	t_pipe	*pipe;
 	char	**cmd_path;
 	int		return_status;
 }	t_minishell;
 
 t_minishell	*g_shell;
 
-void	path_parse(void); // Not Here
-char	*identify_cmd(char *cmd); // Not Here
+void	child_sig(void);
+void	main_sig(void);
 
 #endif

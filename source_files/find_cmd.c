@@ -6,11 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 15:41:26 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:58:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/minishell.h"
+#include "../header_files/execute.h"
 
 void	path_parse(void)
 {
@@ -48,7 +48,11 @@ char	*identify_cmd(char *cmd)
 	{
 		abs_cmd = ft_strjoin(g_shell->cmd_path[i], cmd);
 		if (access(abs_cmd, F_OK) == 0)
+		{
+			free(cmd);
+			cmd = ft_strdup(abs_cmd);
 			return (abs_cmd);
+		}
 		else
 			free(abs_cmd);
 	}

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 14:45:46 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:37:16 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_list		*get_envr(char **envr);
 void		ft_env(t_list *my_env, int fd);
 
 t_list		*get_expt(char **envr);
+char		*key_check(char *key);
 void		str_bubble(char **arr);
+void		fill(t_list *c, char **s_arr);
 char		**convert_to_strarr(t_list *list);
 t_key_val	*create_exp_node(char *env_i, int option);
 int			ft_export(char *cmd_1, t_list *exp, t_list *env, int fd);

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/07 15:28:49 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:46:36 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,20 @@ int	main(int argc, char **argv, char **envr)
 	g_shell->env = get_envr(envr);
 	g_shell->exp = get_expt(envr);
 	g_shell->return_status = 0;
+	path_parse();
+	main_sig();
 	while (1)
 	{
 		line = readline("Assalamu_Aleykum:> ");
+		if (!line)
+			exit(EXIT_SUCCESS);
 		cmd = ft_split(line, ' ');
 		if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 		{
-			char *tmp = identify_cmd(cmd[0], path_parse());
-			printf("%s\n", tmp);
+			if (identify_cmd(cmd[0]))
+			{
+				solo_cmd_exec(cmd, 0, 0);
+			}
 		}
 		add_history(line);
 		free_split(cmd);

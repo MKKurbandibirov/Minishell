@@ -3,8 +3,9 @@ NAME			=	minishell
 SRC_DIR			=	./source_files
 SRC				=	$(SRC_DIR)/main.c \
 					$(SRC_DIR)/echo_n.c $(SRC_DIR)/pwd.c 			$(SRC_DIR)/cd.c 	$(SRC_DIR)/env.c \
-					$(SRC_DIR)/export.c	$(SRC_DIR)/export_utils.c	$(SRC_DIR)/unset.c 	$(SRC_DIR)/exit.c \
-					$(SRC_DIR)/find_cmd.c
+					$(SRC_DIR)/export.c	$(SRC_DIR)/export_utils1.c 	$(SRC_DIR)/export_utils2.c	$(SRC_DIR)/unset.c 	$(SRC_DIR)/exit.c \
+					$(SRC_DIR)/find_cmd.c $(SRC_DIR)/execute.c \
+					$(SRC_DIR)/signal.c
 					
 
 OBJ_DIR			=	./object_files
