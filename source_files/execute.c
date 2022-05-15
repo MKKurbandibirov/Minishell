@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/09 11:40:35 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 12:05:54 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	solo_cmd_exec(char **cmd, int fd_in, int fd_out)
 		exit(EXIT_FAILURE);
 	}
 	waitpid(pid, &g_shell->return_status, 0);
+	// printf("%d\n", g_shell->return_status);
 }
