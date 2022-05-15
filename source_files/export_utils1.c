@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 14:19:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/09 13:15:38 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:09:32 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ t_key_val	*create_exp_node(char *env_i, int option)
 	{
 		exp_node->val = ft_substr(env_i, j + 1, ft_strlen(env_i) - j);
 		exp_node->val = ft_strtrim(exp_node->val, "\"\'");
-		exp_node->val = ft_strjoin_free("\"", exp_node->val, 2);
-		exp_node->val = ft_strjoin_free(exp_node->val, "\"", 1);
+		exp_node->val = ft_strjoin_free(ft_strdup("\""), exp_node->val, 3);
+		exp_node->val = ft_strjoin_free(exp_node->val, ft_strdup("\""), 3);
 	}
 	else
 		exp_node->val = NULL;
@@ -73,9 +73,6 @@ t_list	*get_expt(char **envr)
 	int		i;
 	t_list	*exp_list;
 
-	exp_list = (t_list *)malloc(sizeof(t_list));
-	if (!exp_list)
-		return (NULL);
 	i = 0;
 	exp_list = NULL;
 	while (envr[i + 1])

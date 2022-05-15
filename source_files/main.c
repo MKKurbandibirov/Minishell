@@ -6,13 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/15 14:19:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:15:40 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/minishell.h"
-
-// t_minishell	*g_shell;
 
 int	norm_helper(char **cmd, t_list *env, t_list *exp)
 {
@@ -55,6 +53,24 @@ int	builtin_parser(char **cmd, t_list *env, t_list *exp)
 	return (0);
 }
 
+void	free_list(t_list *lst)
+{
+	t_list	*curr;
+
+	curr = lst;
+	while (curr != NULL)
+	{
+		free(((t_key_val *)curr->content)->key);
+		free(((t_key_val *)curr->content)->val);
+		free((t_key_val *)curr->content);
+		curr = curr->next;
+		free(lst);
+		lst = curr;
+	}
+	free(curr);
+	free(lst);
+}
+
 int	main(int argc, char **argv, char **envr)
 {
 	char	*line;
@@ -72,7 +88,12 @@ int	main(int argc, char **argv, char **envr)
 	{
 		line = readline("Assalamu_Aleykum:> ");
 		if (!line)
+		{
+			clear_history();
+			free_list(g_shell->env);
+			free_list(g_shell->exp);
 			exit(EXIT_SUCCESS);
+		}
 		cmd = ft_split(line, ' ');
 		if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 		{
@@ -83,7 +104,7 @@ int	main(int argc, char **argv, char **envr)
 		}
 		add_history(line);
 		free_split(cmd);
+		free(line);
 	}
-	clear_history();
 	return (0);
 }

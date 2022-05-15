@@ -6,13 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 15:10:28 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 15:27:13 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 17:27:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	char_in_set(int c, const char *set)
+static int	char_in_set(int c, char *set)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ static int	char_in_set(int c, const char *set)
 	return (0);
 }
 
-int	find_head(char *s1, char const *set)
+int	find_head(char *s1, char *set)
 {
 	int	head;
 
@@ -36,7 +36,7 @@ int	find_head(char *s1, char const *set)
 	return (head);
 }
 
-char	*ft_strtrim(char *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	int		head;
 	int		tail;
@@ -63,3 +63,17 @@ char	*ft_strtrim(char *s1, char const *set)
 	free(s1);
 	return (res);
 }
+
+// char *ft_strtrim(char  *s1, char const *set)
+// {
+//  size_t size;
+
+//  if (!s1)
+//   return (NULL);
+//  while (*s1 && ft_strchr(set, *s1))
+//   s1++;
+//  size = ft_strlen(s1);
+//  while (size && ft_strchr(set, s1[size]))
+//   size--;
+//  return (ft_substr(s1, 0, size + 1));
+// }

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/09 13:17:31 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:11:49 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	ft_export(char *cmd_1, t_list *exp, t_list *env, int fd)
 			write(fd, strarr[i], ft_strlen(strarr[i]));
 			write(fd, "\n", 1);
 		}
+		free_split(strarr);
 	}
 	else if (ft_strnstr(cmd_1, "=", ft_strlen(cmd_1)))
 	{
