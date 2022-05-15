@@ -65,11 +65,11 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 void	ft_strncpy(char *src, char *direc, int len)
 {
 	char	*tmp;
-	
+
 	tmp = src;
 	if (len)
 	{
-		while(len - 1 > 0 && *tmp)
+		while (len - 1 > 0 && *tmp)
 		{
 			*direc++ = *tmp++;
 			len--;
@@ -88,9 +88,9 @@ int	ft_isspace(char c)
 
 int	ft_validate_pairs(char *s)
 {
-	int i;
-	int status;
-	char last_c;
+	int		i;
+	int		status;
+	char	last_c;
 
 	i = -1;
 	status = 0;
@@ -102,8 +102,8 @@ int	ft_validate_pairs(char *s)
 		else if (s[i] == ')' && status > 0 && last_c != '(')
 			status--;
 		else if ((s[i] == ')' && status == 0)
-				|| (s[i] == '(' && last_c == ')')
-				|| (s[i] == ')' && last_c == '('))
+			|| (s[i] == '(' && last_c == ')')
+			|| (s[i] == ')' && last_c == '('))
 			return (1);
 		if (!ft_isspace(s[i]))
 			last_c = s[i];
@@ -125,7 +125,7 @@ char	*ft_env_search(char *dollar)
 	}
 	if (!curr)
 		return (NULL);
-	return(((t_key_val *)curr->content)->val);
+	return (((t_key_val *)curr->content)->val);
 }
 
 char	*ft_ifdollar(char *s, int *len)
@@ -134,13 +134,14 @@ char	*ft_ifdollar(char *s, int *len)
 	char	*ret;
 
 	*len = 0;
-	while(s[*len] && (ft_isalpha(s[*len]) || ft_isdigit(s[*len])) && (!ft_isspace(s[*len])))
+	while (s[*len] && (ft_isalpha(s[*len]) || ft_isdigit(s[*len]))
+		&& (!ft_isspace(s[*len])))
 		(*len)++;
 	dollar = (char *) malloc(sizeof(char) * (*len) + 1);
 	ft_strncpy(s, dollar, *(len) + 1);
 	ret = ft_env_search(dollar);
 	free(dollar);
-	return(ret);
+	return (ret);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 char	*ft_dbl_quotes_subsit(char *s)
@@ -152,7 +153,7 @@ char	*ft_dbl_quotes_subsit(char *s)
 
 	pt = -1;
 	ret = ft_substr("", 0, 1);
-	while(s[++pt])
+	while (s[++pt])
 	{
 		if (s[pt] == '$' && s[pt + 1]
 			&& (ft_isalpha(s[pt + 1]) || ft_isdigit(s[pt + 1])))
@@ -160,7 +161,7 @@ char	*ft_dbl_quotes_subsit(char *s)
 			dlr = ft_ifdollar(&s[++pt], &add_len);
 			pt += (add_len - 1);
 			if (!dlr)
-				continue;
+				continue ;
 			ret = ft_strjoin_free(ret, dlr, 3);
 		}
 		else
@@ -178,7 +179,7 @@ char	*ft_dbl_replacement(char *s)
 
 	pt = -1;
 	new_len = 0;
-	while(s[++pt])
+	while (s[++pt])
 	{
 		if (s[pt] != '\\' && s[pt + 1] && s[pt + 1] != '\"')
 			new_len++;
@@ -189,7 +190,7 @@ char	*ft_dbl_replacement(char *s)
 	while (s[++pt])
 	{
 		if (s[pt] == '\\' && s[pt + 1] && s[pt + 1] == '\"')
-			continue;
+			continue ;
 		new[new_len++] = s[pt];
 	}
 	new[new_len] = '\0';
@@ -248,7 +249,7 @@ char	*ft_single_quote(char *s, int *add)
 	char	*next_c;
 	char	*ret;
 	int		len;
-	
+
 	len = 0;
 	next_c = ft_strchr(&s[1], s[0]);
 	if (next_c == NULL)
@@ -270,13 +271,13 @@ char	*ft_argv_am(char *s, int *add)
 
 	i = 0;
 	while (s[i] && !ft_isspace(s[i]) && s[i] != '&'
-			&& s[i] != '|' && s[i] != ')' && s[i] != '<'
-			&& s[i] != '>')
+		&& s[i] != '|' && s[i] != ')' && s[i] != '<'
+		&& s[i] != '>')
 		i++;
 	*add = i;
 	ret = (char *) malloc(sizeof(char) * i + 1);
 	ft_strncpy(s, ret, i + 1);
-	return(ret);
+	return (ret);
 }
 
 int	ft_checking_cause(char *s, int *grp, t_parser *prs)
@@ -343,9 +344,11 @@ int	ft_get_arg(char *s, int *group, t_parser *prs, int i)
 		if (s[i] && s[i] == '-')
 			ft_pushback_p(&prs->head, ft_argv_am(&s[i], &add), FLAG, *group);
 		else if (s[i] && s[i] == '\'')
-			ft_pushback_p(&prs->head, ft_single_quote(&s[i], &add), ARG, *group);
+			ft_pushback_p(&prs->head, ft_single_quote(&s[i], &add),
+				ARG, *group);
 		else if (s[i] && s[i] == '\"')
-			ft_pushback_p(&prs->head, ft_dbl_quoteProccessing(&s[i], &add), ARG, *group);
+			ft_pushback_p(&prs->head, ft_dbl_quoteProccessing(&s[i], &add),
+				ARG, *group);
 		else
 			add = ft_get_arg_continue(&s[i], group, prs);
 		if (add == 0)
@@ -360,7 +363,7 @@ int	ft_get_arg(char *s, int *group, t_parser *prs, int i)
 
 void	ft_clear_parslst(t_parser *prs, char *s)
 {
-	t_plist *curr;
+	t_plist	*curr;
 
 	curr = prs->head;
 	while (curr)
@@ -379,7 +382,7 @@ char	*ft_substitution(char *s, int pt)
 	char	*ret;
 
 	ret = ft_substr("", 0, 1);
-	while(s[++pt])
+	while (s[++pt])
 	{
 		test = NULL;
 		add_len = 1;
@@ -404,7 +407,7 @@ int	ft_validator(t_plist *curr)
 	while (curr && curr->type == CMD)
 	{
 		curr = curr->next;
-		while(curr != NULL && (curr->type == FLAG || curr->type == ARG))
+		while (curr != NULL && (curr->type == FLAG || curr->type == ARG))
 			curr = curr->next;
 		if (curr != NULL && (curr->type == OUT || curr->type == APPEND))
 		{
@@ -414,7 +417,8 @@ int	ft_validator(t_plist *curr)
 			else
 				return (EXIT_FAILURE);
 		}
-		if (curr  != NULL && (curr->type == PIPE || curr->type == OPER || curr->type == BG))
+		if (curr  != NULL && (curr->type == PIPE
+				|| curr->type == OPER || curr->type == BG))
 			curr = curr->next;
 	}
 	if (curr == NULL)
@@ -428,8 +432,8 @@ void	ft_pars(char *s1, int group, int add_len, int i)
 	char		*s;
 
 	ft_initparser(&prs);
-	if(ft_validate_pairs(s1) != 0)
-	{ 
+	if (ft_validate_pairs(s1) != 0)
+	{
 		printf("ERR NOT VALID STR! ()");
 		return ;
 	}
