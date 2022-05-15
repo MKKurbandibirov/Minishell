@@ -6,105 +6,89 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/03 16:48:45 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:38:51 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/builtins.h"
 
-void	str_bubble(char **arr, int len)
+void	exp_check(t_list *exp, char *cmd_1, int option)
 {
-	int		i;
-	int		j;
-	char	*tmp;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		j = 0;
-		while (j < len - i - 1)
-		{
-			if (ft_strcmp(arr[j], arr[j + 1]) > 0)
-			{
-				tmp = arr[j + 1];
-				arr[j + 1] = arr[j];
-				arr[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-char	**exp_sort(char **envr)
-{
-	int		i;
-	int		len;
-	char	**sorted;
-
-	len = 0;
-	while (envr[len])
-		len++;
-	sorted = malloc(sizeof(char *) * (len + 1));
-	i = -1;
-	while (envr[++i])
-		sorted[i] = ft_strdup(envr[i]);
-	str_bubble(sorted, len);
-	// printf("%s\n", sorted[len - 1]);
-	sorted[len] = NULL;
-	return (sorted);
-}
-
-char	*helper(char *env_i)
-{
-	char	*key;
-	char	*val;
-	int		j;
-
-	j = 0;
-	while (env_i[j] != '=')
-		j++;
-	key = ft_substr(env_i, 0, j);
-	val = ft_substr(env_i, j + 1, ft_strlen(env_i) - j);
-	val = ft_strjoin_free("\"", val, 2);
-	val = ft_strjoin_free(val, "\"", 1);
-	key = ft_strjoin_free("declare -x ", key, 2);
-	key = ft_strjoin_free(key, "=", 1);
-	key = ft_strjoin_free(key, val, 3);
-	return (key);
-}
-
-t_list	*get_expt(char **envr)
-{
-	int		i;
-	t_list	*exp_list;
-	t_list	*tmp;
-
-	i = 0;
-	exp_list = (t_list *)malloc(sizeof(t_list));
-	exp_list = NULL;
-	while (envr[i])
-	{
-		if (!ft_strnstr(envr[i], "_=", 2))
-		{
-			tmp = ft_lstnew(helper(envr[i]));
-			ft_lstadd_back(&exp_list, tmp);
-		}
-		i++;
-	}
-	return (exp_list);
-}
-
-int	ft_export(char **cmd, t_list *exp, int fd)
-{
-	t_list	*curr;
+	t_list		*curr;
+	t_key_val	*node;
 
 	curr = exp;
+	node = create_exp_node(cmd_1, option);
 	while (curr != NULL)
 	{
-		write(fd, curr->content, ft_strlen(curr->content));
-		write(fd, "\n", 1);
+		if (!ft_strcmp(((t_key_val *)curr->content)->key, node->key))
+			break ;
 		curr = curr->next;
 	}
+	if (curr != NULL)
+	{
+		if (((t_key_val *)curr->content)->val != NULL
+			&& node->val == NULL)
+			free(node);
+		else
+		{
+			free(curr->content);
+			curr->content = node;
+		}
+	}
+	else
+		ft_lstadd_back(&exp, ft_lstnew(node));
+}
+
+void	env_check(t_list *env, char *cmd_i)
+{
+	t_list		*curr;
+	t_key_val	*node;
+
+	curr = env;
+	node = create_env_node(cmd_i);
+	while (curr != NULL)
+	{
+		if (!ft_strcmp(((t_key_val *)curr->content)->key, node->key))
+			break ;
+		curr = curr->next;
+	}
+	if (curr != NULL)
+	{
+		if (node->val[0] != '\0')
+		{
+			free(curr->content);
+			curr->content = node;
+		}
+	}
+	else
+		ft_lstadd_back(&env, ft_lstnew(node));
+}
+
+int	ft_export(char *cmd_1, t_list *exp, t_list *env, int fd)
+{
+	int		i;
+	char	**strarr;
+
+	if (cmd_1 == NULL)
+	{
+		i = -1;
+		strarr = convert_to_strarr(exp);
+		str_bubble(strarr);
+		while (strarr[++i])
+		{
+			write(fd, strarr[i], ft_strlen(strarr[i]));
+			write(fd, "\n", 1);
+		}
+	}
+	else if (ft_strnstr(cmd_1, "=", ft_strlen(cmd_1)))
+	{
+		exp_check(exp, cmd_1, 0);
+		env_check(env, cmd_1);
+	}
+	else if (cmd_1[0] == '-')
+		return (1);
+	else
+		exp_check(exp, cmd_1, 1);
 	return (0);
 }

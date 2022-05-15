@@ -6,13 +6,14 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:11:24 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/02 12:11:52 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 13:58:51 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2) {
+int	ft_strcmp(char *s1, char *s2)
+{
 	int	i;
 
 	i = 0;

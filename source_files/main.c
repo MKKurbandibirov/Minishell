@@ -6,57 +6,78 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/03 15:53:44 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 15:28:49 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/minishell.h"
 
+t_minishell	*g_shell;
+
+int	norm_helper(char **cmd, t_list *env, t_list *exp)
+{
+	if (!ft_strcmp("env", cmd[0]) && cmd[1] == NULL)
+	{
+		ft_env(env, 0);
+		return (1);
+	}
+	else if (!ft_strcmp("export", cmd[0]) && !ft_export(cmd[1], exp, env, 0))
+		return (1);
+	else if (!ft_strcmp("unset", cmd[0]) && !ft_unset(env, exp, cmd))
+		return (1);
+	else if (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL)
+	{
+		ft_exit();
+		return (1);
+	}
+	return (0);
+}
+
+int	builtin_parser(char **cmd, t_list *env, t_list *exp)
+{
+	if (!ft_strcmp("echo", cmd[0]) && !ft_echo_n(cmd, 0))
+		return (1);
+	else if (!ft_strcmp("pwd", cmd[0]) && cmd[1] == NULL)
+	{
+		ft_pwd(0);
+		return (1);
+	}
+	else if (!ft_strcmp("cd", cmd[0]))
+	{
+		if (cmd[1] == NULL)
+			ft_cd("", env, exp, 0);
+		else
+			ft_cd(cmd[1], env, exp, 0);
+		return (1);
+	}
+	else if (norm_helper(cmd, env, exp))
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envr)
 {
 	char	*line;
 	char	**cmd;
-	t_list	*my_env;
-	t_list	*my_exp;
 
-	my_env = get_envr(envr);
-	my_exp = get_expt(exp_sort(envr));
+	g_shell = (t_minishell *)malloc(sizeof(t_minishell));
+	if (!g_shell)
+		return (1);
+	g_shell->env = get_envr(envr);
+	g_shell->exp = get_expt(envr);
+	g_shell->return_status = 0;
 	while (1)
 	{
 		line = readline("Assalamu_Aleykum:> ");
-		cmd = ft_split(line, ' ');
-
-		if (!ft_strcmp("echo", cmd[0]))
-		{
-			if (ft_echo_n(cmd, 0) == 1)
-				printf("%s\n", "[WARR]: echo with no '-n' flag!");
-		}
-		else if (!ft_strcmp("pwd", cmd[0]))
-		{
-			if (cmd[1] == NULL)
-				ft_pwd(0);
-			else
-				printf("%s\n", "[WARR]: pwd with flags!");
-		}
-		else if (!ft_strcmp("cd", cmd[0]))
-		{
-			if (cmd[1] == NULL)
-				ft_cd("", 0);
-			else
-				ft_cd(cmd[1], 0);
-		}
-		else if (!ft_strcmp("env", cmd[0]))
-		{
-			if (cmd[1] == NULL)
-				ft_env(my_env, 0);
-			else
-				printf("%s\n", "[WARR]: env with flags!");
-		}
-		else if (!ft_strcmp("export", cmd[0]))
-		{
-			ft_export(cmd, my_exp, 0);
-		}
-		add_history(line);
+		ft_pars(line, 0, 0, 0);
+		// cmd = ft_split(line, ' ');
+		// if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
+		// {
+			// char *tmp = identify_cmd(cmd[0], path_parse());
+			// printf("%s\n", tmp);
+		// }
+		// add_history(line);
+		// free_split(cmd);
 	}
 	clear_history();
 	return (0);

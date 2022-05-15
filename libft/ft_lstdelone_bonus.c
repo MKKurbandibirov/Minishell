@@ -6,17 +6,21 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:01:19 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/10 17:30:45 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/07 09:03:20 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list **lst, t_list *del)
 {
-	if (lst)
+	t_list	*curr;
+
+	curr = *lst;
+	while (curr->next != del)
 	{
-		del(lst->content);
-		free(lst);
+		curr = curr->next;
 	}
+	curr->next = del->next;
+	free(del);
 }

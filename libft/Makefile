@@ -26,7 +26,7 @@ OBJ_DIR		=	../object_files
 OBJ 		=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 .PHONY		:	all clean fclean re bonus
 
