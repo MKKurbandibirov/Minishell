@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:29:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 13:58:33 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 18:16:19 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	ft_strncpy(char *src, char *direc, int len);
+int		ft_isspace(char c);
 char	*ft_strjoin_c_free(char *s1, char s2);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, unsigned int n);

@@ -1,5 +1,6 @@
-#include "../header_files/minishell.h"
+//#include "../header_files/minishell.h"
 ///////////////////////////////////////////////////////////////////////////////////////////////
+/*
 static t_plist	*ft_getLast(t_plist *head)
 {
 	if (head == NULL)
@@ -61,7 +62,9 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 		tmp->prev = last;
 	}
 }
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 void	ft_strncpy(char *src, char *direc, int len)
 {
 	char	*tmp;
@@ -110,7 +113,8 @@ int	ft_validate_pairs(char *s)
 	}
 	return (status);
 }
-
+*/
+/*
 char	*ft_env_search(char *dollar)
 {
 	t_list	*curr;
@@ -143,6 +147,7 @@ char	*ft_ifdollar(char *s, int *len)
 	free(dollar);
 	return (ret);
 }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 char	*ft_dbl_quotes_subsit(char *s)
 {
@@ -238,7 +243,7 @@ char	*ft_dbl_quoteProccessing(char *s, int *add)
 		ret = malloc(len + 1);
 		ft_strncpy(&s[1], ret, len);
 		ret = ft_dbl_replacement(ret);
-		//ret = ft_dbl_quotes_subsit(ret);
+		ret = ft_dbl_quotes_subsit(ret);
 		*add = len;
 	}
 	return (ret);
@@ -263,7 +268,9 @@ char	*ft_single_quote(char *s, int *add)
 	}
 	return (ret);
 }
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 char	*ft_argv_am(char *s, int *add)
 {
 	int		i;
@@ -361,6 +368,8 @@ int	ft_get_arg(char *s, int *group, t_parser *prs, int i)
 	return (i);
 }
 
+*/
+/*
 void	ft_clear_parslst(t_parser *prs, char *s)
 {
 	t_plist	*curr;
@@ -374,7 +383,8 @@ void	ft_clear_parslst(t_parser *prs, char *s)
 	}
 	free(s);
 }
-
+*/
+/*
 char	*ft_substitution(char *s, int pt)
 {
 	int		add_len;
@@ -392,12 +402,12 @@ char	*ft_substitution(char *s, int pt)
 		else if (s[pt] == '\'')
 			test = ft_single_quote(&s[pt], &add_len);
 		else if (s[pt] == '\"')
-			test = ft_single_quote(&s[pt], &add_len);
+			test = ft_dbl_quoteProccessing(&s[pt], &add_len);
 		else
-			ret = ft_strjoin_c_free(ret, s[pt]);
-		if (test)
+			ret = ft_strjoin_c_free(ret, s[pt--]);
+		if (test)	
 			ret = ft_strjoin_free(ret, test, 3);
-		pt += (add_len - 1);
+		pt += (add_len);
 	}
 	return (ret);
 }
@@ -425,37 +435,38 @@ int	ft_validator(t_plist *curr)
 		return (0);
 	return (EXIT_FAILURE);
 }
+*/
 
-void	ft_pars(char *s1, int group, int add_len, int i)
-{
-	t_parser	prs;
-	char		*s;
+// void	ft_pars(char *s1, int group, int add_len, int i)
+// {
+// 	t_parser	prs;
+// 	char		*s;
 
-	ft_initparser(&prs);
-	if (ft_validate_pairs(s1) != 0)
-	{
-		printf("ERR NOT VALID STR! ()");
-		return ;
-	}
-	s = ft_substitution(s1, -1);
-	while (s[i])
-	{
-		while (ft_isspace(s[i]) || s[i] == '(')
-			i++;
-		if (s[i] && s[i] != ')')
-		{
-			ft_pushback_p(&prs.head, ft_argv_am(&s[i], &add_len), CMD, group);
-			i += (add_len);
-		}
-		while (s[i] && ft_isspace(s[i]))
-			i++;
-		if (s[i])
-			i += (ft_get_arg(&s[i], &group, &prs, 0) - 1);
-		i++;
-	}
-	ft_clear_parslst(&prs, s);
-	if (ft_validator(prs.head) == 0)
-		printf("OK\n");
-	else
-		printf("FUCK\n");
-}
+// 	ft_initparser(&prs);
+// 	if (ft_validate_pairs(s1) != 0)
+// 	{
+// 		printf("ERR NOT VALID STR! ()");
+// 		return ;
+// 	}
+// 	s = ft_substitution(s1, -1);
+// 	while (s[i])
+// 	{
+// 		while (ft_isspace(s[i]) || s[i] == '(')
+// 			i++;
+// 		if (s[i] && s[i] != ')')
+// 		{
+// 			ft_pushback_p(&prs.head, ft_argv_am(&s[i], &add_len), CMD, group);
+// 			i += (add_len);
+// 		}
+// 		while (s[i] && ft_isspace(s[i]))
+// 			i++;
+// 		if (s[i])
+// 			i += (ft_get_arg(&s[i], &group, &prs, 0) - 1);
+// 		i++;
+// 	}
+// 	ft_clear_parslst(&prs, s);
+// 	if (ft_validator(prs.head) == 0)
+// 		printf("OK\n");
+// 	else
+// 		printf("FUCK\n");
+// }
