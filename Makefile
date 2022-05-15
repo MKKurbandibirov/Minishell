@@ -11,7 +11,7 @@ SRC				=	$(SRC_DIR)/main.c \
 OBJ_DIR			=	./object_files
 OBJ 			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
-CC				=	gcc -g
+CC				=	gcc 
 CFLAGS			=	-Wall -Wextra -Werror
 LFLAGS			=	-lreadline
 

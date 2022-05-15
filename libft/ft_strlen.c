@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:41:08 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/07 18:42:39 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 14:31:28 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *c)
 	size_t	i;
 
 	i = 0;
+	if (c == NULL)
+		return (0);
 	while (c[i])
 	{
 		i++;

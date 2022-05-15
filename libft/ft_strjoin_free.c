@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:56:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/03 16:01:41 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 14:32:41 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ char	*ft_strjoin_free(char *s1, char *s2, int option)
 		return (NULL);
 	new = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!new)
-	{
-		free(s1);
-		exit (EXIT_FAILURE);
-	}
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s1[i])

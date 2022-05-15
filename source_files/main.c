@@ -6,11 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/15 12:05:43 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/15 14:19:24 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/minishell.h"
+
+// t_minishell	*g_shell;
 
 int	norm_helper(char **cmd, t_list *env, t_list *exp)
 {
