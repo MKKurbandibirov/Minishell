@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/21 10:46:07 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 11:26:14 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,20 @@ int	main(int argc, char **argv, char **envr)
 			free_list(g_shell->exp);
 			exit(EXIT_SUCCESS);
 		}
-		cmd = ft_split(line, ' ');
-		if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
+		if (!ft_pars(line, 0, 0, 0))
 		{
-			if (identify_cmd(cmd[0]))
+			cmd = ft_split(line, ' ');
+			if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 			{
-				solo_cmd_exec(cmd, 0, 0);
+				if (identify_cmd(cmd[0]))
+				{
+					solo_cmd_exec(cmd, 0, 0);
+				}
 			}
+			add_history(line);
+			free_split(cmd);
+			free(line);
 		}
-		add_history(line);
-		free_split(cmd);
-		free(line);
 	}
 	return (0);
 }

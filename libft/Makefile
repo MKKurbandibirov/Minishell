@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+         #
+#    By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 19:12:18 by nfarfetc          #+#    #+#              #
-#    Updated: 2022/05/15 18:20:27 by gtaggana         ###   ########.fr        #
+#    Updated: 2022/05/21 11:12:43 by nfarfetc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJ 		=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -g
 
-.PHONY		:	all clean fclean re bonus
+.PHONY		:	all fclean
 
 all			:	$(NAME)
 
@@ -37,4 +37,7 @@ $(NAME)		:	$(OBJ) $(HEADER)
 
 $(OBJ_DIR)/%.o : %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+fclean 		:
+	@rm -rf $(NAME)
 

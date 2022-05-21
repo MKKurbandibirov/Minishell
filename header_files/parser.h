@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:34:03 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:25:43 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 11:23:53 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ char	*ft_single_quote(char *s, int *add);
 int		ft_validate_pairs(char *s);
 int		ft_validator(t_plist *curr);
 
-void	ft_pars(char *s1, int group, int add_len, int ie);
+int		ft_pars(char *s1, int group, int add_len, int i);
 #endif

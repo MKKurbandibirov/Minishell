@@ -6,13 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:28 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 09:18:28 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 11:26:44 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header_files/minishell.h"
+#include "../../header_files/parser.h"
 
-void	ft_pars(char *s1, int group, int add_len, int i)
+int	ft_pars(char *s1, int group, int add_len, int i)
 {
 	t_parser	prs;
 	char		*s;
@@ -21,7 +21,7 @@ void	ft_pars(char *s1, int group, int add_len, int i)
 	if (ft_validate_pairs(s1) != 0)
 	{
 		printf("ERR NOT VALID STR! ()");
-		return ;
+		return (1);
 	}
 	s = ft_substitution(s1, -1);
 	while (s[i])
@@ -40,8 +40,5 @@ void	ft_pars(char *s1, int group, int add_len, int i)
 		i++;
 	}
 	ft_clear_parslst(&prs, s);
-	if (ft_validator(prs.head) == 0)
-		printf("OK\n");
-	else
-		printf("FUCK\n");
+	return (ft_validator(prs.head));
 }

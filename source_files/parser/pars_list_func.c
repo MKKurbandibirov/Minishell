@@ -6,11 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 09:36:33 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 11:24:04 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header_files/minishell.h"
+#include "../../header_files/parser.h"
 
 t_plist	*ft_getlast(t_plist *head)
 {
