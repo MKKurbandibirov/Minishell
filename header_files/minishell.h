@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/15 17:53:13 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:47:02 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "builtins.h"
 # include "execute.h"
 # include "pipe.h"
+# include "parser.h"
 # include "../libft/libft.h"
 
 typedef struct s_minishell

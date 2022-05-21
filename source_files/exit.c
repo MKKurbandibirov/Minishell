@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 09:58:02 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:51:00 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/07 14:45:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header_files/builtins.h"
+#include "../header_files/builtins.h"
 
-void	ft_pwd(int fd)
+void	ft_exit(void)
 {
-	char	*p_dir;
-	char	dir[PATH_MAX];
-
-	p_dir = getcwd(dir, PATH_MAX);
-	if (p_dir == NULL)
-		perror("[ERROR]");
-	write(fd, dir, ft_strlen(dir));
-	write(fd, "\n", 1);
+	g_shell->return_status = 0;
+	exit(0);
 }

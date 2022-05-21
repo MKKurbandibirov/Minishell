@@ -51,3 +51,25 @@ char	*ft_strjoin_free(char *s1, char *s2, int option)
 	advanced_free(s1, s2, option);
 	return (new);
 }
+
+char	*ft_strjoin_c_free(char *s1, char s2)
+{
+	char	*new;
+	int		i;
+
+	if (!(s1 && s2))
+		return (NULL);
+	new = malloc((ft_strlen(s1) + 2) * sizeof(char));
+	if (!new)
+	{
+		free(s1);
+		exit (EXIT_FAILURE);
+	}
+	i = -1;
+	while (s1[++i])
+		new[i] = s1[i];
+	new[i++] = s2;
+	new[i] = '\0';
+	free(s1);
+	return (new);
+}

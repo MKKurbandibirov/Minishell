@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:29:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/15 17:05:57 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:49:37 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	ft_strncpy(char *src, char *direc, int len);
+int		ft_isspace(char c);
+char	*ft_strjoin_c_free(char *s1, char s2);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, unsigned int n);
 void	*ft_calloc(size_t count, size_t size);

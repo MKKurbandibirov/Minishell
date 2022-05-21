@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:54 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:36:05 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:57:10 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ t_key_val	*create_env_node(char *env_i)
 	env->val = ft_strtrim(env->val, "\"\'");
 	return (env);
 }
+
+// t_key_val	*create_env_node(char *env_i)
+// {
+// 	int			pos;
+// 	t_key_val	*env;
+
+// 	pos = 0;
+// 	while (env_i[pos] != '=')
+// 		pos++;
+// 	env = (t_key_val *)malloc(sizeof(t_key_val));
+// 	env->key = ft_substr(env_i, 0, pos);
+// 	env->val = ft_substr(env_i, pos + 1, ft_strlen(env_i) - pos);
+// 	env->val = ft_strtrim(env->val, "\"\'");
+// 	return (env);
+// }
 
 t_list	*get_envr(char **envr)
 {
