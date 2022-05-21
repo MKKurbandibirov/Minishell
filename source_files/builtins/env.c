@@ -6,11 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:54 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/15 17:46:53 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:36:05 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/builtins.h"
+#include "../../header_files/builtins.h"
 
 t_key_val	*create_env_node(char *env_i)
 {

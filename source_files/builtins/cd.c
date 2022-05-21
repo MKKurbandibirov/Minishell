@@ -6,11 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/06 18:13:45 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/21 10:35:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/builtins.h"
+#include "../../header_files/builtins.h"
 
 char	*get_pwd(t_list *env, int opt)
 {
