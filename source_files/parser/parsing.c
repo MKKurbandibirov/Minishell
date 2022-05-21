@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/21 09:18:36 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/21 09:19:57 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header_files/minishell.h"
 
 char	*ft_argv_am(char *s, int *add)
@@ -18,7 +30,7 @@ char	*ft_argv_am(char *s, int *add)
 
 int	ft_checking_cause(char *s, int *grp, t_parser *prs)
 {
-	int add;
+	int	add;
 
 	add = 0;
 	if (s[0])
@@ -42,18 +54,18 @@ int	ft_checking_cause(char *s, int *grp, t_parser *prs)
 
 int	ft_get_arg_continue(char *s, int *group, t_parser *prs)
 {
-	int	add; 
+	int	add;
 
 	add = 0;
 	if (s[0] && s[0] == '<' && s[1] && s[1] == '<')
 	{
 		ft_pushback_p(&prs->head, "<<", HEREDOC, *group);
-		add+=2;
+		add += 2;
 	}
 	else if (s[0] && s[0] == '>' && s[1] && s[1] == '>')
 	{
 		ft_pushback_p(&prs->head, ">>", APPEND, *group);
-		add+=2;
+		add += 2;
 	}
 	else if (s[0] && s[0] == '>')
 	{
@@ -70,7 +82,7 @@ int	ft_get_arg_continue(char *s, int *group, t_parser *prs)
 
 int	ft_get_arg(char *s, int *group, t_parser *prs, int i)
 {
-	int	add; 
+	int	add;
 
 	while (s[i] && s[i] != '&' && s[i] != '|' && s[i] != ')')
 	{
@@ -83,7 +95,7 @@ int	ft_get_arg(char *s, int *group, t_parser *prs, int i)
 			ft_pushback_p(&prs->head, ft_single_quote(&s[i], &add),
 				ARG, *group);
 		else if (s[i] && s[i] == '\"')
-			ft_pushback_p(&prs->head, ft_dbl_quoteProccessing(&s[i], &add),
+			ft_pushback_p(&prs->head, ft_dbl_quoteproccessing(&s[i], &add),
 				ARG, *group);
 		else
 			add = ft_get_arg_continue(&s[i], group, prs);
@@ -105,7 +117,7 @@ void	ft_clear_parslst(t_parser *prs, char *s)
 	while (curr)
 	{
 		if (curr->data[0] == '\0')
-			ft_delElem(&prs->head, curr);
+			ft_delelem(&prs->head, curr);
 		curr = curr->next;
 	}
 	free(s);

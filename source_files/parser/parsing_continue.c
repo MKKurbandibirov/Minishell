@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_continue.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/21 09:18:32 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/21 09:36:09 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header_files/minishell.h"
 
 char	*ft_substitution(char *s, int pt)
@@ -17,10 +29,10 @@ char	*ft_substitution(char *s, int pt)
 		else if (s[pt] == '\'')
 			test = ft_single_quote(&s[pt], &add_len);
 		else if (s[pt] == '\"')
-			test = ft_dbl_quoteProccessing(&s[pt], &add_len);
+			test = ft_dbl_quoteproccessing(&s[pt], &add_len);
 		else
 			ret = ft_strjoin_c_free(ret, s[pt--]);
-		if (test)	
+		if (test)
 			ret = ft_strjoin_free(ret, test, 3);
 		pt += (add_len);
 	}
@@ -30,7 +42,6 @@ char	*ft_substitution(char *s, int pt)
 char	*ft_env_search(char *dollar)
 {
 	t_list	*curr;
-	int		i;
 
 	curr = g_shell->env;
 	while (curr != NULL)

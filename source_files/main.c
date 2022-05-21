@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/15 13:00:33 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:28:23 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ int	builtin_parser(char **cmd, t_list *env, t_list *exp)
 int	main(int argc, char **argv, char **envr)
 {
 	char	*line;
-	char	**cmd;
+	// char	**cmd;
 
+	(void)argc;
+	(void)argv;
 	g_shell = (t_minishell *)malloc(sizeof(t_minishell));
 	if (!g_shell)
 		return (1);

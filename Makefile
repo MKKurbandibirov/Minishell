@@ -1,15 +1,17 @@
 NAME			=	minishell
 
-SRC_DIR			=	./source_files
+SRCDIR			=	source_files
+
 SRC				=	$(SRC_DIR)/main.c \
-					$(SRC_DIR)/parser.c \
 					$(SRC_DIR)/echo_n.c $(SRC_DIR)/pwd.c 			$(SRC_DIR)/cd.c 	$(SRC_DIR)/env.c \
 					$(SRC_DIR)/export.c	$(SRC_DIR)/export_utils.c	$(SRC_DIR)/unset.c 	$(SRC_DIR)/exit.c \
-					$(SRC_DIR)/find_cmd.c
+					$(SRC_DIR)/find_cmd.c \
+					$(SRC_DIR)/parser/pars_list_func.c	$(SRC_DIR)/parser/parser.c		$(SRC_DIR)/parser/parsing_continue.c \
+					$(SRC_DIR)/parser/parsing.c 		$(SRC_DIR)/parser/quotes.c	$(SRC_DIR)/parser/validators.c
 					
 
-OBJ_DIR			=	./object_files
-OBJ 			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
+OBJDIR			=	object_files
+OBJ				=	$(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC				=	gcc -g
 CFLAGS			=	-Wall -Wextra -Werror
@@ -19,15 +21,15 @@ LFLAGS			=	-lreadline
 
 all				:	$(NAME)
 
-$(OBJ_DIR)/%.o	:	$(SRC_DIR)/%.c
+$(OBJDIR)/%.o	:	$(SRCDIR)/%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME)			:	$(OBJ)
 	@make -C libft/
-	@$(CC) $(OBJ_DIR)/*.o $(CFLAGS) $(LFLAGS) -o $(NAME)
+	@$(CC) $(OBJDIR)/*.o $(OBJDIR)/parser/*.o $(CFLAGS) $(LFLAGS) -o $(NAME)
 
 clean			:
-	@rm -rf $(OBJ_DIR)/*.o
+	@rm -rf $(OBJDIR)/*.o $(OBJDIR)/parser/*.o
 
 fclean			:	clean
 	@rm -rf $(NAME)

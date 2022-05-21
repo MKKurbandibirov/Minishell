@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotes.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/21 09:19:14 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/05/21 09:41:18 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header_files/minishell.h"
 
 char	*ft_dbl_quotes_subsit(char *s)
@@ -28,7 +40,6 @@ char	*ft_dbl_quotes_subsit(char *s)
 
 char	*ft_dbl_replacement(char *s)
 {
-	int		len;
 	int		pt;
 	int		new_len;
 	char	*new;
@@ -63,7 +74,7 @@ char	*ft_srch_pair_quote(char *s, int c)
 	f_i = -1;
 	while (s[i] != 0)
 	{
-		if (s[i] == c && s[i-1] != '\\')
+		if (s[i] == c && s[i - 1] != '\\')
 		{
 			f_i = i;
 			break ;
@@ -78,7 +89,7 @@ char	*ft_srch_pair_quote(char *s, int c)
 		return (&s[f_i]);
 }
 
-char	*ft_dbl_quoteProccessing(char *s, int *add)
+char	*ft_dbl_quoteproccessing(char *s, int *add)
 {
 	char	*next_c;
 	char	*ret;
@@ -87,7 +98,10 @@ char	*ft_dbl_quoteProccessing(char *s, int *add)
 	len = 0;
 	next_c = ft_srch_pair_quote(&s[1], s[0]);
 	if (next_c == NULL)
+	{
+		ret = NULL;
 		printf("INCORRECT");
+	}
 	else
 	{
 		len += next_c - &s[len];
