@@ -37,7 +37,7 @@ $(NAME)		:	$(OBJ) $(HEADER)
 
 $(OBJ_DIR)/%.o : %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo FILE COLLECTED $@
 
 fclean 		:
 	@rm -rf $(NAME)
-
