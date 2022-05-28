@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/21 11:26:14 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/28 09:24:56 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	free_list(t_list *lst)
 
 int	main(int argc, char **argv, char **envr)
 {
+	(void)argc;
+	(void)argv;
 	char	*line;
 	char	**cmd;
 
@@ -86,7 +88,7 @@ int	main(int argc, char **argv, char **envr)
 	main_sig();
 	while (1)
 	{
-		line = readline("Assalamu_Aleykum:> ");
+		line = readline(get_prompt());
 		if (!line)
 		{
 			clear_history();

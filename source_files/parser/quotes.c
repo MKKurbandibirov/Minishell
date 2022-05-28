@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:19:14 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 11:24:21 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:06:22 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char	*ft_single_quote(char *s, int *add)
 	int		len;
 
 	len = 0;
+	ret = NULL;
 	next_c = ft_strchr(&s[1], s[0]);
 	if (next_c == NULL)
 		printf("INCORRECT");

@@ -4,11 +4,11 @@ NAME	=	minishell
 
 #######################################################################
 
-CC		=	gcc
-#FLAGS	=	-Wall -Wextra -Werror -g
-FLAGS	=	-Wall -Wextra -g
+CC		=	clang
+FLAGS	=	-Wall -Wextra -Werror -g
+# FLAGS	=	-Wall -Wextra -g
 INCL	= 	./header_files/
-CFLAGS	=	-I $(INCL) $(FLAGS) -lreadline
+CFLAGS	=	$(FLAGS) -lreadline #-I $(INCL)
 
 #######################################################################
 
@@ -22,7 +22,7 @@ PATH_OBJ	=	object_files/
 #######################################################################
 
 FILE_SRC	=	main.c \
-				execute.c find_cmd.c signal.c
+				execute.c find_cmd.c signal.c prompt.c
 
 FILE_PRS	=	parser.c \
 				pars_list_func.c parsing_continue.c parsing.c quotes.c validators.c
@@ -65,16 +65,16 @@ all		:	$(NAME) $(HEAD_FILE)
 
 $(PATH_OBJ)%.o	:	$(PATH_SRC)%.c $(HEAD_FILE)
 	@if ! [ -d ./object_files ] ; then
-		@mkdir object_files
-		@mkdir object_files/parser
-		@mkdir object_files/builtins
-	fi
+		mkdir object_files
+		mkdir object_files/parser
+		mkdir object_files/builtins
+	@fi
 	@$(CC) $(FLAGS) -c $< -o $@
-	@echo FILE COLLECTED $@
+	# @echo FILE COLLECTED $@
 
 $(NAME)	:	 $(OBJ) $(HEAD_FILE) $(SRC_FT) $(SRC_SH)
 	@make -C libft/
-	$(CC) $(CFLAGS) $(PATH_OBJ)*.o $(PATH_OBJ)builtins/*.o $(PATH_OBJ)parser/*.o -o $(NAME)
+	@$(CC) $(CFLAGS) $(PATH_OBJ)*.o $(PATH_OBJ)builtins/*.o $(PATH_OBJ)parser/*.o -o $(NAME)
 
 clean	:
 	@rm -rf $(PATH_OBJ)
