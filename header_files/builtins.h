@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:50:03 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:37:59 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ int			ft_export(char *cmd_1, t_list *exp, t_list *env, int fd);
 int			ft_unset(t_list *env, t_list *exp, char **vars);
 
 void		ft_exit(void);
+
+void		free_list(t_list *lst);
+int			builtin_parser(char **cmd, t_list *env, t_list *exp);
+int			norm_helper(char **cmd, t_list *env, t_list *exp);
 
 #endif

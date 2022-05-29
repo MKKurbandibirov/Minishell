@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 12:48:55 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/05/29 10:56:23 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,5 @@ char	*identify_cmd(char *cmd)
 	}
 	return (NULL);
 }
+
+
