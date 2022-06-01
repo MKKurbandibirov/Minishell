@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:09:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 14:05:01 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:37:24 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,25 @@ int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
 
 int	cd_minus(char *path, t_list *env, t_list *exp, int fd)
 {
-	char	*tmp;
+	char	*oldpwd;
+	char	*pwd;
 	char	*t;
 
 	if (!ft_strcmp(path, "-"))
 	{
-		tmp = get_pwd(env, 2);
-		if (chdir(tmp) != -1)
+		pwd = ft_strdup(get_pwd(env, 1));
+		oldpwd = ft_strdup(get_pwd(env, 2));
+		printf("%s\n", oldpwd);
+		if (chdir(oldpwd) != -1)
 		{
-			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			t = ft_strjoin("OLDPWD=", pwd);
 			ft_export(t, exp, env, fd);
 			free(t);
-			t = ft_strjoin("PWD=", tmp);
+			t = ft_strjoin("PWD=", oldpwd);
 			ft_export(t, exp, env, fd);
 			free(t);
+			free(pwd);
+			free(oldpwd);
 		}
 		else
 			perror("[ERROR]");

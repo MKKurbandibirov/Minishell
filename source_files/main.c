@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/01 14:08:19 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:35:42 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	main(int argc, char **argv, char **envr)
 			cmd = ft_split(line, ' ');
 			if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 			{
-				if (identify_cmd(cmd[0]))
-				{
-					solo_cmd_exec(cmd, 0, 0, NULL);
-				}
+				// if (identify_cmd(cmd[0]))
+				// {
+				// 	solo_cmd_exec(cmd, 0, 0, NULL);
+				// }
 				// ft_pipe(create_example(), 3, 0, 1);
 			}
 			add_history(line);

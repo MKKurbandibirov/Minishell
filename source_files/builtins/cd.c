@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 14:04:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:43:10 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*get_pwd(t_list *env, int opt)
 	return (NULL);
 }
 
+// Вот прикооооооол!!!!!
+
 int	cd_path(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
@@ -36,6 +38,7 @@ int	cd_path(char *path, t_list *env, t_list *exp, int fd)
 	if (path[ft_strlen(path) - 1] == '/')
 		path[ft_strlen(path) - 1] = '\0';
 	tmp = get_pwd(env, 1);
+	printf("%s\n", path);
 	if (chdir(path) != -1)
 	{
 		t = ft_strjoin("OLDPWD=", tmp);
@@ -53,17 +56,45 @@ int	cd_path(char *path, t_list *env, t_list *exp, int fd)
 	return (1);
 }
 
+int	cd_relative_path(char *path, t_list *env, t_list *exp, int fd)
+{
+	char	*tmp;
+	char	*tail;
+	char	*t;
+
+	if (path[ft_strlen(path) - 1] == '/')
+		path[ft_strlen(path) - 1] = '\0';
+	tmp = ft_strdup(get_pwd(env, 1));
+	if (path[0] == '.' && path[1] == '.' && chdir(path) != -1)
+	{
+		t = ft_strjoin("OLDPWD=", tmp);
+		ft_export(t, exp, env, fd);
+		free(t);
+		tail = ft_strrchr(tmp, '/');
+		tmp[tail - tmp] = '\0';
+		tmp = ft_strjoin_free(tmp, path + 2, 1);
+		t = ft_strjoin("PWD=", tmp);
+		ft_export(t, exp, env, fd);
+		free(tmp);
+		free(t);
+	}
+	else
+		perror("[ERROR]");
+	return (1);
+}
+
 void	ft_cd(char *path, t_list *env, t_list *exp, int fd)
 {
 	int			i;
-	t_cd_util	cd_utils[6];
+	t_cd_util	cd_utils[7];
 
 	cd_utils[0] = &cd_home;
 	cd_utils[1] = &cd_relative_home;
 	cd_utils[2] = &cd_dot;
 	cd_utils[3] = &cd_double_dot;
 	cd_utils[4] = &cd_minus;
-	cd_utils[5] = &cd_path;
+	cd_utils[5] = &cd_relative_path;
+	cd_utils[6] = &cd_path;
 	i = 0;
 	while (cd_utils[i](path, env, exp, fd) != 1)
 		i++;
