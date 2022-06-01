@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 12:46:47 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:04:24 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,22 @@ char	*get_pwd(t_list *env, int opt)
 int	cd_path(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
+	char	*t;
 
 	if (path[ft_strlen(path) - 1] == '/')
 		path[ft_strlen(path) - 1] = '\0';
 	tmp = get_pwd(env, 1);
 	if (chdir(path) != -1)
 	{
-		ft_export(ft_strjoin_free("OLDPWD=", tmp, 3), exp, env, fd);
+		t = ft_strjoin("OLDPWD=", tmp);
+		ft_export(t, exp, env, fd);
+		free(t);
 		tmp = ft_strjoin(tmp, "/");
 		tmp = ft_strjoin_free(tmp, path, 1);
-		ft_export(ft_strjoin_free("PWD=", tmp, 3), exp, env, fd);
+		t = ft_strjoin("PWD=", tmp);
+		ft_export(t, exp, env, fd);
 		free(tmp);
+		free(t);
 	}
 	else
 		perror("[ERROR]");

@@ -6,26 +6,28 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:09:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 12:50:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:05:01 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/builtins.h"
 
-// Всё говно давай по новой(лики)
-
 int	cd_home(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*home;
+	char	*t;
 
 	home = getenv("HOME");
 	if (!ft_strcmp(path, "") || !ft_strcmp(path, "~"))
 	{
 		if (chdir(home) != -1)
 		{
-			ft_export(ft_strjoin_free("OLDPWD=", get_pwd(env, 1), 3),
-				exp, env, fd);
-			ft_export(ft_strjoin_free("PWD=", home, 3), exp, env, fd);
+			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			ft_export(t, exp, env, fd);
+			free(t);
+			t = ft_strjoin("PWD=", home);
+			ft_export(t, exp, env, fd);
+			free(t);
 		}
 		else
 			perror("[ERROR]");
@@ -38,6 +40,7 @@ int	cd_relative_home(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*new_path;
 	char	*home;
+	char	*t;
 
 	home = getenv("HOME");
 	if (path[0] == '~')
@@ -45,9 +48,12 @@ int	cd_relative_home(char *path, t_list *env, t_list *exp, int fd)
 		new_path = ft_strjoin(home, ++path);
 		if (chdir(new_path) != -1)
 		{
-			ft_export(ft_strjoin_free("OLDPWD=", get_pwd(env, 1), 3),
-				exp, env, fd);
-			ft_export(ft_strjoin_free("PWD=", new_path, 3), exp, env, fd);
+			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			ft_export(t, exp, env, fd);
+			free(t);
+			t = ft_strjoin("PWD=", new_path);
+			ft_export(t, exp, env, fd);
+			free(t);
 		}
 		else
 			perror("[ERROR]");
@@ -61,6 +67,7 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
 	char	*tail;
+	char	*t;
 
 	if (!ft_strcmp(path, ".."))
 	{
@@ -69,9 +76,12 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
 		tmp[tail - tmp] = '\0';
 		if (chdir(tmp) != -1)
 		{
-			ft_export(ft_strjoin_free("OLDPWD=", get_pwd(env, 1), 3),
-				exp, env, fd);
-			ft_export(ft_strjoin_free("PWD=", tmp, 1), exp, env, fd);
+			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			ft_export(t, exp, env, fd);
+			free(t);
+			t = ft_strjoin("PWD=", tmp);
+			ft_export(t, exp, env, fd);
+			free(t);
 		}
 		else
 			perror("[ERROR]");
@@ -84,14 +94,19 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
 int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
+	char	*t;
 
 	if (!ft_strcmp(path, "."))
 	{
 		tmp = get_pwd(env, 1);
 		if (chdir(tmp) != 1)
 		{
-			ft_export(ft_strjoin_free("OLDPWD=", tmp, 3), exp, env, fd);
-			ft_export(ft_strjoin_free("PWD=", tmp, 3), exp, env, fd);
+			t = ft_strjoin("OLDPWD=", tmp);
+			ft_export(t, exp, env, fd);
+			free(t);
+			t = ft_strjoin("PWD=", tmp);
+			ft_export(t, exp, env, fd);
+			free(t);
 		}
 		else
 			perror("[ERROR]");
@@ -103,15 +118,19 @@ int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
 int	cd_minus(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
+	char	*t;
 
 	if (!ft_strcmp(path, "-"))
 	{
 		tmp = get_pwd(env, 2);
 		if (chdir(tmp) != -1)
 		{
-			ft_export(ft_strjoin_free("OLDPWD=", get_pwd(env, 1), 3),
-				exp, env, fd);
-			ft_export(ft_strjoin_free("PWD=", tmp, 3), exp, env, fd);
+			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			ft_export(t, exp, env, fd);
+			free(t);
+			t = ft_strjoin("PWD=", tmp);
+			ft_export(t, exp, env, fd);
+			free(t);
 		}
 		else
 			perror("[ERROR]");

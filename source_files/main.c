@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/01 12:32:48 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:08:19 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv, char **envr)
 				// ft_pipe(create_example(), 3, 0, 1);
 			}
 			add_history(line);
-			free_split(cmd);
+			free_split(cmd); // Why is this fucking function dont work
 		}
 		free(prompt);
 		free(line);
