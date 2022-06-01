@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/29 11:37:59 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/01 12:06:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,18 @@ typedef struct s_key_val
 	char	*val;
 }	t_key_val;
 
+typedef int	(*t_cd_util)(char *path, t_list *env, t_list *exp, int fd);
+
 int			ft_echo_n(char **cmd, int fd);
 void		ft_pwd(int fd);
 
+char		*get_pwd(t_list *env, int opt);
+int			cd_home(char *path, t_list *env, t_list *exp, int fd);
+int			cd_relative_home(char *path, t_list *env, t_list *exp, int fd);
+int			cd_double_dot(char *path, t_list *env, t_list *exp, int fd);
+int			cd_dot(char *path, t_list *env, t_list *exp, int fd);
+int			cd_minus(char *path, t_list *env, t_list *exp, int fd);
+int			cd_path(char *path, t_list *env, t_list *exp, int fd);
 void		ft_cd(char *path, t_list *env, t_list *exp, int fd);
 
 t_key_val	*create_env_node(char *env_i);

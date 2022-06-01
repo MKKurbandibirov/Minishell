@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:36:17 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/01 12:36:46 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	helper(t_list *curr, t_key_val *node)
 {
 	if (((t_key_val *)curr->content)->val != NULL
 		&& node->val == NULL)
+	{
 		free(node);
+	}
 	else
 	{
+		free(((t_key_val *)curr->content)->key);
+		free(((t_key_val *)curr->content)->val);
 		free(curr->content);
 		curr->content = node;
 	}

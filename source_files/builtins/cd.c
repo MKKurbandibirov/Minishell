@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/29 13:03:44 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/01 12:46:47 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,86 +28,38 @@ char	*get_pwd(t_list *env, int opt)
 	return (NULL);
 }
 
-int	norm_helper1(char *path, t_list *env, t_list *exp, int fd)
-{
-	char	*new_path;
-	char	*home;
-
-	home = getenv("HOME");
-	if (!ft_strcmp(path, "") || !ft_strcmp(path, "~"))
-	{
-		if (chdir(home) == -1)
-			perror("[ERROR]");
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", home), exp, env, fd);
-		return (1);
-	}
-	else if (path[0] == '~')
-	{
-		new_path = ft_strjoin(home, ++path);
-		if (chdir(new_path) == -1)
-			perror("[ERROR]");
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", new_path), exp, env, fd);
-		free(new_path);
-		return (1);
-	}
-	return (0);
-}
-
-int	norm_helper2(char *path, t_list *env, t_list *exp, int fd)
+int	cd_path(char *path, t_list *env, t_list *exp, int fd)
 {
 	char	*tmp;
-	char	*tail;
 
-	if (!ft_strcmp(path, ".."))
+	if (path[ft_strlen(path) - 1] == '/')
+		path[ft_strlen(path) - 1] = '\0';
+	tmp = get_pwd(env, 1);
+	if (chdir(path) != -1)
 	{
-		tmp = ft_strdup(get_pwd(env, 1));
-		tail = ft_strrchr(tmp, '/');
-		tmp[tail - tmp] = '\0'; // Возможна утечка
-		if (chdir(tmp) == -1)
-			perror("[ERROR]");
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", tmp), exp, env, fd);
+		ft_export(ft_strjoin_free("OLDPWD=", tmp, 3), exp, env, fd);
+		tmp = ft_strjoin(tmp, "/");
+		tmp = ft_strjoin_free(tmp, path, 1);
+		ft_export(ft_strjoin_free("PWD=", tmp, 3), exp, env, fd);
 		free(tmp);
-		return (1);
-	}
-	else if (!ft_strcmp(path, "."))
-	{
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", get_pwd(env, 1)), exp, env, fd);
-		return (1);
-	}
-	return (0);
-}
-
-int	norm_helper3(char *path, t_list *env, t_list *exp, int fd)
-{
-	char	*tmp;
-
-	if (!ft_strcmp(path, "-"))
-	{
-		tmp = get_pwd(env, 2);
-		if (chdir(tmp) == -1)
-			perror("[ERROR]");
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", tmp), exp, env, fd);
-		return (1);
 	}
 	else
-	{
-		if (chdir(path) == -1)
-			perror("[ERROR]");
-		ft_export(ft_strjoin("OLDPWD=", get_pwd(env, 1)), exp, env, fd);
-		ft_export(ft_strjoin("PWD=", path), exp, env, fd);
-		return (1);
-	}
-	return (0);
+		perror("[ERROR]");
+	return (1);
 }
 
 void	ft_cd(char *path, t_list *env, t_list *exp, int fd)
 {
-	if (!norm_helper1(path, env, exp, fd))
-		if (!norm_helper2(path, env, exp, fd))
-			norm_helper3(path, env, exp, fd);
+	int			i;
+	t_cd_util	cd_utils[6];
+
+	cd_utils[0] = &cd_home;
+	cd_utils[1] = &cd_relative_home;
+	cd_utils[2] = &cd_dot;
+	cd_utils[3] = &cd_double_dot;
+	cd_utils[4] = &cd_minus;
+	cd_utils[5] = &cd_path;
+	i = 0;
+	while (cd_utils[i](path, env, exp, fd) != 1)
+		i++;
 }
