@@ -37,6 +37,20 @@ int	ft_validate_pairs(char *s)
 	return (status);
 }
 
+int	ft_valid_first_arg(char *s)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	status = 0;
+	while (s[i] && (ft_isspace(s[i]) || s[i] == '('))
+		i++;
+	if (s[i] && (s[i] == '|' || s[i] == '&'))
+		status = 1;
+	return (status);
+}
+
 int	ft_validator(t_plist *curr)
 {
 	while (curr && curr->type == CMD)
@@ -56,6 +70,7 @@ int	ft_validator(t_plist *curr)
 				|| curr->type == OPER || curr->type == BG))
 			curr = curr->next;
 	}
+	// TODO << >> < >
 	if (curr == NULL)
 		return (0);
 	return (EXIT_FAILURE);

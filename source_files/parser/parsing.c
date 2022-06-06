@@ -39,15 +39,15 @@ int	ft_checking_cause(char *s, int *grp, t_parser *prs)
 		if (s[0] == ')')
 			(*grp)++;
 		else if (s[0] == '|' && (!s[1] || s[1] != '|'))
-			ft_pushback_p(&prs->head, "|", PIPE, *grp);
+			ft_pushback_p(&prs->head, ft_strdup("|"), PIPE, *grp);
 		else if (s[0] == '&' && (!s[1] || s[1] != '&'))
 			ft_pushback_p(&prs->head, "&", BG, *grp);
 		else
 			add++;
 		if (s[0] == '|' && s[1] && s[1] == '|')
-			ft_pushback_p(&prs->head, "||", OPER, *grp);
+			ft_pushback_p(&prs->head, ft_strdup("||"), OPER, *grp);
 		else if (s[0] == '&' && s[1] && s[1] == '&')
-			ft_pushback_p(&prs->head, "&&", OPER, *grp);
+			ft_pushback_p(&prs->head, ft_strdup("&&"), OPER, *grp);
 	}
 	return (add);
 }
@@ -59,22 +59,22 @@ int	ft_get_arg_continue(char *s, int *group, t_parser *prs)
 	add = 0;
 	if (s[0] && s[0] == '<' && s[1] && s[1] == '<')
 	{
-		ft_pushback_p(&prs->head, "<<", HEREDOC, *group);
+		ft_pushback_p(&prs->head, ft_strdup("<<"), HEREDOC, *group);
 		add += 2;
 	}
 	else if (s[0] && s[0] == '>' && s[1] && s[1] == '>')
 	{
-		ft_pushback_p(&prs->head, ">>", APPEND, *group);
+		ft_pushback_p(&prs->head, ft_strdup(">>"), APPEND, *group);
 		add += 2;
 	}
 	else if (s[0] && s[0] == '>')
 	{
-		ft_pushback_p(&prs->head, ">", OUT, *group);
+		ft_pushback_p(&prs->head, ft_strdup(">"), OUT, *group);
 		add++;
 	}
 	else if (s[0] && s[0] == '<')
 	{
-		ft_pushback_p(&prs->head, "<", IN, *group);
+		ft_pushback_p(&prs->head, ft_strdup("<"), IN, *group);
 		add++;
 	}
 	return (add);

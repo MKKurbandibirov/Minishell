@@ -41,7 +41,7 @@ void	ft_initparser(t_parser *env)
 }
 
 void	ft_remove_list(t_parser *env)
-{
+{	
 	while (env->head)
 		ft_delelem(&env->head, env->head);
 }

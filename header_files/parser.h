@@ -68,6 +68,7 @@ char	*ft_dbl_quoteproccessing(char *s, int *add);
 char	*ft_single_quote(char *s, int *add);
 int		ft_validate_pairs(char *s);
 int		ft_validator(t_plist *curr);
+int		ft_valid_first_arg(char *s);
 
-int		ft_pars(char *s1, int group, int add_len, int i);
+t_parser	ft_pars(char *s1, int group, int add_len, int i);
 #endif
