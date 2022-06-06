@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 11:36:44 by magomed           #+#    #+#             */
-/*   Updated: 2022/05/29 11:38:10 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/06 17:10:32 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	norm_helper(char **cmd, t_list *env, t_list *exp)
 {
 	if (!ft_strcmp("env", cmd[0]) && cmd[1] == NULL)
 	{
-		ft_env(env, 0);
+		ft_env(env);
 		return (1);
 	}
-	else if (!ft_strcmp("export", cmd[0]) && !ft_export(cmd[1], exp, env, 0))
+	else if (!ft_strcmp("export", cmd[0]) && !ft_export(cmd[1], exp, env))
 		return (1);
 	else if (!ft_strcmp("unset", cmd[0]) && !ft_unset(env, exp, cmd))
 		return (1);
@@ -33,19 +33,19 @@ int	norm_helper(char **cmd, t_list *env, t_list *exp)
 
 int	builtin_parser(char **cmd, t_list *env, t_list *exp)
 {
-	if (!ft_strcmp("echo", cmd[0]) && !ft_echo_n(cmd, 0))
+	if (!ft_strcmp("echo", cmd[0]) && !ft_echo_n(cmd))
 		return (1);
 	else if (!ft_strcmp("pwd", cmd[0]) && cmd[1] == NULL)
 	{
-		ft_pwd(0);
+		ft_pwd();
 		return (1);
 	}
 	else if (!ft_strcmp("cd", cmd[0]))
 	{
 		if (cmd[1] == NULL)
-			ft_cd("", env, exp, 0);
+			ft_cd("", env, exp);
 		else
-			ft_cd(cmd[1], env, exp, 0);
+			ft_cd(cmd[1], env, exp);
 		return (1);
 	}
 	else if (norm_helper(cmd, env, exp))

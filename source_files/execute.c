@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/29 12:09:38 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/06 15:05:53 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ t_pipe	*init_pipeline(int cmd_count)
 	return (pipel);
 }
 
+void	child_proc(char **cmd, int fd_in, int fd_out, t_pipe *pipel)
+{
+	dup2(fd_in, STDIN_FILENO);
+	dup2(fd_out, STDOUT_FILENO);
+	fd_close(pipel);
+	printf("cmd now - %s\n", cmd[0]);
+	execve(cmd[0], cmd, NULL);
+	printf("Error: execve error!");
+	exit(EXIT_FAILURE);
+}
+
 void	ft_pipe(char ***cmd, int cmd_count, int fd_in, int fd_out)
 {
 	int		i;
@@ -83,11 +94,11 @@ void	ft_pipe(char ***cmd, int cmd_count, int fd_in, int fd_out)
 		if (pipel->pid[i] == 0)
 		{
 			if (i == 0)
-				solo_cmd_exec(pipel->cmd[i], fd_in, pipel->pipe_fd[i * 2 + 1], pipel);
+				child_proc(pipel->cmd[i], fd_in, pipel->pipe_fd[i * 2 + 1], pipel);
 			else if (i == pipel->cmd_count - 1)
-				solo_cmd_exec(pipel->cmd[i], pipel->pipe_fd[2 * i - 2], fd_out, pipel);
+				child_proc(pipel->cmd[i], pipel->pipe_fd[2 * i - 2], fd_out, pipel);
 			else
-				solo_cmd_exec(pipel->cmd[i], pipel->pipe_fd[2 * i - 2], pipel->pipe_fd[i * 2 + 1], pipel);
+				child_proc(pipel->cmd[i], pipel->pipe_fd[2 * i - 2], pipel->pipe_fd[i * 2 + 1], pipel);
 		}
 	}
 	i = -1;

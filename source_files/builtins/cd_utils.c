@@ -6,13 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:09:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 15:37:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:03:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/builtins.h"
 
-int	cd_home(char *path, t_list *env, t_list *exp, int fd)
+int	cd_home(char *path, t_list *env, t_list *exp)
 {
 	char	*home;
 	char	*t;
@@ -23,10 +23,10 @@ int	cd_home(char *path, t_list *env, t_list *exp, int fd)
 		if (chdir(home) != -1)
 		{
 			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", home);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 		}
 		else
@@ -36,7 +36,7 @@ int	cd_home(char *path, t_list *env, t_list *exp, int fd)
 	return (0);
 }
 
-int	cd_relative_home(char *path, t_list *env, t_list *exp, int fd)
+int	cd_relative_home(char *path, t_list *env, t_list *exp)
 {
 	char	*new_path;
 	char	*home;
@@ -49,10 +49,10 @@ int	cd_relative_home(char *path, t_list *env, t_list *exp, int fd)
 		if (chdir(new_path) != -1)
 		{
 			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", new_path);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 		}
 		else
@@ -63,7 +63,7 @@ int	cd_relative_home(char *path, t_list *env, t_list *exp, int fd)
 	return (0);
 }
 
-int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
+int	cd_double_dot(char *path, t_list *env, t_list *exp)
 {
 	char	*tmp;
 	char	*tail;
@@ -77,10 +77,10 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
 		if (chdir(tmp) != -1)
 		{
 			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", tmp);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 		}
 		else
@@ -91,7 +91,7 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp, int fd)
 	return (0);
 }
 
-int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
+int	cd_dot(char *path, t_list *env, t_list *exp)
 {
 	char	*tmp;
 	char	*t;
@@ -102,10 +102,10 @@ int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
 		if (chdir(tmp) != 1)
 		{
 			t = ft_strjoin("OLDPWD=", tmp);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", tmp);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 		}
 		else
@@ -115,7 +115,7 @@ int	cd_dot(char *path, t_list *env, t_list *exp, int fd)
 	return (0);
 }
 
-int	cd_minus(char *path, t_list *env, t_list *exp, int fd)
+int	cd_minus(char *path, t_list *env, t_list *exp)
 {
 	char	*oldpwd;
 	char	*pwd;
@@ -129,10 +129,10 @@ int	cd_minus(char *path, t_list *env, t_list *exp, int fd)
 		if (chdir(oldpwd) != -1)
 		{
 			t = ft_strjoin("OLDPWD=", pwd);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", oldpwd);
-			ft_export(t, exp, env, fd);
+			ft_export(t, exp, env);
 			free(t);
 			free(pwd);
 			free(oldpwd);

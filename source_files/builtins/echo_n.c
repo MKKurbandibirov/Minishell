@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:19:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:50:35 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:02:49 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	has_flag(char *str)
 	return (1);
 }
 
-int	ft_echo_n(char **cmd, int fd)
+int	ft_echo_n(char **cmd)
 {
 	int	i;
 
@@ -36,9 +36,9 @@ int	ft_echo_n(char **cmd, int fd)
 	{
 		while (cmd[i])
 		{
-			write(fd, cmd[i], ft_strlen(cmd[i]));
+			printf("%s", cmd[i]);
 			if (cmd[i + 1] != NULL)
-				write(fd, " ", 1);
+				printf(" ");
 			i++;
 		}
 		return (0);

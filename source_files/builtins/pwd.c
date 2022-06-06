@@ -6,20 +6,16 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:58:02 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:51:00 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:10:14 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/builtins.h"
 
-void	ft_pwd(int fd)
+void	ft_pwd(void)
 {
-	char	*p_dir;
-	char	dir[PATH_MAX];
+	char	*pwd;
 
-	p_dir = getcwd(dir, PATH_MAX);
-	if (p_dir == NULL)
-		perror("[ERROR]");
-	write(fd, dir, ft_strlen(dir));
-	write(fd, "\n", 1);
+	pwd = get_pwd(g_shell->env, 1);
+	printf("%s\n", pwd);
 }

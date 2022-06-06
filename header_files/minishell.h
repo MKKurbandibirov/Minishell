@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 09:40:53 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:42:45 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*exp;
-	// t_pipe	*pipe;
 	char	**cmd_path;
 	int		return_status;
 }	t_minishell;

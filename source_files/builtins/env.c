@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:24:54 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:59:07 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:07:42 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,15 @@ t_list	*get_envr(char **envr)
 	return (env_list);
 }
 
-void	ft_env(t_list *my_env, int fd)
+void	ft_env(t_list *my_env)
 {
 	t_list	*curr;
 
 	curr = my_env;
 	while (curr != NULL)
 	{
-		write(fd, ((t_key_val *)curr->content)->key,
-			ft_strlen(((t_key_val *)curr->content)->key));
-		write(fd, "=", 1);
-		write(fd, ((t_key_val *)curr->content)->val,
-			ft_strlen(((t_key_val *)curr->content)->val));
-		write(fd, "\n", 1);
+		printf("%s=%s\n", ((t_key_val *)curr->content)->key,
+			((t_key_val *)curr->content)->val);
 		curr = curr->next;
 	}
 }

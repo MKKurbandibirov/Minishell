@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 15:43:10 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:48:33 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,62 +28,71 @@ char	*get_pwd(t_list *env, int opt)
 	return (NULL);
 }
 
-// Вот прикооооооол!!!!!
-
-int	cd_path(char *path, t_list *env, t_list *exp, int fd)
+int	cd_path(char *path, t_list *env, t_list *exp)
 {
 	char	*tmp;
 	char	*t;
 
-	if (path[ft_strlen(path) - 1] == '/')
-		path[ft_strlen(path) - 1] = '\0';
 	tmp = get_pwd(env, 1);
-	printf("%s\n", path);
 	if (chdir(path) != -1)
 	{
+		if (path[ft_strlen(path) - 1] == '/')
+			path[ft_strlen(path) - 1] = '\0';
 		t = ft_strjoin("OLDPWD=", tmp);
-		ft_export(t, exp, env, fd);
+		ft_export(t, exp, env);
 		free(t);
 		tmp = ft_strjoin(tmp, "/");
 		tmp = ft_strjoin_free(tmp, path, 1);
 		t = ft_strjoin("PWD=", tmp);
-		ft_export(t, exp, env, fd);
+		ft_export(t, exp, env);
 		free(tmp);
 		free(t);
+		return (1);
 	}
-	else
-		perror("[ERROR]");
-	return (1);
+	perror("[ERROR]");
+	return (0);
 }
 
-int	cd_relative_path(char *path, t_list *env, t_list *exp, int fd)
+static char	*helper(char *tmp, char *path)
 {
-	char	*tmp;
 	char	*tail;
 	char	*t;
 
-	if (path[ft_strlen(path) - 1] == '/')
-		path[ft_strlen(path) - 1] = '\0';
-	tmp = ft_strdup(get_pwd(env, 1));
-	if (path[0] == '.' && path[1] == '.' && chdir(path) != -1)
-	{
-		t = ft_strjoin("OLDPWD=", tmp);
-		ft_export(t, exp, env, fd);
-		free(t);
-		tail = ft_strrchr(tmp, '/');
-		tmp[tail - tmp] = '\0';
-		tmp = ft_strjoin_free(tmp, path + 2, 1);
-		t = ft_strjoin("PWD=", tmp);
-		ft_export(t, exp, env, fd);
-		free(tmp);
-		free(t);
-	}
-	else
-		perror("[ERROR]");
-	return (1);
+	tail = ft_strrchr(tmp, '/');
+	tmp[tail - tmp] = '\0';
+	tmp = ft_strjoin_free(tmp, path + 2, 1);
+	t = ft_strjoin("PWD=", tmp);
+	free(tmp);
+	return (t);
 }
 
-void	ft_cd(char *path, t_list *env, t_list *exp, int fd)
+int	cd_relative_path(char *path, t_list *env, t_list *exp)
+{
+	char	*tmp;
+	char	*t;
+
+	if (path[0] == '.' && path[1] == '.')
+	{
+		if (path[ft_strlen(path) - 1] == '/')
+			path[ft_strlen(path) - 1] = '\0';
+		tmp = ft_strdup(get_pwd(env, 1));
+		if (chdir(path) != -1)
+		{
+			t = ft_strjoin("OLDPWD=", tmp);
+			ft_export(t, exp, env);
+			free(t);
+			t = helper(tmp, path);
+			ft_export(t, exp, env);
+			free(t);
+			return (1);
+		}
+		perror("[ERROR]");
+		return (0);
+	}
+	return (0);
+}
+
+void	ft_cd(char *path, t_list *env, t_list *exp)
 {
 	int			i;
 	t_cd_util	cd_utils[7];
@@ -96,6 +105,8 @@ void	ft_cd(char *path, t_list *env, t_list *exp, int fd)
 	cd_utils[5] = &cd_relative_path;
 	cd_utils[6] = &cd_path;
 	i = 0;
-	while (cd_utils[i](path, env, exp, fd) != 1)
+	while (cd_utils[i](path, env, exp) != 1)
 		i++;
+	// if (i == 7)
+		// g_shell->return_status = 1;
 }

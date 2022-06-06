@@ -6,13 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:27:53 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/01 14:06:36 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:09:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/builtins.h"
 
-void	helper(t_list *curr, t_key_val *node)
+static void	helper(t_list *curr, t_key_val *node)
 {
 	if (((t_key_val *)curr->content)->val != NULL
 		&& node->val == NULL)
@@ -78,7 +78,7 @@ void	env_check(t_list *env, char *cmd_i)
 		ft_lstadd_back(&env, ft_lstnew(node));
 }
 
-int	ft_export(char *cmd_1, t_list *exp, t_list *env, int fd)
+int	ft_export(char *cmd_1, t_list *exp, t_list *env)
 {
 	int		i;
 	char	**strarr;
@@ -89,10 +89,7 @@ int	ft_export(char *cmd_1, t_list *exp, t_list *env, int fd)
 		strarr = convert_to_strarr(exp);
 		str_bubble(strarr);
 		while (strarr[++i])
-		{
-			write(fd, strarr[i], ft_strlen(strarr[i]));
-			write(fd, "\n", 1);
-		}
+			printf("%s\n", strarr[i]);
 		free_split(strarr);
 	}
 	else if (ft_strnstr(cmd_1, "=", ft_strlen(cmd_1)))
