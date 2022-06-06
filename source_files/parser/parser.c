@@ -6,7 +6,7 @@
 /*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:28 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 13:37:30 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:01:56 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_parser	ft_pars(char *s1, int group, int add_len, int i)
 
 	if (ft_pars_helper(&prs, s1) != 0)
 		return (ft_pars_err_helper(&prs, 1));
-	s = ft_substitution(s1, -1);
+	s = ft_substitution(s1, 0);
 	while (s[i])
 	{
 		while (ft_isspace(s[i]) || s[i] == '(')

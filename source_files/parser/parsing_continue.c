@@ -6,7 +6,7 @@
 /*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:32 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 13:49:13 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:28:20 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substitution(char *s, int pt)
 	char	*ret;
 
 	ret = ft_substr("", 0, 1);
-	while (s[++pt])
+	while (s[pt])
 	{
 		test = NULL;
 		add_len = 1;
@@ -31,9 +31,10 @@ char	*ft_substitution(char *s, int pt)
 		else if (s[pt] == '\"')
 			test = ft_dbl_quoteproccessing(&s[pt], &add_len);
 		else
-			ret = ft_strjoin_c_free(ret, s[pt--]);
-		if (test)
+			ret = ft_strjoin_c_free(ret, s[pt]);
+		if (test){
 			ret = ft_strjoin_free(ret, test, 3);
+		}
 		pt += (add_len);
 	}
 	return (ret);
@@ -58,6 +59,7 @@ char	*ft_env_search(char *dollar)
 char	*ft_ifdollar(char *s, int *len)
 {
 	char	*dollar;
+	char 	*tmp;
 	char	*ret;
 
 	*len = 0;
@@ -66,7 +68,10 @@ char	*ft_ifdollar(char *s, int *len)
 		(*len)++;
 	dollar = (char *) malloc(sizeof(char) * (*len) + 1);
 	ft_strncpy(s, dollar, *(len) + 1);
-	ret = ft_strdup(ft_env_search(dollar));
+	if ((tmp = ft_env_search(dollar)) != NULL)
+		ret = ft_strdup(tmp);
+	else
+		return (NULL);
 	free(dollar);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 13:35:32 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:09:22 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 	t_plist	*tmp;
 	t_plist	*last;
 
+	printf("|IN|%p\n", data);
+	printf("|STR|%s\n", data);
+	printf("|GLOBAL|%s\n", get_pwd(g_shell->env, 1));
 	last = ft_getlast(*head);
 	tmp = (t_plist *) malloc(sizeof(t_plist));
 	if (!tmp)
@@ -59,6 +62,7 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 		exit(EXIT_FAILURE);
 	}
 	tmp->data = ft_strdup(data);
+	printf("|OUT|%p\n", tmp->data);
 	tmp->group = group;
 	tmp->type = type;
 	tmp->next = NULL;

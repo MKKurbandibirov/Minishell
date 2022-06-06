@@ -6,7 +6,7 @@
 /*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/06 13:39:43 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:56:55 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,11 @@ int	main(int argc, char **argv, char **envr)
 				{
 					solo_cmd_exec(cmd, 0, 0, NULL);
 				}
-				printf("\n\t\t\tkill\n");
 				// ft_pipe(create_example(), 3, 0, 1);
 			}
-			add_history(line);
 			free_split(cmd); // Why is this fucking function dont work
 		}
+		add_history(line);
 		free(prompt);
 		free(line);
 	}
