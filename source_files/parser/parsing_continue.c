@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_continue.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:32 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 11:24:13 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:49:13 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_ifdollar(char *s, int *len)
 		(*len)++;
 	dollar = (char *) malloc(sizeof(char) * (*len) + 1);
 	ft_strncpy(s, dollar, *(len) + 1);
-	ret = ft_env_search(dollar);
+	ret = ft_strdup(ft_env_search(dollar));
 	free(dollar);
 	return (ret);
 }

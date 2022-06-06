@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:41:08 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:48:55 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:54:36 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *c)
 	size_t	i;
 
 	i = 0;
-	if (c == NULL)
+	if (*c == '\0' || c == NULL)
 		return (0);
 	while (c[i])
 	{

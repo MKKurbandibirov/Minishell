@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:28 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/28 09:04:36 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/06 13:37:30 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**ft_get_cmd(t_parser *prs)
 	char	**tmp;
 	int		i;
 
-	printf("GET NEW COMAND:\n");
 	tmp = (char **) malloc(sizeof(char *) * (ft_count_cmd_word(prs->head) + 1));
 	i = 0;
 	while (prs->head && (prs->head->type == CMD
@@ -67,12 +66,6 @@ char	**ft_get_cmd(t_parser *prs)
 		ft_delelem(&prs->head, prs->head);
 	}
 	tmp[i] = NULL;
-	while (*tmp)
-	{
-		printf(*tmp);
-		printf("\n");
-		tmp++;
-	}
 	return (tmp);
 }
 
@@ -101,8 +94,5 @@ t_parser	ft_pars(char *s1, int group, int add_len, int i)
 	ft_clear_parslst(&prs, s);
 	if (ft_validator(prs.head))
 		return (ft_pars_err_helper(&prs, 1));
-	ft_get_cmd(&prs);
-	ft_get_cmd(&prs);
-	ft_get_cmd(&prs);
 	return (prs);
 }

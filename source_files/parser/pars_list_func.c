@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_list_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:18:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 11:24:04 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/06 13:35:32 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 		perror("Err malloc (PB)");
 		exit(EXIT_FAILURE);
 	}
-	tmp->data = data;
+	tmp->data = ft_strdup(data);
 	tmp->group = group;
 	tmp->type = type;
 	tmp->next = NULL;
