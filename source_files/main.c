@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/06 17:46:38 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:20:34 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	***create_example(void)
 	return ex;
 }
 
-t_minishell *init_shell(int argc, char **argv, char *envr)
+t_minishell *init_shell(int argc, char **argv, char **envr)
 {
 	(void)argc;
 	(void)argv;
@@ -71,12 +71,13 @@ int	main(int argc, char **argv, char **envr)
 				// 	solo_cmd_exec(cmd, 0, 0, NULL);
 				// }
 				// ft_pipe(create_example(), 3, 0, 1);
-				t_plist *curr = prs.head;
-				while (curr != NULL)
-				{
-					printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
-					curr = curr->next;
-				}
+				// t_plist *curr = prs.head;
+				// while (curr != NULL)
+				// {
+				// 	printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
+				// 	curr = curr->next;
+				// }
+				ft_execve(prs.head);
 
 			// }
 			add_history(line);

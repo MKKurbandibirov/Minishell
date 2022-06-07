@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 17:10:25 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:31:29 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include "../libft/libft.h"
-# include "./minishell.h"
+# include "minishell.h"
 
 typedef struct s_key_val
 {

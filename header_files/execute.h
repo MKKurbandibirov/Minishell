@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/29 11:43:17 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/07 10:46:44 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/wait.h>
-# include "./minishell.h"
-
-typedef struct s_pipe
-{
-	char	***cmd;
-	int		*pipe_fd;
-	pid_t	*pid;
-	int		*status;
-	int		cmd_count;
-}	t_pipe;
+# include "minishell.h"
+# include "parser.h"
 
 void	path_parse(void);
 char	*identify_cmd(char *cmd);
-void	solo_cmd_exec(char **cmd, int fd_in, int fd_out, t_pipe *pipel);
 
-void	ft_pipe(char ***cmd, int cmd_count, int fd_in, int fd_out);
+int		ft_execve(t_plist *line);
 #endif

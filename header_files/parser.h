@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:34:03 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 12:22:04 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/07 10:53:00 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@
 # define PIPE 10 // |
 # define BG 11 // &
 
-typedef struct s_plist	t_plist;
+// typedef struct s_plist	t_plist;
 typedef struct s_cmds	t_cmds;
-typedef struct s_parser	t_parser;
+// typedef struct s_parser	t_parser;
 
-struct s_plist
+typedef struct s_plist
 {
-	char	*data;
-	int		type;
-	int		group;
-	t_plist	*next;
-	t_plist	*prev;
-};
+	char			*data;
+	int				type;
+	int				group;
+	struct s_plist	*next;
+	struct s_plist	*prev;
+}	t_plist;
 
-struct s_parser
+typedef struct s_parser
 {
 	t_plist		*head;
-};
+}	t_parser;
 
 t_plist		*ft_getlast(t_plist *head);
 void		ft_delelem(t_plist **head, t_plist *delElem);
