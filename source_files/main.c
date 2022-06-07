@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/07 10:20:34 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:54:31 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv, char **envr)
 				// 	printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
 				// 	curr = curr->next;
 				// }
-				ft_execve(prs.head);
+				// ft_exe(prs.head);
 
 			// }
 			add_history(line);
