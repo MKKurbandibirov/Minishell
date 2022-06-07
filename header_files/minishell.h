@@ -20,20 +20,22 @@
 # include <signal.h>
 # include <errno.h>
 
+# include "../libft/libft.h"
+# include "struct.h"
 # include "readline/readline.h"
 # include "readline/history.h"
 # include "builtins.h"
-# include "execute.h"
 # include "parser.h"
-# include "../libft/libft.h"
+# include "execute.h"
 
-typedef struct s_minishell
-{
-	t_list	*env;
-	t_list	*exp;
-	char	**cmd_path;
-	int		return_status;
-}	t_minishell;
+
+// typedef struct s_minishell
+// {
+// 	t_list	*env;
+// 	t_list	*exp;
+// 	char	**cmd_path;
+// 	int		return_status;
+// }	t_minishell;
 
 t_minishell	*g_shell;
 
