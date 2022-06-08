@@ -9,7 +9,7 @@
 /*   Updated: 2022/05/29 10:56:23 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../header_files/parser_v2.h"
 #include "../header_files/execute.h"
 
 void	path_parse(void)

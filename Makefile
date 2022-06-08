@@ -20,10 +20,13 @@ PATH_LFT	=	libft/
 PATH_OBJ	=	./object_files/
 
 FILE_SRC	=	main.c \
-				execute.c find_cmd.c signal.c prompt.c
+				execute.c find_cmd.c signal.c prompt.c\
+				
 
 FILE_PRS	=	parser.c\
-				pars_list_func.c parsing_continue.c parsing.c quotes.c validators.c
+				pars_list_func.c parsing_continue.c parsing.c quotes.c validators.c\
+				parser_v2.c prevalidator_v2.c  utils_v2.c prepars_list_func_v2.c preparsing_v2.c\
+				quote_v2.c utils_v2_1.c
 
 FILE_BUIL	=	cd.c\
 				echo_n.c env.c exit.c export_utils1.c export_utils2.c export.c pwd.c unset.c utils.c cd_utils.c

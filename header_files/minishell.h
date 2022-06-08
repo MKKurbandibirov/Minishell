@@ -21,13 +21,14 @@
 # include <errno.h>
 
 # include "../libft/libft.h"
-# include "struct.h"
+// # include "struct.h"
+# include "struct_v2.h"
 # include "readline/readline.h"
 # include "readline/history.h"
 # include "builtins.h"
-# include "parser.h"
+// # include "parser.h"
+# include "parser_v2.h"
 # include "execute.h"
-
 
 // typedef struct s_minishell
 // {
@@ -37,7 +38,7 @@
 // 	int		return_status;
 // }	t_minishell;
 
-t_minishell	*g_shell;
+extern t_minishell	*g_shell;
 
 void	child_sig(void);
 void	main_sig(void);

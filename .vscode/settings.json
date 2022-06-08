@@ -1,12 +1,16 @@
 {
-<<<<<<< HEAD
 	"files.associations": {
-		"builtins.h": "c"
+		"minishell.h": "c",
+		"history.h": "c",
+		"struct_v2.h": "c",
+		"execute.h": "c",
+		"parser_v2.h": "c",
+		"builtins.h": "c",
+		"parser.h": "c",
+		"wait.h": "c",
+		"stdlib.h": "c",
+		"signal.h": "c",
+		"errno.h": "c",
+		"chrono": "c"
 	}
-=======
-    "files.associations": {
-        "minishell.h": "c",
-        "parser.h": "c"
-    }
->>>>>>> Parser
 }

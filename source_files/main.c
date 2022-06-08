@@ -13,6 +13,8 @@
 #include "../header_files/minishell.h"
 // #include "../header_files/parser.h"
 
+t_minishell	*g_shell;
+
 char	***create_example(void)
 {
 	char	***ex;
@@ -42,7 +44,6 @@ int	main(int argc, char **argv, char **envr)
 	char		*line;
 	// char		**cmd;
 	char		*prompt;
-	t_parser	prs;
 
 	init_shell(argc, argv, envr);
 	path_parse();
@@ -60,9 +61,9 @@ int	main(int argc, char **argv, char **envr)
 			clear_history();
 			exit(EXIT_SUCCESS);
 		}
-		prs = ft_pars(line, 0, 0, 0);
-		if (prs.head != NULL)
-		{
+		ft_parser_v2(line);
+		// if (prs.head != NULL)
+		// {
 			// cmd = ft_get_cmd(&prs);
 			// if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 			// {
@@ -82,7 +83,7 @@ int	main(int argc, char **argv, char **envr)
 			// }
 			add_history(line);
 			// free_split(cmd); // Why is this fucking function dont work
-		}
+		// }
 		free(prompt);
 		free(line);
 	}

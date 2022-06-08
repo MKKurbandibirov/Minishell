@@ -17,10 +17,10 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include "minishell.h"
-# include "parser.h"
+# include "struct_v2.h"
 
 void	path_parse(void);
 char	*identify_cmd(char *cmd);
 
-int		ft_exe(t_plist *line);
+// int		ft_exe(t_plist *line);
 #endif
