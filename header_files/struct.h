@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:47:13 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 14:59:48 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:56:01 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,4 @@ typedef struct s_parser
 {
 	t_plist		*head;
 }	t_parser;
-
-// typedef enum e_cmd_type
-// {
-// 	PIPE,
-// 	SOLO,
-// }	t_cmd_type;
-
-// typedef struct s_cmds
-// {
-// 	char			**cmd;
-// 	t_cmd_type		type;
-// }	t_cmds;
-
 #endif
