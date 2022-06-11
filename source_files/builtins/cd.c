@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/11 13:56:01 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:49:59 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	ft_cd(char *path, t_list *env, t_list *exp)
 	cd_utils[4] = &cd_relative_path;
 	cd_utils[5] = &cd_path;
 	i = 0;
-	while (cd_utils[i](path, env, exp) != 1)
+	while (i < 6 && cd_utils[i](path, env, exp) != 1)
 		i++;
 }

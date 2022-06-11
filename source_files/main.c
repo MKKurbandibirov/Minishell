@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/11 14:35:30 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:41:23 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,27 @@
 // 	return ex;
 // }
 
-t_minishell *init_shell(int argc, char **argv, char **envr)
+char	*change_shlvl(void)
 {
+	t_list	*curr;
+	int		lvl;
+	char	*new;
+
+	curr = g_shell->env;
+	while (curr != NULL)
+	{
+		if (!ft_strcmp("SHLVL", ((t_key_val *)curr->content)->key))
+			lvl = ft_atoi(((t_key_val *)curr->content)->val);
+		curr = curr->next;
+	}
+	new = ft_strjoin_free("SHLVL=", ft_itoa(lvl + 1), 2);
+	return (new);
+}
+
+t_minishell	*init_shell(int argc, char **argv, char **envr)
+{
+	char	*shlvl;
+
 	(void)argc;
 	(void)argv;
 	g_shell = (t_minishell *)malloc(sizeof(t_minishell));
@@ -35,6 +54,9 @@ t_minishell *init_shell(int argc, char **argv, char **envr)
 	g_shell->exp = get_expt(envr);
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
+	shlvl = change_shlvl();
+	ft_export(shlvl, g_shell->exp, g_shell->env);
+	free(shlvl);
 	return (g_shell);
 }
 
@@ -58,7 +80,6 @@ int	main(int argc, char **argv, char **envr)
 			free_list(g_shell->env);
 			free_list(g_shell->exp);
 			free(prompt);
-			// free(line);
 			clear_history();
 			exit(EXIT_SUCCESS);
 		}
@@ -69,6 +90,7 @@ int	main(int argc, char **argv, char **envr)
 			cmd = ft_split(line, ' ');
 			if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 			{
+				printf("asdasd");
 				// if (identify_cmd(cmd[0]))
 				// {
 				// 	solo_cmd_exec(cmd, 0, 0, NULL);
@@ -83,7 +105,7 @@ int	main(int argc, char **argv, char **envr)
 				// ft_exe(prs.head);
 			}
 			add_history(line);
-			free_split(cmd); // Why is this fucking function dont work
+			free_split(cmd);
 		// }
 		free(prompt);
 		free(line);
