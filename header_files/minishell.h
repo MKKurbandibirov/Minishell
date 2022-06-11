@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 10:31:35 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:40:00 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@
 # include "builtins.h"
 # include "parser.h"
 # include "execute.h"
-
-
-// typedef struct s_minishell
-// {
-// 	t_list	*env;
-// 	t_list	*exp;
-// 	char	**cmd_path;
-// 	int		return_status;
-// }	t_minishell;
 
 t_minishell	*g_shell;
 

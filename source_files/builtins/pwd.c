@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:58:02 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 17:10:14 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:54:59 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_pwd(void)
 {
-	char	*pwd;
-
-	pwd = get_pwd(g_shell->env, 1);
-	printf("%s\n", pwd);
+	g_shell->return_status = 0;
+	printf("%s\n", g_shell->pwd);
 }

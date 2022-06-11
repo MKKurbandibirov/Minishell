@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/29 10:56:23 by magomed          ###   ########.fr       */
+/*   Updated: 2022/06/11 14:38:52 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ void	path_parse(void)
 		return ;
 	}
 	g_shell->cmd_path = ft_split(((t_key_val *)curr->content)->val, ':');
-	i = -1;
-	while (g_shell->cmd_path[++i])
+	i = 0;
+	while (g_shell->cmd_path[i])
+	{
 		g_shell->cmd_path[i] = ft_strjoin_free(g_shell->cmd_path[i], "/", 1);
+		i++;
+	}
 }
 
 char	*identify_cmd(char *cmd)
@@ -58,5 +61,3 @@ char	*identify_cmd(char *cmd)
 	}
 	return (NULL);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 10:03:37 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 17:48:33 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:56:01 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	cd_path(char *path, t_list *env, t_list *exp)
 	char	*tmp;
 	char	*t;
 
-	tmp = get_pwd(env, 1);
+	tmp = g_shell->pwd;
 	if (chdir(path) != -1)
 	{
 		if (path[ft_strlen(path) - 1] == '/')
@@ -75,7 +75,7 @@ int	cd_relative_path(char *path, t_list *env, t_list *exp)
 	{
 		if (path[ft_strlen(path) - 1] == '/')
 			path[ft_strlen(path) - 1] = '\0';
-		tmp = ft_strdup(get_pwd(env, 1));
+		tmp = ft_strdup(g_shell->pwd);
 		if (chdir(path) != -1)
 		{
 			t = ft_strjoin("OLDPWD=", tmp);
@@ -95,18 +95,15 @@ int	cd_relative_path(char *path, t_list *env, t_list *exp)
 void	ft_cd(char *path, t_list *env, t_list *exp)
 {
 	int			i;
-	t_cd_util	cd_utils[7];
+	t_cd_util	cd_utils[6];
 
 	cd_utils[0] = &cd_home;
 	cd_utils[1] = &cd_relative_home;
 	cd_utils[2] = &cd_dot;
 	cd_utils[3] = &cd_double_dot;
-	cd_utils[4] = &cd_minus;
-	cd_utils[5] = &cd_relative_path;
-	cd_utils[6] = &cd_path;
+	cd_utils[4] = &cd_relative_path;
+	cd_utils[5] = &cd_path;
 	i = 0;
 	while (cd_utils[i](path, env, exp) != 1)
 		i++;
-	// if (i == 7)
-		// g_shell->return_status = 1;
 }
