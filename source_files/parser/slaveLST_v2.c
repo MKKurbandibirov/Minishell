@@ -9,12 +9,12 @@ t_slave	*ft_getlast_s(t_slave *head)
 	return (head);
 }
 
-void	ft_pushback_s(t_slave *slave, int type, int type_c, char **cmd)
+void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 {
 	t_slave	*tmp;
 	t_slave	*last;
 
-	last = ft_getlast_s(slave);
+	last = ft_getlast_s(*slave);
 	tmp = (t_slave *) malloc(sizeof(t_slave));
 	if (!tmp)
 	{
@@ -27,8 +27,8 @@ void	ft_pushback_s(t_slave *slave, int type, int type_c, char **cmd)
 	tmp->next = NULL;
 	if (!last)
 	{
-		slave = tmp;
-		slave->prev = NULL;
+		*slave = tmp;
+		(*slave)->prev = NULL;
 	}
 	else
 	{
@@ -37,7 +37,7 @@ void	ft_pushback_s(t_slave *slave, int type, int type_c, char **cmd)
 	}
 }
 
-void ft_insert_penult(t_slave *slave, int type, int type_c, char **cmd)
+void ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
 {
 	t_slave *new;
 
@@ -45,9 +45,9 @@ void ft_insert_penult(t_slave *slave, int type, int type_c, char **cmd)
 	new->cmd = cmd;
 	new->type_connect = type_c;
 	new->type = type;
-	new->next = slave->next;
-	slave->next = new;
-	new->prev = slave;
+	new->next = (*slave)->next;
+	(*slave)->next = new;
+	new->prev = (*slave);
 	if (new->next != NULL)
 		new->next->prev = new;
 }
