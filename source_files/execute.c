@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/10 13:56:25 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 10:51:39 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,33 @@ char	**create_cmd(t_plist *node)
 	return (cmd);
 }
 
-// void	solo_cmd_exe()
-// {
-// 	int	pid;
+void	solo_cmd_exe(char **cmd)
+{
+	int		pid;
+	char	**envp;
 
-// 	pid = fork();
-
-// }
-
-// void	check_cmd(t_plist *curr)
-// {
-// 	while (curr != NULL)
-// 	{
-// 		if (curr->type == PIPE)
-
-// 		curr = curr->next;
-// 	}
-// }
+	pid = fork();
+	if (pid == -1)
+		perror("[ERROR]");
+	if (pid == 0)
+	{
+		if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
+		{
+			g_shell->return_status = 0;
+			exit(EXIT_SUCCESS);
+		}
+		else
+		{
+			identify_cmd(cmd[0]);
+			envp = convert_to_strarr(g_shell->env);
+			g_shell->return_status = 0;
+			execve(cmd[0], cmd, envp);
+			g_shell->return_status = errno;
+			perror("[ERROR]");
+			exit(EXIT_FAILURE);
+		}
+	}
+}
 
 int	ft_exe(t_plist *line)
 {

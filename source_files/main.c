@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/11 15:41:23 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:58:05 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,25 @@ int	main(int argc, char **argv, char **envr)
 		// {
 			// cmd = ft_get_cmd(&prs);
 			cmd = ft_split(line, ' ');
-			if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
-			{
-				printf("asdasd");
-				// if (identify_cmd(cmd[0]))
-				// {
-				// 	solo_cmd_exec(cmd, 0, 0, NULL);
-				// }
-				// ft_pipe(create_example(), 3, 0, 1);
-				// t_plist *curr = prs.head;
-				// while (curr != NULL)
-				// {
-				// 	printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
-				// 	curr = curr->next;
-				// }
-				// ft_exe(prs.head);
-			}
+			// if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
+			// {
+			// 	printf("asdasd");
+			// 	// if (identify_cmd(cmd[0]))
+			// 	// {
+			// 	// 	solo_cmd_exec(cmd, 0, 0, NULL);
+			// 	// }
+			// 	// ft_pipe(create_example(), 3, 0, 1);
+			// 	// t_plist *curr = prs.head;
+			// 	// while (curr != NULL)
+			// 	// {
+			// 	// 	printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
+			// 	// 	curr = curr->next;
+			// 	// }
+			// 	// ft_exe(prs.head);
+			// }
+			// printf("%s\n", cmd[0]);
+			if (cmd[0])
+				solo_cmd_exe(cmd);
 			add_history(line);
 			free_split(cmd);
 		// }
