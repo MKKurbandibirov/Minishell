@@ -5,72 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 09:34:03 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 10:53:00 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/06/16 11:04:35 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 11:17:43 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #ifndef PARSER_H
-// # define PARSER_H
+#ifndef PARSER_H
+# define PARSER_H
 
-// # include <stdio.h>
-// # include <unistd.h>
-// # include <stdlib.h>
-// # include <fcntl.h>
-// # include "../libft/libft.h"
-// # include "minishell.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
+# include "minishell.h"
 
-// # define CMD 1
-// # define FLAG 2
-// # define ARG 3
-// # define OPER 4 // && ||
-// # define HEREDOC 5 // <<
-// # define APPEND 6 // >>
-// # define IN 7 // <
-// # define OUT 8 // >
-// # define PIPE 10 // |
-// # define BG 11 // &
+# define START 0
+# define AND 11 //&&
+# define ELSE 12 //||
 
-// // typedef struct s_plist	t_plist;
-// typedef struct s_cmds	t_cmds;
-// // typedef struct s_parser	t_parser;
+# define CMD 1
+# define FLAG 2
+# define ARG 3
 
-// typedef struct s_plist
-// {
-// 	char			*data;
-// 	int				type;
-// 	int				group;
-// 	struct s_plist	*next;
-// 	struct s_plist	*prev;
-// }	t_plist;
+# define PIPE 4 // |
+# define BG 5 // &
 
-// typedef struct s_parser
-// {
-// 	t_plist		*head;
-// }	t_parser;
+# define INFILE_RE 6 // <
+# define OUTFILE_RE 7 // >
+# define HEREDOC 8 // <<
+# define APPEND 9 // >>
 
-// t_plist		*ft_getlast(t_plist *head);
-// void		ft_delelem(t_plist **head, t_plist *delElem);
-// void		ft_pushback_p(t_plist **head, char *data, int type, int group);
-// void		ft_remove_list(t_parser *env);
-// void		ft_initparser(t_parser *env);
-// char		*ft_substitution(char *s, int pt);
-// char		*ft_env_search(char *dollar);
-// char		*ft_ifdollar(char *s, int *len);
-// char		*ft_argv_am(char *s, int *add);
-// int			ft_checking_cause(char *s, int *grp, t_parser *prs);
-// int			ft_get_arg_continue(char *s, int *group, t_parser *prs);
-// int			ft_get_arg(char *s, int *group, t_parser *prs, int i);
-// void		ft_clear_parslst(t_parser *prs, char *s);
-// char		*ft_dbl_quotes_subsit(char *s);
-// char		*ft_dbl_replacement(char *s);
-// char		*ft_srch_pair_quote(char *s, int c);
-// char		*ft_dbl_quoteproccessing(char *s, int *add);
-// char		*ft_single_quote(char *s, int *add);
-// int			ft_validate_pairs(char *s);
-// int			ft_validator(t_plist *curr);
-// int			ft_valid_first_arg(char *s);
-// char		**ft_get_cmd(t_parser *prs);
-// t_parser	ft_pars(char *s1, int group, int add_len, int i);
+# define SOLO 10
+# define ERR -123
 
-// #endif
+typedef struct s_plist
+{
+	char			*data;
+	int				type;
+	int				group;
+	struct s_plist	*next;
+	struct s_plist	*prev;
+}	t_plist;
+
+typedef struct s_parser
+{
+	t_plist		*head;
+}	t_parser;
+
+void	ft_parser_v2(char *s);
+
+//utils_v2.c
+void	ft_err_msg(char *msg);
+char	*ft_srch_pair_quote(char *s, int c);
+char	*ft_env_search(char *dollar);
+char	*ft_ifdollar(char *s, int *len);
+int		ft_isspec(char c);
+
+//utils_v2_1.c
+char	*ft_check_scpec(char *s, int *add);
+int		ft_check_type_first_arg(char *s, char c);
+int		ft_check_4_redir(char *s);
+char	*ft_argv_am(char *s, int *add);
+int		ft_checking_cause(char *s, int *grp, t_master *prs, int i);
+
+//quote_v2.c
+char	*ft_single_quote(char *s);
+char	*ft_dbl_quote(char *s);
+
+//prevalidato_v2.c
+int		ft_prevalidation(char *s);
+int		ft_skip_quote(char *s);
+
+//substitution_v2.c
+char	*ft_substitution(char *s, int pt);
+
+//prepars_list_func_v2.c
+void	ft_delelem(t_plist **head, t_plist *delElem);
+void	ft_remove_prerars_list(t_master *env);
+void	ft_pushback_p(t_plist **head, char *data, int type, int group);
+t_plist	*ft_getlast(t_plist *head);
+
+//preparsing_v2.c
+void	ft_preparsing(t_master *master, char *s, int i, int add_len);
+#endif

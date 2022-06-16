@@ -1,4 +1,16 @@
-#include "../../header_files/parser_v2.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   preparsing_v2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 11:10:35 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 11:19:24 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../header_files/parser.h"
 
 int	ft_get_arg_continue(char *s, int *group, t_master *prs)
 {

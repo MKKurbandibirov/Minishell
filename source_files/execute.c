@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 10:51:39 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:18:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ int	ft_exe(t_plist *line)
 	{
 		if (curr->type == PIPE)
 			ft_pipe(create_cmd(curr));
-		if (curr->type == IN)
-
 		curr = curr->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 10:56:41 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:05:42 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@
 # include <errno.h>
 
 # include "../libft/libft.h"
-// # include "struct.h"
-# include "struct_v2.h"
+# include "struct.h"
 # include "readline/readline.h"
 # include "readline/history.h"
 # include "builtins.h"
-// # include "parser.h"
-# include "parser_v2.h"
+# include "parser.h"
 # include "execute.h"
 
 t_minishell	*g_shell;
