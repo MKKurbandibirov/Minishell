@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:10:09 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 18:20:21 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:40:38 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_init_master(t_master *master)
 	master->prev = NULL;
 }
 
-t_master	ft_generate_m(t_master *mst)
+t_master	*ft_generate_m(t_master *mst)
 {
 	int	type_c;
 	int	t;
@@ -37,7 +37,7 @@ t_master	ft_generate_m(t_master *mst)
 			ft_skip_opper(&mst->head);
 		}
 	}
-	return (*mst);
+	return (mst);
 }
 
 void	ft_parser_v2(char *s)
@@ -49,6 +49,5 @@ void	ft_parser_v2(char *s)
 		return ;
 	ft_preparsing(&master, s, 0, 0);
 	//TODO VALIDATOR
-	master = ft_generate_m(&master);
-	g_shell->master = &master;
+	g_shell->master = ft_generate_m(&master);
 }

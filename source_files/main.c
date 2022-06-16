@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/16 18:26:33 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:41:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,18 @@ int	main(int argc, char **argv, char **envr)
 		{
 			while (g_shell->master->content != NULL)
 			{
-				for (int i = 0; g_shell->master->content->cmd[i]; i++)
+				int i = 0;
+				while (g_shell->master->content->cmd[i])
 				{
 					printf("%s ", g_shell->master->content->cmd[i]);
+					i++;
 				}
-				printf("\n");
 				printf("%d\n", g_shell->master->content->type);
+				printf("\n");
 				g_shell->master->content = g_shell->master->content->next;
 			}
 			g_shell->master = g_shell->master->next;
 		}
-
 		// if (cmd[0])
 		// 	solo_cmd_exe(cmd);
 		add_history(line);
