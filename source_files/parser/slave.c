@@ -70,7 +70,7 @@ t_slave	*ft_generate_cont(t_plist **head, int *t)
 	sl = NULL;
 	start_group = (*head)->group;
 	*t = START;
-	while (head != NULL && start_group == (*head)->group)
+	while ((*head) != NULL && start_group == (*head)->group)
 	{
 		if ((*head)->type >= 6 && (*head)->type <= 9)
 			ft_redirect_case(head, &sl, *t);

@@ -14,7 +14,7 @@
 
 t_master	*ft_getlast_m(t_master *head)
 {
-	if (head == NULL)
+	if (head->next == NULL)
 		return (NULL);
 	while (head->next)
 		head = head->next;
@@ -39,13 +39,13 @@ void	ft_pushback_m(t_master **master, int type_c, int type)
 	tmp->next = NULL;
 	if (!last)
 	{
-		(*master)->type_connect = START;
+		tmp->type_connect = START;
 		(*master) = tmp;
 		(*master)->prev = NULL;
 	}
 	else
 	{
-		(*master)->type_connect = type_c;
+		tmp->type_connect = type_c;
 		last->next = tmp;
 		tmp->prev = last;
 	}
