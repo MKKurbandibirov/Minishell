@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:04:35 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:17:43 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:43:16 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,37 @@ typedef struct s_parser
 
 void	ft_parser_v2(char *s);
 
-//utils_v2.c
+//utils.c
 void	ft_err_msg(char *msg);
 char	*ft_srch_pair_quote(char *s, int c);
 char	*ft_env_search(char *dollar);
 char	*ft_ifdollar(char *s, int *len);
 int		ft_isspec(char c);
 
-//utils_v2_1.c
+//utils1.c
 char	*ft_check_scpec(char *s, int *add);
 int		ft_check_type_first_arg(char *s, char c);
 int		ft_check_4_redir(char *s);
 char	*ft_argv_am(char *s, int *add);
 int		ft_checking_cause(char *s, int *grp, t_master *prs, int i);
 
-//quote_v2.c
+//quote.c
 char	*ft_single_quote(char *s);
 char	*ft_dbl_quote(char *s);
 
-//prevalidato_v2.c
+//prevalidator.c
 int		ft_prevalidation(char *s);
 int		ft_skip_quote(char *s);
 
-//substitution_v2.c
+//substitution.c
 char	*ft_substitution(char *s, int pt);
 
-//prepars_list_func_v2.c
+//prepars_list_func.c
 void	ft_delelem(t_plist **head, t_plist *delElem);
 void	ft_remove_prerars_list(t_master *env);
 void	ft_pushback_p(t_plist **head, char *data, int type, int group);
 t_plist	*ft_getlast(t_plist *head);
 
-//preparsing_v2.c
+//preparsing.c
 void	ft_preparsing(t_master *master, char *s, int i, int add_len);
 #endif

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:18:08 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:50:35 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	solo_cmd_exe(char **cmd)
 		perror("[ERROR]");
 	if (pid == 0)
 	{
+		child_sig();
 		if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
 		{
 			g_shell->return_status = 0;

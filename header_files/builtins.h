@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 10:31:29 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 11:52:31 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_export(char *cmd_1, t_list *exp, t_list *env);
 
 int			ft_unset(t_list *env, t_list *exp, char **vars);
 
-void		ft_exit(void);
+void		ft_exit(int return_stat);
 
 void		free_list(t_list *lst);
 int			builtin_parser(char **cmd, t_list *env, t_list *exp);
