@@ -9,6 +9,21 @@ t_plist	*ft_getlast(t_plist *head)
 	return (head);
 }
 
+void ft_insert_after(t_plist *prev_node, char *data, int group, int type)
+{
+	t_plist *new;
+
+	new = (t_plist *)malloc(sizeof(t_plist));
+	new->data = ft_strdup(data);
+	new->group = group;
+	new->type = type;
+	new->next = prev_node->next;
+	prev_node->next = new;
+	new->prev = prev_node;
+	if (new->next != NULL)
+		new->next->prev = new;
+}
+
 void	ft_delelem(t_plist **head, t_plist *delElem)
 {
 	if (*head == NULL || delElem == NULL)

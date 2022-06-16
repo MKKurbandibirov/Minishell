@@ -11,6 +11,7 @@
 # define START 0
 # define AND 11 //&&
 # define ELSE 12 //||
+# define OLD_TYPE 13
 
 # define CMD 1
 # define FLAG 2
@@ -24,7 +25,6 @@
 # define HEREDOC 8 // <<
 # define APPEND 9 // >>
 
-# define SOLO 10
 # define ERR -123
 
 typedef struct s_plist
@@ -74,6 +74,23 @@ void	ft_remove_prerars_list(t_master *env);
 void	ft_pushback_p(t_plist **head, char *data, int type, int group);
 t_plist	*ft_getlast(t_plist *head);
 
+//master_2.c 
+t_master	*ft_getlast_m(t_master *head);
+void	ft_pushback_m(t_master *master, int type_c, int type);
+
+//slave_v2.c
+void	ft_generate_cont(t_plist *head, t_master **mst, int *t);
+
+//slaveLST_v2.c
+t_slave	*ft_getlast_s(t_slave *head);
+void	ft_pushback_s(t_slave *slave, int type, int type_c, char **cmd);
+void	ft_insert_penult(t_slave *slave, int type, int type_c, char **cmd);
+int		ft_skip_opper(t_plist **head);
+
+
 //preparsing_v2.c
 void	ft_preparsing(t_master *master, char *s, int i, int add_len);
+
+//get_cmd_plist_v2.c
+char	**ft_get_cmd(t_plist **head);
 #endif

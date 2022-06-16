@@ -1,0 +1,156 @@
+make[1]: вход в каталог «/home/ayglazkov/Documents/school21/MAGA/curr_v/libft»
+make[1]: выход из каталога «/home/ayglazkov/Documents/school21/MAGA/curr_v/libft»
+FILE COLLECTED object_files/main.o
+FILE COLLECTED object_files/execute.o
+FILE COLLECTED object_files/find_cmd.o
+FILE COLLECTED object_files/signal.o
+FILE COLLECTED object_files/prompt.o
+FILE COLLECTED object_files/parser/get_cmd_plist_v2.o
+source_files/parser/master_v2.c: В функции «ft_pushback_m»:
+source_files/parser/master_v2.c:17:27: ошибка: в передаче аргумента 1 «ft_getlast»: несовместимый тип указателя [-Werror=incompatible-pointer-types]
+   17 |         last = ft_getlast(master);
+      |                           ^~~~~~
+      |                           |
+      |                           t_master * {aka struct s_master *}
+In file included from source_files/parser/../../header_files/minishell.h:30,
+                 from source_files/parser/master_v2.c:1:
+source_files/parser/../../header_files/parser_v2.h:75:30: замечание: ожидался тип «t_plist *» {aka «struct s_plist *»}, но аргумент имеет тип «t_master *» {aka «struct s_master *»}
+   75 | t_plist *ft_getlast(t_plist *head);
+      |                     ~~~~~~~~~^~~~
+source_files/parser/master_v2.c:17:14: ошибка: assignment to «t_master *» {aka «struct s_master *»} from incompatible pointer type «t_plist *» {aka «struct s_plist *»} [-Werror=incompatible-pointer-types]
+   17 |         last = ft_getlast(master);
+      |              ^
+cc1: все предупреждения считаются ошибками
+FILE COLLECTED object_files/parser/master_v2.o
+source_files/parser/parser_v2.c: В функции «ft_parser_v2»:
+source_files/parser/parser_v2.c:21:9: ошибка: неявная декларация функции «ft_generate_m»; имелось в виду «ft_generate_cont»? [-Werror=implicit-function-declaration]
+   21 |         ft_generate_m(&master);
+      |         ^~~~~~~~~~~~~
+      |         ft_generate_cont
+source_files/parser/parser_v2.c: На верхнем уровне:
+source_files/parser/parser_v2.c:24:9: ошибка: conflicting types for «ft_generate_m»; have «void(t_master *)» {aka «void(struct s_master *)»} [-Werror]
+   24 | void    ft_generate_m(t_master *mst)
+      |         ^~~~~~~~~~~~~
+source_files/parser/parser_v2.c:21:9: замечание: previous implicit declaration of «ft_generate_m» with type «void(t_master *)» {aka «void(struct s_master *)»}
+   21 |         ft_generate_m(&master);
+      |         ^~~~~~~~~~~~~
+cc1: все предупреждения считаются ошибками
+FILE COLLECTED object_files/parser/parser_v2.o
+source_files/parser/slave_v2.c: В функции «ft_redirect_case»:
+source_files/parser/slave_v2.c:10:67: ошибка: сравнение указателя и целого [-Werror]
+   10 |                 || (mst->content->prev->type >= 6 && mst->content <= 9)
+      |                                                                   ^~
+source_files/parser/slave_v2.c:11:48: ошибка: сравнение указателя и целого [-Werror]
+   11 |                         || (mst->content->prev == 11 || mst->content->prev == 12))))
+      |                                                ^~
+source_files/parser/slave_v2.c:11:76: ошибка: сравнение указателя и целого [-Werror]
+   11 |                         || (mst->content->prev == 11 || mst->content->prev == 12))))
+      |                                                                            ^~
+source_files/parser/slave_v2.c:17:17: ошибка: неявная декларация функции «ft_insetr_penult»; имелось в виду «ft_insert_penult»? [-Werror=implicit-function-declaration]
+   17 |                 ft_insetr_penult(mst->content, type, type_c, ft_get_cmd(head));
+      |                 ^~~~~~~~~~~~~~~~
+      |                 ft_insert_penult
+source_files/parser/slave_v2.c:6:19: ошибка: неиспользуемая переменная «cmd» [-Werror=unused-variable]
+    6 |         char    **cmd;
+      |                   ^~~
+source_files/parser/slave_v2.c: В функции «ft_connection_case»:
+source_files/parser/slave_v2.c:39:61: ошибка: неиспользуемый параметр «mst» [-Werror=unused-parameter]
+   39 | static void     ft_connection_case(t_plist *head, t_master *mst, int *type_c)
+      |                                                   ~~~~~~~~~~^~~
+source_files/parser/slave_v2.c: В функции «ft_generate_cont»:
+source_files/parser/slave_v2.c:49:25: ошибка: неиспользуемая переменная «type» [-Werror=unused-variable]
+   49 |         int             type;
+      |                         ^~~~
+source_files/parser/slave_v2.c:54:17: ошибка: «type_c» is used uninitialized [-Werror=uninitialized]
+   54 |         *type_c = START;
+source_files/parser/slave_v2.c:50:26: замечание: «type_c» было объявлено здесь
+   50 |         int             *type_c;
+      |                          ^~~~~~
+cc1: все предупреждения считаются ошибками
+FILE COLLECTED object_files/parser/slave_v2.o
+source_files/parser/slaveLST_v2.c: В функции «ft_pushback_s»:
+source_files/parser/slaveLST_v2.c:17:27: ошибка: в передаче аргумента 1 «ft_getlast»: несовместимый тип указателя [-Werror=incompatible-pointer-types]
+   17 |         last = ft_getlast(slave);
+      |                           ^~~~~
+      |                           |
+      |                           t_slave * {aka struct s_slave *}
+In file included from source_files/parser/../../header_files/minishell.h:30,
+                 from source_files/parser/slaveLST_v2.c:1:
+source_files/parser/../../header_files/parser_v2.h:75:30: замечание: ожидался тип «t_plist *» {aka «struct s_plist *»}, но аргумент имеет тип «t_slave *» {aka «struct s_slave *»}
+   75 | t_plist *ft_getlast(t_plist *head);
+      |                     ~~~~~~~~~^~~~
+source_files/parser/slaveLST_v2.c:17:14: ошибка: assignment to «t_slave *» {aka «struct s_slave *»} from incompatible pointer type «t_plist *» {aka «struct s_plist *»} [-Werror=incompatible-pointer-types]
+   17 |         last = ft_getlast(slave);
+      |              ^
+cc1: все предупреждения считаются ошибками
+FILE COLLECTED object_files/parser/slaveLST_v2.o
+FILE COLLECTED object_files/parser/prepars_list_func_v2.o
+FILE COLLECTED object_files/parser/preparsing_v2.o
+FILE COLLECTED object_files/parser/prevalidator_v2.o
+FILE COLLECTED object_files/parser/quote_v2.o
+FILE COLLECTED object_files/parser/utils_v2_1.o
+FILE COLLECTED object_files/parser/utils_v2.o
+FILE COLLECTED object_files/builtins/cd.o
+FILE COLLECTED object_files/builtins/echo_n.o
+FILE COLLECTED object_files/builtins/env.o
+FILE COLLECTED object_files/builtins/exit.o
+FILE COLLECTED object_files/builtins/export_utils1.o
+FILE COLLECTED object_files/builtins/export_utils2.o
+FILE COLLECTED object_files/builtins/export.o
+FILE COLLECTED object_files/builtins/pwd.o
+FILE COLLECTED object_files/builtins/unset.o
+FILE COLLECTED object_files/builtins/utils.o
+FILE COLLECTED object_files/builtins/cd_utils.o
+make[1]: вход в каталог «/home/ayglazkov/Documents/school21/MAGA/curr_v/libft»
+FILE COLLECTED ../object_files/ft_atoi.o
+FILE COLLECTED ../object_files/ft_bzero.o
+FILE COLLECTED ../object_files/ft_calloc.o
+FILE COLLECTED ../object_files/ft_isalnum.o
+FILE COLLECTED ../object_files/ft_isalpha.o
+FILE COLLECTED ../object_files/ft_isascii.o
+FILE COLLECTED ../object_files/ft_isdigit.o
+FILE COLLECTED ../object_files/ft_isprint.o
+FILE COLLECTED ../object_files/ft_itoa.o
+FILE COLLECTED ../object_files/ft_memchr.o
+FILE COLLECTED ../object_files/ft_memcmp.o
+FILE COLLECTED ../object_files/ft_memcpy.o
+FILE COLLECTED ../object_files/ft_memmove.o
+FILE COLLECTED ../object_files/ft_memset.o
+FILE COLLECTED ../object_files/ft_putchar_fd.o
+FILE COLLECTED ../object_files/ft_strjoin_free.o
+FILE COLLECTED ../object_files/ft_putendl_fd.o
+FILE COLLECTED ../object_files/ft_putnbr_fd.o
+FILE COLLECTED ../object_files/ft_putstr_fd.o
+FILE COLLECTED ../object_files/ft_split.o
+FILE COLLECTED ../object_files/ft_strchr.o
+FILE COLLECTED ../object_files/ft_strcmp.o
+FILE COLLECTED ../object_files/ft_strdup.o
+FILE COLLECTED ../object_files/ft_striteri.o
+FILE COLLECTED ../object_files/ft_strjoin.o
+FILE COLLECTED ../object_files/ft_strlcat.o
+FILE COLLECTED ../object_files/ft_strlcpy.o
+FILE COLLECTED ../object_files/ft_strlen.o
+FILE COLLECTED ../object_files/ft_strmapi.o
+FILE COLLECTED ../object_files/ft_strncmp.o
+FILE COLLECTED ../object_files/ft_strnstr.o
+FILE COLLECTED ../object_files/ft_strrchr.o
+FILE COLLECTED ../object_files/ft_strtrim.o
+FILE COLLECTED ../object_files/ft_substr.o
+FILE COLLECTED ../object_files/ft_tolower.o
+FILE COLLECTED ../object_files/ft_toupper.o
+FILE COLLECTED ../object_files/ft_isspace.o
+FILE COLLECTED ../object_files/ft_strncpy.o
+FILE COLLECTED ../object_files/ft_lstadd_back_bonus.o
+FILE COLLECTED ../object_files/ft_lstadd_front_bonus.o
+FILE COLLECTED ../object_files/ft_lstclear_bonus.o
+FILE COLLECTED ../object_files/ft_lstdelone_bonus.o
+FILE COLLECTED ../object_files/ft_lstiter_bonus.o
+FILE COLLECTED ../object_files/ft_lstlast_bonus.o
+FILE COLLECTED ../object_files/ft_lstnew_bonus.o
+FILE COLLECTED ../object_files/ft_lstsize_bonus.o
+FILE COLLECTED ../object_files/ft_lstmap_bonus.o
+make[1]: выход из каталога «/home/ayglazkov/Documents/school21/MAGA/curr_v/libft»
+/usr/bin/ld: ./object_files/main.o: в функции «main»:
+/home/ayglazkov/Documents/school21/MAGA/curr_v/source_files/main.c:64: неопределённая ссылка на «ft_parser_v2»
+collect2: ошибка: выполнение ld завершилось с кодом возврата 1
+make: *** [Makefile:70: minishell] Ошибка 1

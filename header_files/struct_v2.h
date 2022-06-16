@@ -27,6 +27,7 @@ typedef struct s_slave
 typedef struct s_master
 {
 	int				groupe;
+	int				type_connect;
 	t_slave			*content;
 	t_master		*next;
 	t_master		*prev;
