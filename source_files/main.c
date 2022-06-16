@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/16 10:57:10 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:55:18 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	g_shell->exp = get_expt(envr);
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
+	g_shell->prompt = NULL;
 	shlvl = change_shlvl();
 	ft_export(shlvl, g_shell->exp, g_shell->env);
 	free(shlvl);
@@ -64,30 +65,21 @@ int	main(int argc, char **argv, char **envr)
 {
 	char		*line;
 	char		**cmd;
-	char		*prompt;
-	// t_parser	prs;
 
 	init_shell(argc, argv, envr);
 	path_parse();
 	main_sig();
 	while (1)
 	{
-		prompt = get_prompt();
-		line = readline(prompt);
-		if (!line)
-		{
-			free_split(g_shell->cmd_path);
-			free_list(g_shell->env);
-			free_list(g_shell->exp);
-			free(prompt);
-			clear_history();
-			exit(EXIT_SUCCESS);
-		}
+		g_shell->prompt = get_prompt();
+		line = readline(g_shell->prompt);
+		cmd = ft_split(line, ' ');
+		if (!line || (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL))
+			ft_exit(0);
 		// prs = ft_pars(line, 0, 0, 0);
 		// if (prs.head != NULL)
 		// {
 			// cmd = ft_get_cmd(&prs);
-			cmd = ft_split(line, ' ');
 			// if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
 			// {
 			// 	printf("asdasd");
@@ -110,7 +102,7 @@ int	main(int argc, char **argv, char **envr)
 			add_history(line);
 			free_split(cmd);
 		// }
-		free(prompt);
+		free(g_shell->prompt);
 		free(line);
 	}
 	clear_history();

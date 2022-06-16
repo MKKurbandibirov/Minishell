@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_v2.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:10:09 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:18:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:42:05 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,31 @@ static void	ft_init_master(t_master *master)
 	master->prev = NULL;
 }
 
+void	ft_generate_m(t_master **mst)
+{
+	int	type_c;
+	int	t;
+
+	t = 0;
+	type_c = START;
+	while ((*mst)->head != NULL)
+	{
+		ft_pushback_m(mst, type_c, t);
+		type_c = (*mst)->head->type;
+		ft_skip_opper(&(*mst)->head);
+	}
+}
+
 void	ft_parser_v2(char *s)
 {
-	t_master	master;
+	t_master	*master;
 
-	ft_init_master(&master);
+	master = malloc(sizeof(t_master));
+	ft_init_master(master);
 	if (ft_prevalidation(s))
 		return ;
-	ft_preparsing(&master, s, 0, 0);
+	ft_preparsing(master, s, 0, 0);
+	//TODO VALIDATOR
+	master = NULL;
+	ft_generate_m(&master);
 }

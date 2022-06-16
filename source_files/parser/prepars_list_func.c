@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prepars_list_func_v2.c                             :+:      :+:    :+:   */
+/*   prepars_list_func.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:10:29 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:10:30 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:42:46 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ t_plist	*ft_getlast(t_plist *head)
 	while (head->next)
 		head = head->next;
 	return (head);
+}
+
+void	ft_insert_after(t_plist *prev_node, char *data, int group, int type)
+{
+	t_plist	*new;
+
+	new = (t_plist *)malloc(sizeof(t_plist));
+	new->data = ft_strdup(data);
+	new->group = group;
+	new->type = type;
+	new->next = prev_node->next;
+	prev_node->next = new;
+	new->prev = prev_node;
+	if (new->next != NULL)
+		new->next->prev = new;
 }
 
 void	ft_delelem(t_plist **head, t_plist *delElem)
