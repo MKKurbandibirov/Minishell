@@ -9,7 +9,7 @@
 /*   Updated: 2022/06/14 12:47:04 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "../header_files/parser_v2.h"
 #include "../header_files/execute.h"
 
 void	path_parse(void)
