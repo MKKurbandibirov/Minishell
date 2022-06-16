@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/16 18:07:35 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:26:33 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,32 +76,26 @@ int	main(int argc, char **argv, char **envr)
 		cmd = ft_split(line, ' ');
 		if (!line || (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL))
 			ft_exit(0);
-		// prs = ft_pars(line, 0, 0, 0);
-		// if (prs.head != NULL)
-		// {
-			// cmd = ft_get_cmd(&prs);
-			// if (builtin_parser(cmd, g_shell->env, g_shell->exp) == 0)
-			// {
-			// 	printf("asdasd");
-			// 	// if (identify_cmd(cmd[0]))
-			// 	// {
-			// 	// 	solo_cmd_exec(cmd, 0, 0, NULL);
-			// 	// }
-			// 	// ft_pipe(create_example(), 3, 0, 1);
-			// 	// t_plist *curr = prs.head;
-			// 	// while (curr != NULL)
-			// 	// {
-			// 	// 	printf("group(%d) -- type(%d) - data(%s)\n", curr->group ,curr->type, curr->data);
-			// 	// 	curr = curr->next;
-			// 	// }
-			// 	// ft_exe(prs.head);
-			// }
-			// printf("%s\n", cmd[0]);
-			if (cmd[0])
-				solo_cmd_exe(cmd);
-			add_history(line);
-			free_split(cmd);
-		// }
+		ft_parser_v2(line);
+		while (g_shell->master != NULL)
+		{
+			while (g_shell->master->content != NULL)
+			{
+				for (int i = 0; g_shell->master->content->cmd[i]; i++)
+				{
+					printf("%s ", g_shell->master->content->cmd[i]);
+				}
+				printf("\n");
+				printf("%d\n", g_shell->master->content->type);
+				g_shell->master->content = g_shell->master->content->next;
+			}
+			g_shell->master = g_shell->master->next;
+		}
+
+		// if (cmd[0])
+		// 	solo_cmd_exe(cmd);
+		add_history(line);
+		free_split(cmd);
 		free(g_shell->prompt);
 		free(line);
 	}

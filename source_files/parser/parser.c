@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:10:09 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 15:42:05 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:20:21 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void	ft_parser_v2(char *s)
 	ft_preparsing(&master, s, 0, 0);
 	//TODO VALIDATOR
 	master = ft_generate_m(&master);
+	g_shell->master = &master;
 }
