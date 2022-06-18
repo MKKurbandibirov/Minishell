@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/16 19:41:50 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 12:13:51 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,15 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 		return (NULL);
 	g_shell->env = get_envr(envr);
 	g_shell->exp = get_expt(envr);
+	g_shell->pids = NULL;
+	g_shell->status = NULL;
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
 	g_shell->prompt = NULL;
 	shlvl = change_shlvl();
 	ft_export(shlvl, g_shell->exp, g_shell->env);
 	free(shlvl);
+	path_parse();
 	return (g_shell);
 }
 
@@ -67,7 +70,6 @@ int	main(int argc, char **argv, char **envr)
 	char		**cmd;
 
 	init_shell(argc, argv, envr);
-	path_parse();
 	main_sig();
 	while (1)
 	{
@@ -77,24 +79,7 @@ int	main(int argc, char **argv, char **envr)
 		if (!line || (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL))
 			ft_exit(0);
 		ft_parser_v2(line);
-		while (g_shell->master != NULL)
-		{
-			while (g_shell->master->content != NULL)
-			{
-				int i = 0;
-				while (g_shell->master->content->cmd[i])
-				{
-					printf("%s ", g_shell->master->content->cmd[i]);
-					i++;
-				}
-				printf("%d\n", g_shell->master->content->type);
-				printf("\n");
-				g_shell->master->content = g_shell->master->content->next;
-			}
-			g_shell->master = g_shell->master->next;
-		}
-		// if (cmd[0])
-		// 	solo_cmd_exe(cmd);
+		ft_exe();
 		add_history(line);
 		free_split(cmd);
 		free(g_shell->prompt);

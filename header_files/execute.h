@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:08:29 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:08:52 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	path_parse(void);
 char	*identify_cmd(char *cmd);
 
 void	solo_cmd_exe(char **cmd);
-int		ft_exe(t_plist *line);
+int		ft_exe(void);
 
 void	here_doc(char *del);
 
