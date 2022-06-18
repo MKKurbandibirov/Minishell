@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/18 12:39:53 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 15:51:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,17 @@ void	child_proc(int *fd, char **cmd)
 void	ft_pipe(char **cmd)
 {
 	int	fd[2];
-	int	pid;
+	int	*p_pid;
 
 	pipe(fd);
-	pid = fork();
-	if (pid == -1)
+	p_pid = malloc(sizeof(int));
+	if (!p_pid)
+		return ;
+	*p_pid = fork();
+	ft_lstadd_back(&g_shell->pids, ft_lstnew(p_pid));
+	if (*p_pid == -1)
 		perror("[ERROR]");
-	else if (pid == 0)
+	else if (*p_pid == 0)
 		child_proc(fd, cmd);
 	free_split(cmd);
 	close(STDIN_FILENO);
@@ -86,7 +90,7 @@ void	ft_pipe(char **cmd)
 
 void	solo_cmd_exe(char **cmd)
 {
-	int		pid;
+	int		*p_pid;
 	char	**envp;
 
 	if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
@@ -94,11 +98,14 @@ void	solo_cmd_exe(char **cmd)
 		g_shell->return_status = 0;
 		return ;
 	}
-	pid = fork();
-	// ft_lstadd_front(&g_shell->pids, ft_lstnew((void *)&pid));
-	if (pid == -1)
+	p_pid = malloc(sizeof(int));
+	if (!p_pid)
+		return ;
+	*p_pid = fork();
+	ft_lstadd_back(&g_shell->pids, ft_lstnew(p_pid));
+	if (*p_pid == -1)
 		perror("[ERROR]");
-	else if (pid == 0)
+	else if (*p_pid == 0)
 	{
 		child_sig();
 		cmd[0] = identify_cmd(cmd[0]);
@@ -110,11 +117,12 @@ void	solo_cmd_exe(char **cmd)
 		free_split(envp);
 		ft_exit(EXIT_FAILURE);
 	}
-	waitpid(pid, NULL, 0);
 }
 
-int	ft_exe(void)
+void	ft_exe(void)
 {
+	int	*status;
+
 	while (g_shell->master != NULL)
 	{
 		while (g_shell->master->content != NULL)
@@ -127,12 +135,15 @@ int	ft_exe(void)
 		}
 		g_shell->master = g_shell->master->next;
 	}
-	// while (g_shell->pids)
-	// {
-	// 	ft_lstadd_front(&g_shell->status, ft_lstnew(NULL));
-	// 	waitpid(*(int *)g_shell->pids->content,
-	// 		(int *)g_shell->status->content, WNOHANG);
-	// 	g_shell->pids = g_shell->pids->next;
-	// }
-	return (0);
+	while (g_shell->pids)
+	{
+		status = malloc(sizeof(int));
+		if (!status)
+			return ;
+		waitpid(*(int *)g_shell->pids->content, status, WNOHANG);
+		ft_lstadd_back(&g_shell->status, ft_lstnew(status));
+		g_shell->pids = g_shell->pids->next;
+	}
+	dup2(STDIN_FILENO, 0);
+	dup2(STDOUT_FILENO, 1);
 }

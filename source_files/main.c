@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/18 12:13:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:19:30 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	main(int argc, char **argv, char **envr)
 			ft_exit(0);
 		ft_parser_v2(line);
 		ft_exe();
+		// replace_star();
 		add_history(line);
 		free_split(cmd);
 		free(g_shell->prompt);
