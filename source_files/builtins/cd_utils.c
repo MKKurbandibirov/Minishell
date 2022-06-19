@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 11:09:22 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/06 17:03:58 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/14 12:42:31 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	cd_home(char *path, t_list *env, t_list *exp)
 	{
 		if (chdir(home) != -1)
 		{
-			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			t = ft_strjoin("OLDPWD=", g_shell->pwd);
 			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", home);
@@ -48,7 +48,7 @@ int	cd_relative_home(char *path, t_list *env, t_list *exp)
 		new_path = ft_strjoin(home, ++path);
 		if (chdir(new_path) != -1)
 		{
-			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			t = ft_strjoin("OLDPWD=", g_shell->pwd);
 			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", new_path);
@@ -71,12 +71,12 @@ int	cd_double_dot(char *path, t_list *env, t_list *exp)
 
 	if (!ft_strcmp(path, ".."))
 	{
-		tmp = ft_strdup(get_pwd(env, 1));
+		tmp = ft_strdup(g_shell->pwd);
 		tail = ft_strrchr(tmp, '/');
 		tmp[tail - tmp] = '\0';
 		if (chdir(tmp) != -1)
 		{
-			t = ft_strjoin("OLDPWD=", get_pwd(env, 1));
+			t = ft_strjoin("OLDPWD=", g_shell->pwd);
 			ft_export(t, exp, env);
 			free(t);
 			t = ft_strjoin("PWD=", tmp);
@@ -98,7 +98,7 @@ int	cd_dot(char *path, t_list *env, t_list *exp)
 
 	if (!ft_strcmp(path, "."))
 	{
-		tmp = get_pwd(env, 1);
+		tmp = g_shell->pwd;
 		if (chdir(tmp) != 1)
 		{
 			t = ft_strjoin("OLDPWD=", tmp);
@@ -107,35 +107,6 @@ int	cd_dot(char *path, t_list *env, t_list *exp)
 			t = ft_strjoin("PWD=", tmp);
 			ft_export(t, exp, env);
 			free(t);
-		}
-		else
-			perror("[ERROR]");
-		return (1);
-	}
-	return (0);
-}
-
-int	cd_minus(char *path, t_list *env, t_list *exp)
-{
-	char	*oldpwd;
-	char	*pwd;
-	char	*t;
-
-	if (!ft_strcmp(path, "-"))
-	{
-		pwd = ft_strdup(get_pwd(env, 1));
-		oldpwd = ft_strdup(get_pwd(env, 2));
-		printf("%s\n", oldpwd);
-		if (chdir(oldpwd) != -1)
-		{
-			t = ft_strjoin("OLDPWD=", pwd);
-			ft_export(t, exp, env);
-			free(t);
-			t = ft_strjoin("PWD=", oldpwd);
-			ft_export(t, exp, env);
-			free(t);
-			free(pwd);
-			free(oldpwd);
 		}
 		else
 			perror("[ERROR]");

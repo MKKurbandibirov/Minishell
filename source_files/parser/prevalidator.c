@@ -1,8 +1,20 @@
-#include "../../header_files/parser_v2.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prevalidator.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 11:09:54 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 15:43:59 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../header_files/parser.h"
 
 int	ft_skip_quote(char *s)
 {
-	char *next_c;
+	char	*next_c;
 
 	if (s[0] == '\"')
 		next_c = ft_srch_pair_quote(&s[1], '\"');

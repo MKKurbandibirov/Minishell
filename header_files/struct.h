@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 11:47:13 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 14:59:48 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/06/16 11:04:27 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 18:18:36 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,38 @@
 
 # include "minishell.h"
 
+typedef struct s_plist	t_plist;
+typedef struct s_master	t_master;
+typedef struct s_slave	t_slave;
+
 typedef struct s_minishell
 {
-	t_list	*env;
-	t_list	*exp;
-	char	**cmd_path;
-	int		return_status;
+	t_list		*env;
+	t_list		*exp;
+	t_master	*master;
+	char		*pwd;
+	char		*prompt;
+	char		**cmd_path;
+	int			return_status;
 }	t_minishell;
 
-// typedef struct s_cmds	t_cmds;
-
-typedef struct s_plist
+typedef struct s_slave
 {
-	char			*data;
-	int				type;
-	int				group;
-	struct s_plist	*next;
-	struct s_plist	*prev;
-}	t_plist;
+	char	**cmd;
+	int		type;
+	int		type_connect;
+	t_slave	*next;
+	t_slave	*prev;
+}	t_slave;
 
-typedef struct s_parser
+typedef struct s_master
 {
+	int			groupe;
+	int			type_connect;
+	t_slave		*content;
+	t_master	*next;
+	t_master	*prev;
 	t_plist		*head;
-}	t_parser;
-
-// typedef enum e_cmd_type
-// {
-// 	PIPE,
-// 	SOLO,
-// }	t_cmd_type;
-
-// typedef struct s_cmds
-// {
-// 	char			**cmd;
-// 	t_cmd_type		type;
-// }	t_cmds;
+}	t_master;
 
 #endif

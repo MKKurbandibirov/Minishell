@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/07 10:31:35 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 16:17:18 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,14 @@
 # include <errno.h>
 
 # include "../libft/libft.h"
-// # include "struct.h"
-# include "struct_v2.h"
+# include "struct.h"
 # include "readline/readline.h"
 # include "readline/history.h"
-# include "builtins.h"
-// # include "parser.h"
-# include "parser_v2.h"
 # include "execute.h"
+# include "builtins.h"
+# include "parser.h"
 
-// typedef struct s_minishell
-// {
-// 	t_list	*env;
-// 	t_list	*exp;
-// 	char	**cmd_path;
-// 	int		return_status;
-// }	t_minishell;
-
-extern t_minishell	*g_shell;
+t_minishell	*g_shell;
 
 void	child_sig(void);
 void	main_sig(void);

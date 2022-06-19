@@ -20,16 +20,15 @@ PATH_LFT	=	libft/
 PATH_OBJ	=	./object_files/
 
 FILE_SRC	=	main.c \
-				execute.c find_cmd.c signal.c prompt.c\
-				
+				execute.c find_cmd.c signal.c prompt.c redirects.c
 
-FILE_PRS	=	get_cmd_plist_v2.c master_v2.c parser_v2.c slave_v2.c slaveLST_v2.c\
-				prepars_list_func_v2.c preparsing_v2.c prevalidator_v2.c quote_v2.c\
-				utils_v2_1.c utils_v2.c
+FILE_PRS	=	parser.c \
+				prevalidator.c  utils.c prepars_list_func.c preparsing.c quote.c utils1.c\
+				utils.c slave.c slaveLST.c master.c get_cmd_plist.c
 
 FILE_BUIL	=	cd.c\
-				echo_n.c env.c exit.c export_utils1.c export_utils2.c export.c pwd.c unset.c utils.c cd_utils.c
-
+				echo_n.c env.c exit.c export_utils1.c export_utils2.c export.c pwd.c unset.c cd_utils.c utils.c
+				
 LIBFT_SRC	=	ft_atoi.c		ft_bzero.c		ft_calloc.c	ft_isalnum.c	ft_isalpha.c	ft_isascii.c	ft_isdigit.c	ft_isprint.c\
 				ft_itoa.c		ft_memchr.c	ft_memcmp.c 	ft_memcpy.c 	ft_memmove.c 	ft_memset.c	ft_putchar_fd.c	ft_strjoin_free.c\
 				ft_putendl_fd.c ft_putnbr_fd.c 	ft_putstr_fd.c 	ft_split.c 		ft_strchr.c 	ft_strcmp.c		ft_strdup.c		ft_striteri.c\

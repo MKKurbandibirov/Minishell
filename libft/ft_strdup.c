@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 12:24:24 by nfarfetc          #+#    #+#             */
-/*   Updated: 2021/10/10 12:12:16 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:30:20 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s1)
 	int		i;
 	char	*s2;
 
+	if (!s1)
+		return (NULL);
 	len = ft_strlen(s1);
 	s2 = malloc((len + 1) * sizeof(char));
 	i = 0;

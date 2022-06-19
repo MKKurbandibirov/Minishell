@@ -1,4 +1,16 @@
-#include "../../header_files/parser_v2.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepars_list_func.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 11:10:29 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 15:42:46 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../header_files/parser.h"
 
 t_plist	*ft_getlast(t_plist *head)
 {
@@ -9,9 +21,9 @@ t_plist	*ft_getlast(t_plist *head)
 	return (head);
 }
 
-void ft_insert_after(t_plist *prev_node, char *data, int group, int type)
+void	ft_insert_after(t_plist *prev_node, char *data, int group, int type)
 {
-	t_plist *new;
+	t_plist	*new;
 
 	new = (t_plist *)malloc(sizeof(t_plist));
 	new->data = ft_strdup(data);

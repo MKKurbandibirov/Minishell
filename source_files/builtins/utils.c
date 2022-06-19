@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 11:36:44 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/06 17:10:32 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:07:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ int	norm_helper(char **cmd, t_list *env, t_list *exp)
 		return (1);
 	else if (!ft_strcmp("unset", cmd[0]) && !ft_unset(env, exp, cmd))
 		return (1);
-	else if (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL)
-	{
-		ft_exit();
-		return (1);
-	}
 	return (0);
 }
 

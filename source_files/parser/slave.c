@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   slave.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/16 15:46:27 by nfarfetc          #+#    #+#             */
+/*   Updated: 2022/06/16 15:47:41 by nfarfetc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../header_files/minishell.h"
 
 static void	ft_redirect_case(t_plist **head, t_slave **sl, int type_c)
@@ -8,7 +20,7 @@ static void	ft_redirect_case(t_plist **head, t_slave **sl, int type_c)
 	type = ft_skip_opper(head);
 	if ((*sl) == NULL || ((*sl)->prev && ((*sl)->prev->type == PIPE
 		|| ((*sl)->prev->type >= 6 && (*sl)->prev->type <= 9)
-			|| ((*sl)->prev->type == 11 || (*sl)->prev->type == 12))))
+		|| ((*sl)->prev->type == 11 || (*sl)->prev->type == 12))))
 	{
 		cmd = malloc(sizeof(char *) * 2);
 		cmd[0] = ft_strdup((*head)->data);
@@ -35,7 +47,7 @@ static void	ft_command_case(t_plist **head, t_slave **sl, int type_c)
 static void	ft_pipe_case(t_plist **head, t_slave **sl)
 {
 	int		type;
-	t_slave *last;
+	t_slave	*last;
 
 	last = ft_getlast_s(*sl);
 	type = ft_skip_opper(head);
@@ -58,16 +70,17 @@ t_slave	*ft_generate_cont(t_plist **head, int *t)
 	sl = NULL;
 	start_group = (*head)->group;
 	*t = START;
-	while(head != NULL && start_group == (*head)->group)
+	while ((*head) != NULL && start_group == (*head)->group)
 	{
-		if ((*head)->type >= 6 && (*head)->type <=9)
+		if ((*head)->type >= 6 && (*head)->type <= 9)
 			ft_redirect_case(head, &sl, *t);
 		if ((*head) && (*head)->type == CMD)
 			ft_command_case(head, &sl, *t);
 		if ((*head) && (*head)->type == PIPE)
 			ft_pipe_case(head, &sl);
-		if ((*head) && (*head)->group == start_group && ((*head)->type == AND || (*head)->type == ELSE))
+		if ((*head) && (*head)->group == start_group
+			&& ((*head)->type == AND || (*head)->type == ELSE))
 			ft_connection_case(head, t);
 	}
-	return(sl);
+	return (sl);
 }

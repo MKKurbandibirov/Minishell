@@ -11,14 +11,6 @@
 		"stdlib.h": "c",
 		"signal.h": "c",
 		"errno.h": "c",
-		"chrono": "c",
-		"array": "c",
-		"compare": "c",
-		"functional": "c",
-		"ratio": "c",
-		"tuple": "c",
-		"type_traits": "c",
-		"utility": "c",
-		"variant": "c"
+		"chrono": "c"
 	}
 }

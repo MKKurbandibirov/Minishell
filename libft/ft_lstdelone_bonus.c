@@ -6,11 +6,12 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:01:19 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/07 09:03:20 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/11 14:37:47 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../header_files/minishell.h"
 
 void	ft_lstdelone(t_list **lst, t_list *del)
 {
@@ -22,5 +23,8 @@ void	ft_lstdelone(t_list **lst, t_list *del)
 		curr = curr->next;
 	}
 	curr->next = del->next;
+	free(((t_key_val *)del->content)->key);
+	free(((t_key_val *)del->content)->val);
+	free(del->content);
 	free(del);
 }
