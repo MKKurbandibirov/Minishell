@@ -50,6 +50,5 @@ void	ft_parser_v2(char *s)
 	if (ft_prevalidation(s))
 		return ;
 	ft_preparsing(&master, s, 0, 0);
-	//TODO VALIDATOR
 	g_shell->master = ft_generate_m(&master);
 }
