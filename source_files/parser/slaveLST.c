@@ -52,14 +52,16 @@ void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 void	ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
 {
 	t_slave	*new;
+	t_slave	*last;
 
+	last = ft_getlast_s(*slave);
 	new = (t_slave *)malloc(sizeof(t_slave));
 	new->cmd = cmd;
 	new->type_connect = type_c;
 	new->type = type;
-	new->next = (*slave)->next;
-	(*slave)->next = new;
-	new->prev = (*slave);
+	new->next = last;
+	last->prev->next = new;
+	new->prev = last->prev;
 	if (new->next != NULL)
 		new->next->prev = new;
 }
