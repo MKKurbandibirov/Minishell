@@ -63,11 +63,6 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 
 	last = ft_getlast(*head);
 	tmp = (t_plist *) malloc(sizeof(t_plist));
-	if (!tmp)
-	{
-		perror("Err malloc (PB)");
-		exit(EXIT_FAILURE);
-	}
 	tmp->data = ft_strdup(data);
 	tmp->group = group;
 	tmp->type = type;

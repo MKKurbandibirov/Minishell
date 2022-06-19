@@ -28,11 +28,6 @@ void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 
 	last = ft_getlast_s(*slave);
 	tmp = (t_slave *) malloc(sizeof(t_slave));
-	if (!tmp)
-	{
-		perror("Err malloc (PB)");
-		exit(EXIT_FAILURE);
-	}
 	tmp->cmd = cmd;
 	tmp->type = type;
 	tmp->type_connect = type_c;
