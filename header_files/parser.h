@@ -88,7 +88,8 @@ t_plist		*ft_getlast(t_plist *head);
 
 //master_2.c 
 t_master	*ft_getlast_m(t_master *head);
-void		ft_pushback_m(t_master **master, int type_c, int type);
+void		ft_pushback_m(t_master **master, int type_c, int type, int *end_head);
+void		ft_delelem_m(t_master **head, t_master *delElem);
 
 //slave_v2.c
 t_slave		*ft_generate_cont(t_plist **head, int *t);
@@ -98,6 +99,7 @@ t_slave		*ft_getlast_s(t_slave *head);
 void		ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd);
 void		ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd);
 int			ft_skip_opper(t_plist **head);
+void		ft_delelem_s(t_slave **head, t_slave *delElem);
 
 //preparsing_v2.c
 void		ft_preparsing(t_master *master, char *s, int i, int add_len);

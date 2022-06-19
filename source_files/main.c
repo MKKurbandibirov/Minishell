@@ -13,6 +13,7 @@
 #include "../header_files/minishell.h"
 // #include "../header_files/parser.h"
 
+t_minishell	*g_shell;
 // char	***create_example(void)
 // {
 // 	char	***ex;
@@ -88,10 +89,9 @@ int	main(int argc, char **argv, char **envr)
 					i++;
 				}
 				printf("%d\n", g_shell->master->content->type);
-				printf("\n");
-				g_shell->master->content = g_shell->master->content->next;
+				ft_delelem_s(&g_shell->master->content, g_shell->master->content);
 			}
-			g_shell->master = g_shell->master->next;
+			ft_delelem_m(&g_shell->master, g_shell->master);
 		}
 		// if (cmd[0])
 		// 	solo_cmd_exe(cmd);

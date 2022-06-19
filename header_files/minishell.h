@@ -28,7 +28,7 @@
 # include "builtins.h"
 # include "parser.h"
 
-t_minishell	*g_shell;
+extern t_minishell	*g_shell;
 
 void	child_sig(void);
 void	main_sig(void);

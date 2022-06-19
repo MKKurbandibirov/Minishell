@@ -49,6 +49,20 @@ void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 	}
 }
 
+void	ft_delelem_s(t_slave **head, t_slave *delElem)
+{
+	if (*head == NULL || delElem == NULL)
+		return ;
+	if (*head == delElem)
+		*head = delElem->next;
+	if (delElem->next != NULL)
+		delElem->next->prev = delElem->prev;
+	if (delElem->prev != NULL)
+		delElem->prev->next = delElem->next;
+	free_split(delElem->cmd);
+	free(delElem);
+}
+
 void	ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
 {
 	t_slave	*new;

@@ -25,13 +25,15 @@ t_master	*ft_generate_m(t_master *mst)
 {
 	int	type_c;
 	int	t;
+	int	end_head;
 
 	t = 0;
 	type_c = START;
-	while (mst->head != NULL)
+	end_head = 0;
+	while (mst->head != NULL && end_head == 0)
 	{
-		ft_pushback_m(&mst, type_c, t);
-		if (mst->head != NULL)
+		ft_pushback_m(&mst, type_c, t, &end_head);
+		if (end_head == 0)
 		{
 			type_c = mst->head->type;
 			ft_skip_opper(&mst->head);
