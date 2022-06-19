@@ -88,7 +88,8 @@ t_plist		*ft_getlast(t_plist *head);
 
 //master_2.c 
 t_master	*ft_getlast_m(t_master *head);
-void		ft_pushback_m(t_master **master, int type_c, int type, int *end_head);
+void		ft_pushback_m(t_master **master, int type_c, int type,
+				int *end_head);
 void		ft_delelem_m(t_master **head, t_master *delElem);
 
 //slave_v2.c

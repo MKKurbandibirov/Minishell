@@ -34,8 +34,6 @@ void	ft_delelem_m(t_master **head, t_master *delElem)
 	free(delElem);
 }
 
-
-
 void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 {
 	t_master	*tmp;

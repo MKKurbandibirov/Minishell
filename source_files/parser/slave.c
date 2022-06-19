@@ -19,8 +19,8 @@ static void	ft_redirect_case(t_plist **head, t_slave **sl, int type_c)
 
 	type = ft_skip_opper(head);
 	if ((*sl) == NULL || ((*sl)->prev && ((*sl)->prev->type == PIPE
-		|| ((*sl)->prev->type >= 6 && (*sl)->prev->type <= 9)
-		|| ((*sl)->prev->type == 11 || (*sl)->prev->type == 12))))
+				|| ((*sl)->prev->type >= 6 && (*sl)->prev->type <= 9)
+				|| ((*sl)->prev->type == 11 || (*sl)->prev->type == 12))))
 	{
 		cmd = malloc(sizeof(char *) * 2);
 		cmd[0] = ft_strdup((*head)->data);
