@@ -41,6 +41,8 @@ void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 
 	last = ft_getlast_m(*master);
 	tmp = (t_master *) malloc(sizeof(t_master));
+	if (!tmp)
+		return ;
 	tmp->head = (*master)->head;
 	tmp->groupe = (*master)->head->group;
 	tmp->content = ft_generate_cont(&(tmp->head), &type);
