@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prevalidator.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 11:09:54 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 15:43:59 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/06/20 09:23:10 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/06/20 09:23:11 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

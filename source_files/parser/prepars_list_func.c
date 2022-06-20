@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepars_list_func.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 11:10:29 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 15:42:46 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/06/20 09:22:30 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/06/20 09:22:32 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

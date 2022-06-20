@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 11:04:27 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 18:18:36 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/06/20 09:24:08 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/06/20 09:24:11 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_slave
 {
 	char	**cmd;
 	int		type;
-	int		type_connect;
 	t_slave	*next;
 	t_slave	*prev;
 }	t_slave;
