@@ -20,7 +20,7 @@ PATH_LFT	=	libft/
 PATH_OBJ	=	./object_files/
 
 FILE_SRC	=	main.c \
-				execute.c find_cmd.c signal.c prompt.c redirects.c
+				execute.c find_cmd.c signal.c prompt.c redirects.c star.c
 
 FILE_PRS	=	parser.c \
 				prevalidator.c  utils.c prepars_list_func.c preparsing.c quote.c utils1.c\

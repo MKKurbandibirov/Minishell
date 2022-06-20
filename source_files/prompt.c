@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 09:05:14 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/11 14:49:01 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 11:26:42 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	*get_prompt(void)
 		i = 0;
 		while (pwd[i + 1])
 			i++;
-		prompt = ft_strjoin(pwd[i], ":> ");
+		prompt = ft_strjoin("\x1b[32m", pwd[i]);
+		prompt = ft_strjoin_free(prompt, "\x1b[31m", 1);
+		prompt = ft_strjoin_free(prompt, ":> ", 1);
+		prompt = ft_strjoin_free(prompt, "\x1b[0m", 1);
 		free_split(pwd);
 		return (prompt);
 	}

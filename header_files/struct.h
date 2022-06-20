@@ -24,6 +24,8 @@ typedef struct s_minishell
 	t_list		*env;
 	t_list		*exp;
 	t_master	*master;
+	t_list		*pids;
+	t_list		*status;
 	char		*pwd;
 	char		*prompt;
 	char		**cmd_path;

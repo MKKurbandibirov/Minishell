@@ -29,14 +29,7 @@ void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 	last = ft_getlast_s(*slave);
 	tmp = (t_slave *) malloc(sizeof(t_slave));
 	if (!tmp)
-<<<<<<< HEAD
 		return ;
-=======
-	{
-		perror("Err malloc (PB)");
-		exit(EXIT_FAILURE);
-	}
->>>>>>> main
 	tmp->cmd = cmd;
 	tmp->type = type;
 	tmp->type_connect = type_c;
@@ -53,7 +46,6 @@ void	ft_pushback_s(t_slave **slave, int type, int type_c, char **cmd)
 	}
 }
 
-<<<<<<< HEAD
 void	ft_delelem_s(t_slave **head, t_slave *delElem)
 {
 	if (*head == NULL || delElem == NULL)
@@ -74,25 +66,13 @@ void	ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
 	t_slave	*last;
 
 	last = ft_getlast_s(*slave);
-=======
-void	ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
-{
-	t_slave	*new;
-
->>>>>>> main
 	new = (t_slave *)malloc(sizeof(t_slave));
 	new->cmd = cmd;
 	new->type_connect = type_c;
 	new->type = type;
-<<<<<<< HEAD
 	new->next = last;
 	last->prev->next = new;
 	new->prev = last->prev;
-=======
-	new->next = (*slave)->next;
-	(*slave)->next = new;
-	new->prev = (*slave);
->>>>>>> main
 	if (new->next != NULL)
 		new->next->prev = new;
 }
