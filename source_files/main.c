@@ -52,7 +52,7 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	if (!g_shell)
 		return (NULL);
 	g_shell->env = get_envr(envr);
-	g_shell->exp = get_expt(envr);
+	// g_shell->exp = get_expt(envr);
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
 	g_shell->prompt = NULL;

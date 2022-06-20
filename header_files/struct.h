@@ -34,6 +34,7 @@ typedef struct s_slave
 {
 	char	**cmd;
 	int		type;
+	int		type_connect;
 	t_slave	*next;
 	t_slave	*prev;
 }	t_slave;

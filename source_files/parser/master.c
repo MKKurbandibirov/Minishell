@@ -34,6 +34,13 @@ void	ft_delelem_m(t_master **head, t_master *delElem)
 	free(delElem);
 }
 
+static void	ft_pushback_help(t_master **mst, t_master *tmp)
+{
+	tmp->type_connect = START;
+	(*mst) = tmp;
+	(*mst)->prev = NULL;
+}
+
 void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 {
 	t_master	*tmp;
@@ -47,14 +54,11 @@ void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 	tmp->groupe = (*master)->head->group;
 	tmp->content = ft_generate_cont(&(tmp->head), &type);
 	tmp->next = NULL;
+	(*master)->head = tmp->head;
 	if (!tmp->head)
 		*end_head = 1;
 	if (!last)
-	{
-		tmp->type_connect = START;
-		(*master) = tmp;
-		(*master)->prev = NULL;
-	}
+		ft_pushback_help(master, tmp);
 	else
 	{
 		tmp->type_connect = type_c;

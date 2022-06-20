@@ -114,11 +114,11 @@ int	ft_checking_cause(char *s, int *grp, t_master *prs, int i)
 		else if (s[0] == '&' && (!s[i + 1] || s[i + 1] != '&'))
 			ft_pushback_p(&prs->head, "&", BG, *grp);
 		else
+		{
+			(*grp)++;
 			add++;
-		if (s[i] == '|' && s[i + 1] && s[i + 1] == '|')
-			ft_pushback_p(&prs->head, ft_strdup("||"), ELSE, *grp);
-		else if (s[i] == '&' && s[i + 1] && s[i + 1] == '&')
-			ft_pushback_p(&prs->head, ft_strdup("&&"), AND, *grp);
+		}
+		ft_checking_help(&s[i], grp, prs, i);
 	}
 	return (i + add);
 }
