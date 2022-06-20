@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 11:09:54 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 15:43:59 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:29:11 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ int	ft_prevalidation(char *s)
 	status = ft_chk_qt_prs(s);
 	if (status != 0)
 		ft_err_msg("Errr: Something with quotes\n");
-	status = ft_valid_pairs_bracket(s);
-	if (status != 0)
-		ft_err_msg("Errr: Something with brackets\n");
+	else
+	{
+		status = ft_valid_pairs_bracket(s);
+		if (status != 0)
+			ft_err_msg("Errr: Something with brackets\n");
+	}
 	return (status);
 }

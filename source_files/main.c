@@ -6,23 +6,13 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/18 16:19:30 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:37:16 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header_files/minishell.h"
-// #include "../header_files/parser.h"
 
-// char	***create_example(void)
-// {
-// 	char	***ex;
-// 	ex = malloc(sizeof(char **) * 4);
-// 	ex[0] = ft_split("/bin/ls", ' ');
-// 	ex[1] = ft_split("/usr/bin/grep *.c", ' ');
-// 	ex[2] = ft_split("/usr/bin/wc -l", ' ');
-// 	ex[3] = NULL;
-// 	return ex;
-// }
+t_minishell	*g_shell;
 
 char	*change_shlvl(void)
 {
@@ -80,7 +70,6 @@ int	main(int argc, char **argv, char **envr)
 			ft_exit(0);
 		ft_parser_v2(line);
 		ft_exe();
-		// replace_star();
 		add_history(line);
 		free_split(cmd);
 		free(g_shell->prompt);

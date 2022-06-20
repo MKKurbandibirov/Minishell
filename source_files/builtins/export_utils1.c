@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 14:19:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 19:29:45 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/20 14:25:03 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ t_key_val	*create_exp_node(char *env_i, int option)
 	if (option == 0)
 	{
 		exp_node->val = ft_substr(env_i, j + 1, ft_strlen(env_i) - j);
-		exp_node->val = ft_strtrim(exp_node->val, "\"\'");
 		exp_node->val = ft_strjoin_free(ft_strdup("\""), exp_node->val, 3);
 		exp_node->val = ft_strjoin_free(exp_node->val, ft_strdup("\""), 3);
 	}
 	else
 		exp_node->val = NULL;
-	exp_node->key = ft_strjoin_free("declare -x ", exp_node->key, 2);
+	exp_node->key = ft_strjoin_free(ft_strdup("declare -x "), exp_node->key, 3);
 	return (exp_node);
 }
 
