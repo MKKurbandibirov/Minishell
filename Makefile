@@ -24,7 +24,11 @@ FILE_SRC	=	main.c \
 
 FILE_PRS	=	parser.c \
 				prevalidator.c  utils.c prepars_list_func.c preparsing.c quote.c utils1.c\
+<<<<<<< HEAD
 				utils.c slave.c slaveLST.c master.c get_cmd_plist.c utils2.c
+=======
+				utils.c slave.c slaveLST.c master.c get_cmd_plist.c
+>>>>>>> main
 
 FILE_BUIL	=	cd.c\
 				echo_n.c env.c exit.c export_utils1.c export_utils2.c export.c pwd.c unset.c cd_utils.c utils.c
