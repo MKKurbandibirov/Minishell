@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:24:08 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 09:24:11 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:18:17 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ typedef struct s_minishell
 	t_list		*env;
 	t_list		*exp;
 	t_master	*master;
+	t_list		*pids;
+	t_list		*status;
 	char		*pwd;
 	char		*prompt;
 	char		**cmd_path;
 	int			return_status;
+	int			std_in;
+	int			std_out;
 }	t_minishell;
 
 typedef struct s_slave

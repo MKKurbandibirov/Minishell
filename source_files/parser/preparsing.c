@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:22:19 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 09:22:22 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/20 15:21:03 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_get_arg_continue(char *s, int *group, t_master *prs)
 
 	add = 0;
 	if (s[0] && s[0] == '<' && s[1] && s[1] == '<')
-
 	{
 		ft_pushback_p(&prs->head, ft_strdup("<<"), HEREDOC, *group);
 		add += 2;

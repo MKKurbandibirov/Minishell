@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 11:09:32 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/18 10:36:32 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	*identify_cmd(char *cmd)
 		if (access(abs_cmd, F_OK) == 0)
 		{
 			free(cmd);
-			cmd = ft_strdup(abs_cmd);
 			return (abs_cmd);
 		}
 		else

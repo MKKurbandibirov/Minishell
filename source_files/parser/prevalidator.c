@@ -81,8 +81,11 @@ int	ft_prevalidation(char *s)
 	status = ft_chk_qt_prs(s);
 	if (status != 0)
 		ft_err_msg("Errr: Something with quotes\n");
-	status = ft_valid_pairs_bracket(s);
-	if (status != 0)
-		ft_err_msg("Errr: Something with brackets\n");
+	else
+	{
+		status = ft_valid_pairs_bracket(s);
+		if (status != 0)
+			ft_err_msg("Errr: Something with brackets\n");
+	}
 	return (status);
 }

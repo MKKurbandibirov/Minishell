@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/16 16:17:18 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:49:41 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <errno.h>
+# include <sys/types.h>
+# include <dirent.h>
 
 # include "../libft/libft.h"
 # include "struct.h"
@@ -31,7 +33,12 @@
 extern t_minishell	*g_shell;
 
 void	child_sig(void);
+void	tmp_sig(void);
 void	main_sig(void);
 char	*get_prompt(void);
+void	free_global(void);
+void	free_inter(char *line);
+
+t_list	*replace_star(char *pattern);
 
 #endif
