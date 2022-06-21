@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:23:20 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/21 15:05:10 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:12:07 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,17 @@ void	ft_insert_penult(t_slave **slave, int type, int type_c, char **cmd)
 	new->type_connect = type_c;
 	new->type = type;
 	new->next = last;
-	last->prev->next = new;
-	new->prev = last->prev;
+	if (last->prev == NULL)
+	{
+		last->prev = new;
+		new->prev = NULL;
+		*slave = new;
+	}
+	else
+	{
+		last->prev->next = new;
+		new->prev = last->prev;
+	}
 	if (new->next != NULL)
 		new->next->prev = new;
 }
