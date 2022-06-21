@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 12:49:41 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:53:12 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	main_sig(void);
 char	*get_prompt(void);
 void	free_global(void);
 void	free_inter(char *line);
+void	free_simple_list(t_list *lst);
 
 t_list	*replace_star(char *pattern);
 

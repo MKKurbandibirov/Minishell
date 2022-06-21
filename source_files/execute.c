@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 14:26:27 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:42:13 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,10 @@ void	ft_exe(void)
 				ft_pipe(g_shell->master->content->cmd);
 			else if (g_shell->master->content->type == CMD)
 				solo_cmd_exe(g_shell->master->content->cmd);
+			else if (g_shell->master->content->type == INFILE_RE)
+				straight_redirect(g_shell->master->content->cmd[0]);
+			else if (g_shell->master->content->type == OUTFILE_RE)
+				reverse_redirect(g_shell->master->content->cmd[0]);
 			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
 		}
 		ft_delelem_m(&g_shell->master, g_shell->master);
