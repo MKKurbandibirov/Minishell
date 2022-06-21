@@ -12,6 +12,7 @@
 		"signal.h": "c",
 		"errno.h": "c",
 		"chrono": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"sstream": "c"
 	}
 }

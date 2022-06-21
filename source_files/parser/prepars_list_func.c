@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepars_list_func.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:22:30 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 09:22:32 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:21:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_pushback_p(t_plist **head, char *data, int type, int group)
 	tmp = (t_plist *) malloc(sizeof(t_plist));
 	if (!tmp)
 		return ;
-	tmp->data = ft_strdup(data);
+	tmp->data = data;
 	tmp->group = group;
 	tmp->type = type;
 	tmp->next = NULL;

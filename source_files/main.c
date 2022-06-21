@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/21 13:02:36 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:28:26 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	main(int argc, char **argv, char **envr)
 		main_sig();
 		line = readline(g_shell->prompt);
 		ft_parser_v2(line);
-		if (!line || (g_shell->master->content
+		if (!line
+		 || (g_shell->master->content
 				&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
 					&& g_shell->master->content->cmd[1] == NULL)))
 			ft_exit(0);

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 12:27:10 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 14:26:27 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void	solo_cmd_exe(char **cmd)
 		free_split(envp);
 		ft_exit(EXIT_FAILURE);
 	}
+	dup2(g_shell->std_in, STDIN_FILENO);
+	dup2(g_shell->std_out, STDOUT_FILENO);
 }
 
 void	ft_exe(void)
