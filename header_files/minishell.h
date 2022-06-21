@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/20 13:41:54 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 07:49:58 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	child_sig(void);
 void	tmp_sig(void);
 void	main_sig(void);
 char	*get_prompt(void);
+void	free_global(void);
+void	free_inter(char *line,  char **cmd);
 
 t_list	*replace_star(char *pattern);
 

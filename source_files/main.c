@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magomed <magomed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/20 14:37:16 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 07:50:14 by magomed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,8 @@ int	main(int argc, char **argv, char **envr)
 		ft_parser_v2(line);
 		ft_exe();
 		add_history(line);
-		free_split(cmd);
-		free(g_shell->prompt);
-		free(line);
+		free_inter(line, cmd);
 	}
-	clear_history();
-	free_list(g_shell->env);
-	free_list(g_shell->exp);
-	free_split(g_shell->cmd_path);
+	free_global();
 	return (0);
 }
