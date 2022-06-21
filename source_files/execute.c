@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/18 15:51:55 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 10:58:27 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	ft_pipe(char **cmd)
 		perror("[ERROR]");
 	else if (*p_pid == 0)
 		child_proc(fd, cmd);
-	free_split(cmd);
 	close(STDIN_FILENO);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
@@ -131,9 +130,9 @@ void	ft_exe(void)
 				ft_pipe(g_shell->master->content->cmd);
 			else if (g_shell->master->content->type == CMD)
 				solo_cmd_exe(g_shell->master->content->cmd);
-			g_shell->master->content = g_shell->master->content->next;
+			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
 		}
-		g_shell->master = g_shell->master->next;
+		ft_delelem_m(&g_shell->master, g_shell->master);
 	}
 	while (g_shell->pids)
 	{

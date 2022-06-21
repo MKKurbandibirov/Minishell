@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   master.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:22:54 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 09:23:01 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/20 16:36:45 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ t_master	*ft_getlast_m(t_master *head)
 
 void	ft_delelem_m(t_master **head, t_master *delElem)
 {
-	if (*head == NULL || delElem == NULL)
+	if (*head == NULL || (*head)->content == NULL || delElem == NULL)
+	{
+		*head = NULL;
 		return ;
+	}
 	if (*head == delElem)
 		*head = delElem->next;
 	if (delElem->next != NULL)
