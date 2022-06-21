@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:32:46 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/18 16:43:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:33:54 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ void	main_sig(void)
 
 void	tmp_sig(void)
 {
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, SIG_DFL);
 }
 
 void	child_sig(void)
 {
+	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
-	// signal(SIGQUIT, SIG_DFL);
+	// printf("\n");
 }
+
+

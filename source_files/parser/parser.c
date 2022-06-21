@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:22:42 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 09:22:46 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:55:52 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_parser_v2(char *s)
 {
 	t_master	master;
 
+	if (!s)
+		return ;
 	ft_init_master(&master);
 	if (ft_prevalidation(s))
 		return ;

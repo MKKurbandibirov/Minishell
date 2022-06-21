@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/21 10:59:00 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 13:02:36 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	g_shell = (t_minishell *)malloc(sizeof(t_minishell));
 	if (!g_shell)
 		return (NULL);
+	g_shell->std_in = dup(STDIN_FILENO);
+	g_shell->std_out = dup(STDOUT_FILENO);
 	g_shell->env = get_envr(envr);
 	g_shell->exp = get_expt(envr);
 	g_shell->pids = NULL;
@@ -57,21 +59,21 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 int	main(int argc, char **argv, char **envr)
 {
 	char		*line;
-	char		**cmd;
 
 	init_shell(argc, argv, envr);
-	main_sig();
 	while (1)
 	{
 		g_shell->prompt = get_prompt();
+		main_sig();
 		line = readline(g_shell->prompt);
-		cmd = ft_split(line, ' ');
-		if (!line || (!ft_strcmp("exit", cmd[0]) && cmd[1] == NULL))
-			ft_exit(0);
 		ft_parser_v2(line);
+		if (!line || (g_shell->master->content
+				&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
+					&& g_shell->master->content->cmd[1] == NULL)))
+			ft_exit(0);
 		ft_exe();
 		add_history(line);
-		free_inter(line, cmd);
+		free_inter(line);
 	}
 	free_global();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 10:58:27 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:27:10 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_pipe(char **cmd)
 	if (!p_pid)
 		return ;
 	*p_pid = fork();
+	tmp_sig();
 	ft_lstadd_back(&g_shell->pids, ft_lstnew(p_pid));
 	if (*p_pid == -1)
 		perror("[ERROR]");
@@ -120,7 +121,7 @@ void	solo_cmd_exe(char **cmd)
 
 void	ft_exe(void)
 {
-	int	*status;
+	int	status;
 
 	while (g_shell->master != NULL)
 	{
@@ -136,13 +137,12 @@ void	ft_exe(void)
 	}
 	while (g_shell->pids)
 	{
-		status = malloc(sizeof(int));
-		if (!status)
-			return ;
-		waitpid(*(int *)g_shell->pids->content, status, WNOHANG);
-		ft_lstadd_back(&g_shell->status, ft_lstnew(status));
+		status = g_shell->return_status;
+		waitpid(*(int *)g_shell->pids->content, &status, 0);
 		g_shell->pids = g_shell->pids->next;
 	}
-	dup2(STDIN_FILENO, 0);
-	dup2(STDOUT_FILENO, 1);
+	if (g_shell->return_status != status)
+		g_shell->return_status = WEXITSTATUS(status);
+	dup2(g_shell->std_in, STDIN_FILENO);
+	dup2(g_shell->std_out, STDOUT_FILENO);
 }

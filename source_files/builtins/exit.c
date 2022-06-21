@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 10:59:26 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 12:49:15 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_exit(int return_stat)
 {
 	g_shell->return_status = return_stat;
 	free_global();
-	free_inter(NULL, NULL);
+	free_inter(NULL);
 	exit(return_stat);
 }
 
@@ -28,11 +28,9 @@ void	free_global(void)
 	clear_history();
 }
 
-void	free_inter(char *line, char **cmd)
+void	free_inter(char *line)
 {
 	if (line != NULL)
 		free(line);
-	if (cmd != NULL)
-		free_split(cmd);
 	free(g_shell->prompt);
 }
