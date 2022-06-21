@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 17:12:20 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:58:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,17 @@ void	ft_exe(void)
 			else if (g_shell->master->content->type == INFILE_RE)
 				straight_redirect(g_shell->master->content->cmd[0]);
 			else if (g_shell->master->content->type == OUTFILE_RE)
+			{
 				reverse_redirect(g_shell->master->content->cmd[0]);
+				if (g_shell->master->content->next->type == PIPE)
+					g_shell->master->content->next->type = CMD;
+			}
+			else if (g_shell->master->content->type == APPEND)
+			{
+				double_reverse_reirect(g_shell->master->content->cmd[0]);
+				if (g_shell->master->content->next->type == PIPE)
+					g_shell->master->content->next->type = CMD;
+			}
 			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
 		}
 		ft_delelem_m(&g_shell->master, g_shell->master);
@@ -149,6 +159,6 @@ void	ft_exe(void)
 	}
 	if (g_shell->return_status != status)
 		g_shell->return_status = WEXITSTATUS(status);
-	dup2(g_shell->std_in, STDIN_FILENO);
+	// dup2(g_shell->std_in, STDIN_FILENO);
 	dup2(g_shell->std_out, STDOUT_FILENO);
 }
