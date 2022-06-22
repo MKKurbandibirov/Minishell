@@ -66,3 +66,18 @@ void	free_simple_list(t_list *lst)
 		free(curr);
 	}
 }
+
+int	ft_count_elem_in_start(t_list *lst)
+{
+	t_list	*curr;
+	int		i;
+
+	i = 0;
+	curr = lst;
+	while (curr)
+	{
+		i++;
+		curr = curr->next;
+	}
+	return (i);
+}

@@ -39,6 +39,7 @@ char	*get_prompt(void);
 void	free_global(void);
 void	free_inter(char *line);
 void	free_simple_list(t_list *lst);
+int 	ft_count_elem_in_start(t_list *lst);
 
 t_list	*replace_star(char *pattern);
 

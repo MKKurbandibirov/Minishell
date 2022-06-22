@@ -33,17 +33,30 @@ static int	ft_count_cmd_word(t_plist *prs)
 	return (i);
 }
 
+static int	ft_count_arg_in_star(char *s)
+{
+	int	i;
+
+	i = 0;
+	return (i);
+}
+
 char	**ft_get_cmd(t_plist **head)
 {
 	char	**tmp;
 	int		i;
+	int		len;
 
 	tmp = (char **) malloc(sizeof(char *) * (ft_count_cmd_word(*head) + 1));
 	i = 0;
 	while (*head && ((*head)->type == CMD
 			|| (*head)->type == FLAG || (*head)->type == ARG))
 	{
-		tmp[i++] = ft_strdup((*head)->data);
+		len = 0;
+		if ((*head)->data[0] == '$')
+			tmp[i++] = ft_strdup(ft_ifdollar(&(*head)->data[1], &len));
+		else
+			tmp[i++] = ft_strdup((*head)->data);
 		ft_delelem(head, *head);
 	}
 	if (i == 0)
