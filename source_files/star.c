@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:52:08 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/20 14:36:40 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:12:29 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_list	*replace_star(char *pattern)
 	return (cwdir);
 }
 
-void	free_star(t_list *lst)
+void	free_simple_list(t_list *lst)
 {
 	t_list	*curr;
 

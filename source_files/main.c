@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/21 15:28:26 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:11:54 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	g_shell->std_in = dup(STDIN_FILENO);
 	g_shell->std_out = dup(STDOUT_FILENO);
 	g_shell->env = get_envr(envr);
-	g_shell->exp = get_expt(envr);
+	// g_shell->exp = get_expt(envr);
 	g_shell->pids = NULL;
-	g_shell->status = NULL;
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
 	g_shell->prompt = NULL;
@@ -76,6 +75,6 @@ int	main(int argc, char **argv, char **envr)
 		add_history(line);
 		free_inter(line);
 	}
-	free_global();
+	// free_global();
 	return (0);
 }

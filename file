@@ -1,0 +1,10 @@
+total 240
+-rw-r--r--   1 gtaggana  4221    2404 Jun 21 16:28 Makefile
+-rw-r--r--   1 gtaggana  4221      15 Jun 21 16:28 README.md
+-rw-r--r--   1 gtaggana  4221       0 Jun 22 10:48 file
+drwxr-xr-x   7 gtaggana  4221     238 Jun 22 10:46 header_files
+drwxr-xr-x  52 gtaggana  4221    1768 Jun 22 10:46 libft
+-rwxr-xr-x   1 gtaggana  4221  114496 Jun 22 10:48 minishell
+drwxr-xr-x   3 gtaggana  4221     102 Jun 22 10:47 minishell.dSYM
+drwxr-xr-x  58 gtaggana  4221    1972 Jun 22 10:46 object_files
+drwxr-xr-x  11 gtaggana  4221     374 Jun 22 10:46 source_files

@@ -11,6 +11,7 @@
 		"stdlib.h": "c",
 		"signal.h": "c",
 		"errno.h": "c",
-		"chrono": "c"
+		"chrono": "c",
+		"random": "c"
 	}
 }

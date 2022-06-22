@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:56:01 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/11 11:33:39 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:03:35 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	straight_redirect(char *filename)
 		perror("[ERROR]");
 		return ;
 	}
-	close(STDIN_FILENO);
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 }
@@ -37,7 +36,6 @@ void	reverse_redirect(char *filename)
 		perror("[ERROR]");
 		return ;
 	}
-	close(STDOUT_FILENO);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 }
@@ -52,7 +50,6 @@ void	double_reverse_reirect(char *filename)
 		perror("[ERROR]");
 		return ;
 	}
-	close(STDOUT_FILENO);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 }
