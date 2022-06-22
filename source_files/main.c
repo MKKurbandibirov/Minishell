@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/06/21 17:11:54 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:44:14 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int	main(int argc, char **argv, char **envr)
 		add_history(line);
 		free_inter(line);
 	}
-	// free_global();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:24:08 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/21 17:13:02 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:21:27 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_minishell
 	t_list		*exp;
 	t_master	*master;
 	t_list		*pids;
+	t_list		*heredoc;
 	char		*pwd;
 	char		*prompt;
 	char		**cmd_path;

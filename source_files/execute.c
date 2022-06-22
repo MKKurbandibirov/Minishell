@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 18:58:55 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:16:24 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ void	ft_exe(void)
 				if (g_shell->master->content->next->type == PIPE)
 					g_shell->master->content->next->type = CMD;
 			}
+			else if (g_shell->master->content->type == HEREDOC)
+				heredoc(g_shell->master->content->cmd[0]);
 			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
 		}
 		ft_delelem_m(&g_shell->master, g_shell->master);
