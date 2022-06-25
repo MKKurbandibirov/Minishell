@@ -42,15 +42,16 @@ t_master	*ft_generate_m(t_master *mst)
 	return (mst);
 }
 
-void	ft_parser_v2(char *s)
+int	ft_parser_v2(char *s)
 {
 	t_master	master;
 
 	if (!s)
-		return ;
+		return (1);
 	ft_init_master(&master);
 	if (ft_prevalidation(s))
-		return ;
+		return (1);
 	ft_preparsing(&master, s, 0, 0);
 	g_shell->master = ft_generate_m(&master);
+	return (0);
 }

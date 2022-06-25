@@ -52,7 +52,7 @@ typedef struct s_parser
 	t_plist		*head;
 }	t_parser;
 
-void		ft_parser_v2(char *s);
+int			ft_parser_v2(char *s);
 
 //utils_v2.c
 void		ft_err_msg(char *msg);

@@ -43,7 +43,7 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	g_shell->std_in = dup(STDIN_FILENO);
 	g_shell->std_out = dup(STDOUT_FILENO);
 	g_shell->env = get_envr(envr);
-	g_shell->exp = get_expt(envr);
+	// g_shell->exp = get_expt(envr);
 	g_shell->pids = NULL;
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
@@ -65,11 +65,10 @@ int	main(int argc, char **argv, char **envr)
 		main_sig();
 		g_shell->prompt = get_prompt();
 		line = readline(g_shell->prompt);
-		ft_parser_v2(line);
 		if (!line
-			|| (g_shell->master->content
-				&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
-					&& g_shell->master->content->cmd[1] == NULL)))
+			|| (!ft_parser_v2(line) && (g_shell->master->content
+					&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
+						&& g_shell->master->content->cmd[1] == NULL))))
 			ft_exit(0);
 		ft_exe();
 		add_history(line);
