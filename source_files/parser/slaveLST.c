@@ -92,7 +92,7 @@ int	ft_skip_opper(t_plist **head)
 	int		type;
 
 	type = (*head)->type;
-	del = ft_get_cmd(head);
+	del = ft_get_cmd(head, 0, 0);
 	free_split(del);
 	return (type);
 }

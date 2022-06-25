@@ -75,6 +75,6 @@ int	main(int argc, char **argv, char **envr)
 		add_history(line);
 		free_inter(line);
 	}
-	// free_global();
+	free_global();
 	return (0);
 }
