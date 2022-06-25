@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:52:08 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 17:12:29 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:57:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_list	*replace_star(char *pattern)
 		entry = readdir(dir);
 		if (entry == NULL)
 			break ;
-		if (match(pattern, entry->d_name, 0, 0))
+		if (entry->d_name[0] != '.' && match(pattern, entry->d_name, 0, 0))
 			ft_lstadd_back(&cwdir, ft_lstnew(ft_strdup(entry->d_name)));
 	}
 	closedir(dir);

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:56:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/15 14:32:41 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 11:28:05 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 static void	advanced_free(char *s1, char *s2, int option)
 {
 	if (option == 1)
-	{
 		free(s1);
-	}
 	else if (option == 2)
-	{
 		free(s2);
-	}
 	else
 	{
 		free(s1);

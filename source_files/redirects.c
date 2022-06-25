@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:56:01 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 10:49:05 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:15:54 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	double_reverse_reirect(char *filename)
 }
 
 //--------------------------------------------------------
-// Дописать это говно!
+//					Дописать это говно!
 void	heredoc_print(t_list *cpy, int fd)
 {
 	int		i;
@@ -77,18 +77,17 @@ void	heredoc_print(t_list *cpy, int fd)
 	free_simple_list(cpy);
 }
 
-void	heredoc_init(char *del, int fd)
+int	heredoc_init(char *del, int fd)
 {
 	char	*line;
 	t_list	*lst;
 
-	inter_sig();
 	lst = NULL;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
-			break ;
+			return (1);
 		if (!ft_strcmp(line, del))
 		{
 			free(line);
@@ -108,6 +107,7 @@ void	heredoc(char *del)
 	pid = fork();
 	if (pid < 0)
 		return ;
+	inter_sig();
 	if (pid == 0)
 	{
 		child_sig();

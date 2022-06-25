@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 10:48:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 12:09:44 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,5 @@ void	ft_exe(void)
 	}
 	if (g_shell->return_status != status)
 		g_shell->return_status = WEXITSTATUS(status);
-	// dup2(g_shell->std_in, STDIN_FILENO);
 	dup2(g_shell->std_out, STDOUT_FILENO);
 }
