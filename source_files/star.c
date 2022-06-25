@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:52:08 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 10:57:08 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 13:22:21 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ void	free_simple_list(t_list *lst)
 		lst = lst->next;
 		free(curr);
 	}
+}
+
+int	ft_count_elem_in_start(t_list *lst)
+{
+	t_list	*curr;
+	int		i;
+
+	i = 0;
+	curr = lst;
+	while (curr)
+	{
+		i++;
+		curr = curr->next;
+	}
+	return (i);
 }

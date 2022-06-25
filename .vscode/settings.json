@@ -12,7 +12,11 @@
 		"signal.h": "c",
 		"errno.h": "c",
 		"chrono": "c",
+<<<<<<< HEAD
 		"libft.h": "c",
 		"sstream": "c"
+=======
+		"random": "c"
+>>>>>>> db8487c23f557918ecad3df3c17d89cd06da36a3
 	}
 }

@@ -63,12 +63,16 @@ char	*ft_ifdollar(char *s, int *len)
 	char	*ret;
 
 	*len = 0;
+	if (s[*len] == '?')
+	{
+		(*len)++;
+		return (ft_strdup("$?"));
+	}
 	while (s[*len] && (ft_isalpha(s[*len]) || ft_isdigit(s[*len]))
 		&& (!ft_isspace(s[*len])))
 		(*len)++;
 	dollar = (char *) malloc(sizeof(char) * (*len) + 1);
 	ft_strncpy(s, dollar, *(len) + 1);
-	(*len)--;
 	ret = ft_strdup(ft_env_search(dollar));
 	free(dollar);
 	return (ret);

@@ -30,7 +30,7 @@ static void	ft_redirect_case(t_plist **head, t_slave **sl, int type_c)
 	}
 	else
 	{
-		ft_insert_penult(sl, type, type_c, ft_get_cmd(head));
+		ft_insert_penult(sl, type, type_c, ft_get_cmd(head, 0, 0));
 	}
 }
 
@@ -40,7 +40,7 @@ static void	ft_command_case(t_plist **head, t_slave **sl, int type_c)
 	char	**cmd;
 
 	type = (*head)->type;
-	cmd = ft_get_cmd(head);
+	cmd = ft_get_cmd(head, 0, 0);
 	ft_pushback_s(sl, type, type_c, cmd);
 }
 
