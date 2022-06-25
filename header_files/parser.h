@@ -109,4 +109,8 @@ void		ft_preparsing(t_master *master, char *s, int i, int add_len);
 
 //get_cmd_plist_v2.c
 char		**ft_get_cmd(t_plist **head, int i, int len);
+
+//validator.c
+int			ft_validator(t_plist *prs);
+
 #endif

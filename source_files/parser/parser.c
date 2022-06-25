@@ -52,6 +52,8 @@ int	ft_parser_v2(char *s)
 	if (ft_prevalidation(s))
 		return (1);
 	ft_preparsing(&master, s, 0, 0);
+	if (ft_validator(master.head))
+		return (1);
 	g_shell->master = ft_generate_m(&master);
 	return (0);
 }

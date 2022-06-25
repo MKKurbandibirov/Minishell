@@ -112,7 +112,7 @@ int	ft_checking_cause(char *s, int *grp, t_master *prs, int i)
 		if (s[i] == '|' && (!s[i + 1] || s[i + 1] != '|'))
 			ft_pushback_p(&prs->head, ft_strdup("|"), PIPE, *grp);
 		else if (s[0] == '&' && (!s[i + 1] || s[i + 1] != '&'))
-			ft_pushback_p(&prs->head, "&", BG, *grp);
+			ft_pushback_p(&prs->head, ft_strdup("&"), BG, *grp);
 		else
 		{
 			(*grp)++;
