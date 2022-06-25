@@ -43,7 +43,7 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	g_shell->std_in = dup(STDIN_FILENO);
 	g_shell->std_out = dup(STDOUT_FILENO);
 	g_shell->env = get_envr(envr);
-	g_shell->exp = get_expt(envr);
+	// g_shell->exp = get_expt(envr);
 	g_shell->pids = NULL;
 	g_shell->return_status = 0;
 	g_shell->pwd = NULL;
