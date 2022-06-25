@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:56:01 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/22 12:03:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:49:05 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	double_reverse_reirect(char *filename)
 	close(fd);
 }
 
-void	heredoc_print(t_list *cpy)
+//--------------------------------------------------------
+// Дописать это говно!
+void	heredoc_print(t_list *cpy, int fd)
 {
 	int		i;
 	char	**arr;
@@ -64,22 +66,23 @@ void	heredoc_print(t_list *cpy)
 	while (arr && arr[i])
 	{
 		if (arr[i][0] == '$')
-			printf("%s ", ft_env_search(&arr[i][1]));
+			ft_putstr_fd(ft_env_search(&arr[i][1]), fd);
 		else
-			printf("%s ", arr[i]);
+			ft_putstr_fd(arr[i], fd);
 		i++;
 	}
-	printf("\n");
+	ft_putchar_fd('\n', fd);
+	close(fd);
 	free_split(arr);
+	free_simple_list(cpy);
 }
 
-void	heredoc_init(char *del)
+void	heredoc_init(char *del, int fd)
 {
 	char	*line;
 	t_list	*lst;
 
-	// dup2(g_shell->std_in, STDIN_FILENO);
-	tmp_sig();
+	inter_sig();
 	lst = NULL;
 	while (1)
 	{
@@ -93,7 +96,7 @@ void	heredoc_init(char *del)
 		}
 		ft_lstadd_back(&lst, ft_lstnew(line));
 	}
-	heredoc_print(lst);
+	heredoc_print(lst, fd);
 }
 
 void	heredoc(char *del)
@@ -102,22 +105,21 @@ void	heredoc(char *del)
 	int		fd[2];
 	int		status;
 
-	if (pipe(fd) == -1)
-		return ;
 	pid = fork();
-	child_sig();
 	if (pid < 0)
-	{
-		close(fd[0]);
-		close(fd[1]);
-		perror("[ERROR]");
 		return ;
-	}
 	if (pid == 0)
 	{
-		heredoc_init(del);
-		exit(1);
+		child_sig();
+		if (pipe(fd) == -1)
+			exit(1);
+		close(fd[1]);
+		heredoc_init(del, fd[0]);
+		exit(0);
 	}
 	waitpid(pid, &status, 0);
+	g_shell->return_status = status;
+	dup2(fd[0], STDIN_FILENO);
 	close(fd[1]);
+	close(fd[0]);
 }

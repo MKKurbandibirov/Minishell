@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:32:46 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/21 12:33:54 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:48:52 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	handler(int sig)
 	rl_on_new_line();
 	rl_redisplay();
 	write(2, "  \n", 3);
-	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 	g_shell->return_status = 1;
@@ -30,16 +29,14 @@ void	main_sig(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	tmp_sig(void)
+void	inter_sig(void)
 {
-	signal(SIGINT, SIG_DFL);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	child_sig(void)
 {
-	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
-	// printf("\n");
+	signal(SIGQUIT, SIG_DFL);
 }
-
-

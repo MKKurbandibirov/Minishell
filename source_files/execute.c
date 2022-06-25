@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/22 11:16:24 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 10:48:51 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_pipe(char **cmd)
 	if (!p_pid)
 		return ;
 	*p_pid = fork();
-	tmp_sig();
+	inter_sig();
 	ft_lstadd_back(&g_shell->pids, ft_lstnew(p_pid));
 	if (*p_pid == -1)
 		perror("[ERROR]");
@@ -102,6 +102,7 @@ void	solo_cmd_exe(char **cmd)
 	if (!p_pid)
 		return ;
 	*p_pid = fork();
+	inter_sig();
 	ft_lstadd_back(&g_shell->pids, ft_lstnew(p_pid));
 	if (*p_pid == -1)
 		perror("[ERROR]");
