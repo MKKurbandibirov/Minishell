@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:56:01 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 13:22:19 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 14:33:52 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	heredoc_init(char *del, int fd)
 		ft_lstadd_back(&lst, ft_lstnew(line));
 	}
 	heredoc_print(lst, fd);
+	
 }
 
 void	heredoc(char *del)
@@ -113,13 +114,14 @@ void	heredoc(char *del)
 		child_sig();
 		if (pipe(fd) == -1)
 			exit(1);
-		close(fd[1]);
-		heredoc_init(del, fd[0]);
+		// heredoc_init(del, fd[1]);
+		// close(fd[0]);
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
 	g_shell->return_status = status;
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[1]);
-	close(fd[0]);
+	// dup2(fd[0], STDIN_FILENO);
+	// dup2(g_shell->std_out, STDOUT_FILENO);
+	// close(fd[1]);
+	// close(fd[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 13:22:13 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:41:17 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,22 @@ void	solo_cmd_exe(char **cmd)
 	dup2(g_shell->std_out, STDOUT_FILENO);
 }
 
+void	replace_status(char **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (!ft_strcmp(content[i], "$?"))
+		{
+			free(content[i]);
+			content[i] = ft_itoa(g_shell->return_status);
+		}
+		i++;
+	}
+}
+
 void	ft_exe(void)
 {
 	int	status;
@@ -130,6 +146,7 @@ void	ft_exe(void)
 	{
 		while (g_shell->master->content != NULL)
 		{
+			replace_status(g_shell->master->content->cmd);
 			if (g_shell->master->content->type == PIPE)
 				ft_pipe(g_shell->master->content->cmd);
 			else if (g_shell->master->content->type == CMD)
@@ -160,7 +177,7 @@ void	ft_exe(void)
 		waitpid(*(int *)g_shell->pids->content, &status, 0);
 		g_shell->pids = g_shell->pids->next;
 	}
-	if (g_shell->return_status != status)
+	if (status != g_shell->return_status)
 		g_shell->return_status = WEXITSTATUS(status);
 	dup2(g_shell->std_out, STDOUT_FILENO);
 }
