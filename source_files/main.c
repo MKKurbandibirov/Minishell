@@ -65,11 +65,10 @@ int	main(int argc, char **argv, char **envr)
 		main_sig();
 		g_shell->prompt = get_prompt();
 		line = readline(g_shell->prompt);
-		ft_parser_v2(line);
 		if (!line
-			|| (g_shell->master->content
-				&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
-					&& g_shell->master->content->cmd[1] == NULL)))
+			|| (!ft_parser_v2(line) && (g_shell->master->content
+					&& (!ft_strcmp("exit", g_shell->master->content->cmd[0])
+						&& g_shell->master->content->cmd[1] == NULL))))
 			ft_exit(0);
 		ft_exe();
 		add_history(line);

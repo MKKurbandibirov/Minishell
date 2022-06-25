@@ -50,7 +50,7 @@ int	ft_parser_v2(char *s)
 		return (1);
 	ft_init_master(&master);
 	if (ft_prevalidation(s))
-		return (0);
+		return (1);
 	ft_preparsing(&master, s, 0, 0);
 	g_shell->master = ft_generate_m(&master);
 	return (0);
