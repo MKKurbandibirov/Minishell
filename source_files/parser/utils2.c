@@ -12,10 +12,16 @@
 
 #include "../../header_files/parser.h"
 
-void	ft_checking_help(char *s, int *grp, t_master *prs, int i)
+void	ft_checking_help(char *s, int *grp, t_master *prs, int *i)
 {
-	if (s[i] == '|' && s[i + 1] && s[i + 1] == '|')
+	if (s[*i] == '|' && s[*i + 1] && s[*i + 1] == '|')
+	{
 		ft_pushback_p(&prs->head, ft_strdup("||"), ELSE, *grp);
-	else if (s[i] == '&' && s[i + 1] && s[i + 1] == '&')
+		*i += 1;
+	}
+	else if (s[*i] == '&' && s[*i + 1] && s[*i + 1] == '&')
+	{
 		ft_pushback_p(&prs->head, ft_strdup("&&"), AND, *grp);
+		*i += 1;
+	}
 }

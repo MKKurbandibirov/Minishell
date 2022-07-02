@@ -69,7 +69,7 @@ char		*ft_argv_am(char *s, int *add);
 int			ft_checking_cause(char *s, int *grp, t_master *prs, int i);
 
 //utils2.c
-void		ft_checking_help(char *s, int *grp, t_master *prs, int i);
+void		ft_checking_help(char *s, int *grp, t_master *prs, int *i);
 
 //quote_v2.c
 char		*ft_single_quote(char *s);

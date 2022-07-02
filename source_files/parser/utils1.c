@@ -104,21 +104,21 @@ int	ft_checking_cause(char *s, int *grp, t_master *prs, int i)
 		add++;
 		if (s[i] == ')')
 		{
-			i++;
 			(*grp)++;
+			i++;
 			while (s[i] && ft_isspace(s[i]))
 				i++;
 		}
-		if (s[i] == '|' && (!s[i + 1] || s[i + 1] != '|'))
+		else if (s[i] == '|' && (!s[i + 1] || s[i + 1] != '|'))
 			ft_pushback_p(&prs->head, ft_strdup("|"), PIPE, *grp);
 		else if (s[0] == '&' && (!s[i + 1] || s[i + 1] != '&'))
 			ft_pushback_p(&prs->head, "&", BG, *grp);
-		else
+		else if (s[i] == '|' || s[i] == '&')
 		{
 			(*grp)++;
 			add++;
 		}
-		ft_checking_help(&s[i], grp, prs, i);
+		ft_checking_help(s, grp, prs, &i);
 	}
 	return (i + add);
 }
