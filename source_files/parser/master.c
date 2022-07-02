@@ -23,7 +23,8 @@ t_master	*ft_getlast_m(t_master *head)
 
 void	ft_delelem_m(t_master **head, t_master *delElem)
 {
-	if (*head == NULL || (*head)->content == NULL || delElem == NULL)
+	if (*head == NULL || ((*head)->content == NULL && (*head)->flag_del == 0)
+		|| delElem == NULL)
 	{
 		*head = NULL;
 		return ;
@@ -57,6 +58,7 @@ void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 	tmp->groupe = (*master)->head->group;
 	tmp->content = ft_generate_cont(&(tmp->head), &type);
 	tmp->next = NULL;
+	tmp->flag_del = 0;
 	(*master)->head = tmp->head;
 	if (!tmp->head)
 		*end_head = 1;

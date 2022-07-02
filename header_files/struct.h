@@ -47,6 +47,7 @@ typedef struct s_master
 {
 	int			groupe;
 	int			t_connect;
+	int			flag_del;
 	t_slave		*content;
 	t_master	*next;
 	t_master	*prev;
