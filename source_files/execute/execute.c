@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 12:05:47 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:48:02 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,45 @@ void	ft_exe(void)
 
 	while (g_shell->master != NULL)
 	{
-		while (g_shell->master->content != NULL)
+		if (g_shell->master->type_connect == START)
 		{
-			exe_helper();
-			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
+			while (g_shell->master->content != NULL)
+			{
+				exe_helper();
+				ft_delelem_s(&g_shell->master->content,
+					g_shell->master->content);
+			}
+		}
+		else if (g_shell->master->type_connect == AND
+			&& g_shell->return_status == 0)
+		{
+			while (g_shell->master->content != NULL)
+			{
+				exe_helper();
+				ft_delelem_s(&g_shell->master->content,
+					g_shell->master->content);
+			}
+		}
+		else if (g_shell->master->type_connect == ELSE
+			&& g_shell->return_status != 0)
+		{
+			while (g_shell->master->content != NULL)
+			{
+				exe_helper();
+				ft_delelem_s(&g_shell->master->content,
+					g_shell->master->content);
+			}
 		}
 		ft_delelem_m(&g_shell->master, g_shell->master);
+		while (g_shell->pids)
+		{
+			status = g_shell->return_status;
+			waitpid(*(int *)g_shell->pids->content, &status, 0);
+			g_shell->pids = g_shell->pids->next;
+		}
+		if (status != g_shell->return_status)
+			g_shell->return_status = WEXITSTATUS(status);
+		dup2(g_shell->std_out, STDOUT_FILENO);
+		free_simple_list(g_shell->pids);
 	}
-	while (g_shell->pids)
-	{
-		status = g_shell->return_status;
-		waitpid(*(int *)g_shell->pids->content, &status, 0);
-		g_shell->pids = g_shell->pids->next;
-	}
-	if (status != g_shell->return_status)
-		g_shell->return_status = WEXITSTATUS(status);
-	dup2(g_shell->std_out, STDOUT_FILENO);
 }
