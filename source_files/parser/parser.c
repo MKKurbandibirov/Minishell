@@ -14,6 +14,7 @@
 
 static void	ft_init_master(t_master *master)
 {
+	master->flag_del = 0;
 	master->groupe = START;
 	master->head = NULL;
 	master->content = NULL;

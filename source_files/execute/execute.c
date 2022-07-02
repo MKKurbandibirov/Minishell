@@ -60,6 +60,7 @@ void	exe_helper_wrap(void)
 		exe_helper();
 		ft_delelem_s(&g_shell->master->content,
 			g_shell->master->content);
+		g_shell->master->flag_del = 1;
 	}
 }
 
