@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:41 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:24:42 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:33:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	replace_status(char **content)
 
 void	exe_helper(void)
 {
-	int	fd;
-
 	replace_status(g_shell->master->content->cmd);
 	if (g_shell->master->content->type == PIPE)
 		ft_pipe(g_shell->master->content->cmd);
@@ -52,11 +50,7 @@ void	exe_helper(void)
 			g_shell->master->content->next->type = CMD;
 	}
 	else if (g_shell->master->content->type == HEREDOC)
-	{
-		fd = heredoc(g_shell->master->content->cmd[0]);
-		dup2(fd, STDOUT_FILENO);
-		close(fd);
-	}
+		heredoc(g_shell->master->content->cmd[0]);
 }
 
 void	exe_helper_wrap(void)

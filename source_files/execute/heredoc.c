@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:52 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:24:53 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:31:43 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	heredoc_init(char *del, int fd)
 	return (0);
 }
 
-int	heredoc(char *del)
+void	heredoc(char *del)
 {
 	int		pid;
 	int		fd[2];
@@ -61,9 +61,9 @@ int	heredoc(char *del)
 
 	pid = fork();
 	if (pid < 0)
-		return (-1);
+		return ;
 	if (pipe(fd) == -1)
-		return (-1);
+		return ;
 	inter_sig();
 	if (pid == 0)
 	{
@@ -80,5 +80,5 @@ int	heredoc(char *del)
 	g_shell->ret_stat = status;
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
-	return (fd[1]);
+	close(fd[1]);
 }

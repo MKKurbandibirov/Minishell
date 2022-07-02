@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:18:52 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:18:53 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:31:18 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_pipe(char **cmd);
 void	straight_redirect(char *filename);
 void	reverse_redirect(char *filename);
 void	double_reverse_reirect(char *filename);
-int		heredoc(char *del);
+void	heredoc(char *del);
 void	replace_status(char **content);
 char	*ft_here_dollar(char *s);
 
