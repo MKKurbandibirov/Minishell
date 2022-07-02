@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   help_pars_here.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:22:58 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 11:22:59 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:00:22 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../header_files/execute.h"
 
 char	*ft_here_dollar(char *s)
 {

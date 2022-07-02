@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:01:33 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 11:09:20 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 12:01:09 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,15 @@
 //					Дописать это говно!
 static void	heredoc_print(t_list *cpy, int fd)
 {
-	int		i;
-	char	**arr;
+	char	*tmp;
 	t_list	*curr;
 
 	curr = cpy;
 	while (curr != NULL)
 	{
-		i = 0;
-		arr = ft_split(curr->content, ' ');
-		while (arr && arr[i])
-		{
-			if (arr[i][0] == '$')
-				ft_putstr_fd(ft_env_search(&arr[i][1]), fd);
-			else
-				ft_putstr_fd(arr[i], fd);
-			i++;
-			ft_putstr_fd(" ", fd);
-		}
-		ft_putchar_fd('\n', fd);
-		free_split(arr);
+		tmp = ft_here_dollar(curr->content);
+		ft_putendl_fd(tmp, g_shell->std_out);
+		free(tmp);
 		curr = curr->next;
 	}
 	close(fd);
@@ -90,7 +79,7 @@ void	heredoc(char *del)
 	waitpid(pid, &status, 0);
 	g_shell->return_status = status;
 	dup2(fd[0], STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
+	// dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
 	close(fd[1]);
 }
