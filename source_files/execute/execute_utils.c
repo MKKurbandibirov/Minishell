@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:03:01 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:01:58 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:12:27 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	child_proc(int *fd, char **cmd)
 		g_shell->ret_stat = 0;
 		execve(cmd[0], cmd, envp);
 		g_shell->ret_stat = errno;
-		perror("[ERROR]");
+		perror(cmd[0]);
 		free_split(envp);
 		exit(EXIT_FAILURE);
 	}
@@ -93,12 +93,13 @@ void	solo_cmd_exe_helper(char **cmd)
 	char	**envp;
 
 	child_sig();
+	dup2(g_shell->std_out, STDOUT_FILENO);
 	cmd[0] = identify_cmd(cmd[0]);
 	envp = convert_to_strarr(g_shell->env);
 	g_shell->ret_stat = 0;
 	execve(cmd[0], cmd, envp);
 	g_shell->ret_stat = errno;
-	perror("[ERROR]");
+	perror(cmd[0]);
 	free_split(envp);
 	exit(EXIT_FAILURE);
 }

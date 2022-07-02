@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 16:01:33 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:01:58 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:58:15 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	heredoc_print(t_list *cpy, int fd)
 	while (curr != NULL)
 	{
 		tmp = ft_here_dollar(curr->content);
-		ft_putendl_fd(tmp, g_shell->std_out);
+		ft_putendl_fd(tmp, fd);
 		free(tmp);
 		curr = curr->next;
 	}
@@ -53,7 +53,7 @@ static int	heredoc_init(char *del, int fd)
 	return (0);
 }
 
-void	heredoc(char *del)
+int	heredoc(char *del)
 {
 	int		pid;
 	int		fd[2];
@@ -61,9 +61,9 @@ void	heredoc(char *del)
 
 	pid = fork();
 	if (pid < 0)
-		return ;
+		return (-1);
 	if (pipe(fd) == -1)
-		return ;
+		return (-1);
 	inter_sig();
 	if (pid == 0)
 	{
@@ -79,7 +79,6 @@ void	heredoc(char *del)
 	waitpid(pid, &status, 0);
 	g_shell->ret_stat = status;
 	dup2(fd[0], STDIN_FILENO);
-	// dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
-	close(fd[1]);
+	return (fd[1]);
 }

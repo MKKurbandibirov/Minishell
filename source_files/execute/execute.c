@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:07:55 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 15:09:45 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	replace_status(char **content)
 
 void	exe_helper(void)
 {
+	int	fd;
+
 	replace_status(g_shell->master->content->cmd);
 	if (g_shell->master->content->type == PIPE)
 		ft_pipe(g_shell->master->content->cmd);
@@ -50,7 +52,11 @@ void	exe_helper(void)
 			g_shell->master->content->next->type = CMD;
 	}
 	else if (g_shell->master->content->type == HEREDOC)
-		heredoc(g_shell->master->content->cmd[0]);
+	{
+		fd = heredoc(g_shell->master->content->cmd[0]);
+		dup2(fd, STDOUT_FILENO);
+		close(fd);
+	}
 }
 
 void	exe_helper_wrap(void)
@@ -89,7 +95,7 @@ void	ft_exe(void)
 			exe_helper_wrap();
 		ft_delelem_m(&g_shell->master, g_shell->master);
 		waiting();
-		dup2(g_shell->std_out, STDOUT_FILENO);
+		// dup2(g_shell->std_out, STDOUT_FILENO);
 		free_simple_list(g_shell->pids);
 	}
 }
