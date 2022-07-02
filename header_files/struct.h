@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:24:08 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/25 13:21:23 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:06:15 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_minishell
 	char		*pwd;
 	char		*prompt;
 	char		**cmd_path;
-	int			return_status;
+	int			ret_stat;
 	int			std_in;
 	int			std_out;
 }	t_minishell;
@@ -46,7 +46,7 @@ typedef struct s_slave
 typedef struct s_master
 {
 	int			groupe;
-	int			type_connect;
+	int			t_connect;
 	t_slave		*content;
 	t_master	*next;
 	t_master	*prev;

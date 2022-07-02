@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:22:54 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/21 15:05:51 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:06:15 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_delelem_m(t_master **head, t_master *delElem)
 
 static void	ft_pushback_help(t_master **mst, t_master *tmp)
 {
-	tmp->type_connect = START;
+	tmp->t_connect = START;
 	(*mst) = tmp;
 	(*mst)->prev = NULL;
 }
@@ -64,7 +64,7 @@ void	ft_pushback_m(t_master **master, int type_c, int type, int *end_head)
 		ft_pushback_help(master, tmp);
 	else
 	{
-		tmp->type_connect = type_c;
+		tmp->t_connect = type_c;
 		last->next = tmp;
 		tmp->prev = last;
 	}
