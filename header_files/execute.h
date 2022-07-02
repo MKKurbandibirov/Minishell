@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 09:42:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 16:15:43 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 11:34:21 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	reverse_redirect(char *filename);
 void	double_reverse_reirect(char *filename);
 void	heredoc(char *del);
 void	replace_status(char **content);
+char	*ft_here_dollar(char *s);
 
 #endif
