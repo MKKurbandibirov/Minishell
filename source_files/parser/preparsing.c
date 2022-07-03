@@ -71,7 +71,7 @@ void	ft_get_redirect(char*s, t_master *master, int *add, int *group)
 	last = ft_getlast(master->head);
 	while (s[i] && (ft_isspace(s[i]) || s[i] == '('))
 			i++;
-	while (s[i] && last->type != CMD && s[i] != '|'
+	while (s[i] && s[i] != '|'
 		&& s[i] != ')' && s[i] != '&')
 	{
 		*add = 0;
