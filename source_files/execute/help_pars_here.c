@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   help_pars_here.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:35 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:24:36 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/03 18:01:39 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_here_dollar(char *s)
 
 	i = 0;
 	ret = ft_strdup("");
-	while (s[i] && !ft_isspace(s[i]) && s[i] != ')' && !ft_isspec(s[i]))
+	while (s[i] && s[i] != ')' && !ft_isspec(s[i]))
 	{
 		quote = NULL;
 		if (s[i] == '$')

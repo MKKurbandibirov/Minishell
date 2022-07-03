@@ -6,37 +6,29 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:52 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/03 10:41:01 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 18:17:45 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/execute.h"
 
-//--------------------------------------------------------
-//					Дописать это говно!
-static void	heredoc_print(t_list *cpy, int fd)
+static void	heredoc_print(void)
 {
 	char	*tmp;
-	t_list	*curr;
-
-	curr = cpy;
-	while (curr != NULL)
-	{
-		tmp = ft_here_dollar(curr->content);
-		ft_putendl_fd(tmp, fd);
-		free(tmp);
-		curr = curr->next;
-	}
+	int		fd;
+	
+	fd = open("heredoc", O_RDONLY);
+	if (fd == -1)
+		return ;
+	dup2(fd, STDIN_FILENO);
 	close(fd);
-	free_simple_list(cpy);
 }
 
 static int	heredoc_init(char *del, int fd)
 {
 	char	*line;
-	t_list	*lst;
+	char	*tmp;
 
-	lst = NULL;
 	while (1)
 	{
 		line = readline("> ");
@@ -47,38 +39,33 @@ static int	heredoc_init(char *del, int fd)
 			free(line);
 			break ;
 		}
-		ft_lstadd_back(&lst, ft_lstnew(line));
+		tmp = ft_here_dollar(line);
+		ft_putendl_fd(tmp, fd);
 	}
-	heredoc_print(lst, fd);
+	close(fd);
 	return (0);
 }
 
 void	heredoc(char *del)
 {
-	int		pid;
-	int		fd[2];
-	int		status;
+	int	fd;
+	int pid;
+	int	status;
 
+	fd = open("heredoc", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		return ;
 	pid = fork();
-	if (pid < 0)
-		return ;
-	if (pipe(fd) == -1)
-		return ;
 	inter_sig();
 	if (pid == 0)
 	{
 		child_sig();
-		close(fd[0]);
-		if (heredoc_init(del, fd[1]) == 1)
-		{
-			g_shell->ret_stat = 1;
+		if (heredoc_init(del, fd))
 			ft_exit(EXIT_FAILURE, 0);
-		}
 		ft_exit(EXIT_SUCCESS, 0);
 	}
 	waitpid(pid, &status, 0);
-	g_shell->ret_stat = status;
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	close(fd[1]);
+	close(fd);
+	heredoc_print();
+	unlink("heredoc");
 }
