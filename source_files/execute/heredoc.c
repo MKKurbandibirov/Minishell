@@ -14,9 +14,8 @@
 
 static void	heredoc_print(void)
 {
-	char	*tmp;
 	int		fd;
-	
+
 	fd = open("heredoc", O_RDONLY);
 	if (fd == -1)
 		return ;
@@ -49,7 +48,7 @@ static int	heredoc_init(char *del, int fd)
 void	heredoc(char *del)
 {
 	int	fd;
-	int pid;
+	int	pid;
 	int	status;
 
 	fd = open("heredoc", O_RDWR | O_CREAT | O_TRUNC, 0644);

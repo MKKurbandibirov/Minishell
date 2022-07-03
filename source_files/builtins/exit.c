@@ -19,6 +19,7 @@ void	ft_exit(int return_stat, int opt)
 	free_inter(NULL);
 	if (opt)
 		printf("%s\n", "exit");
+	free(g_shell);
 	exit(return_stat);
 }
 
@@ -27,9 +28,8 @@ void	free_global(void)
 	free_split(g_shell->cmd_path);
 	free_list(g_shell->env);
 	free_list(g_shell->exp);
-	free(g_shell->master);
 	free(g_shell->pwd);
-	free(g_shell);
+	free(g_shell->master);
 	clear_history();
 }
 

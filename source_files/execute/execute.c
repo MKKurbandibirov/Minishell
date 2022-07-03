@@ -91,14 +91,15 @@ void	ft_exe(void)
 			exe_helper_wrap();
 		else if (g_shell->master->t_connect == ELSE && g_shell->ret_stat != 0)
 			exe_helper_wrap();
-		// else
-		// {
-		// 	while (g_shell->master->content != NULL)
-		// 	{
-		// 		ft_delelem_s(&g_shell->master->content, g_shell->master->content);
-		// 		g_shell.
-		// 	}
-		// }
+		else
+		{
+			while (g_shell->master->content != NULL)
+			{
+				ft_delelem_s(&g_shell->master->content,
+					g_shell->master->content);
+				g_shell->master->flag_del = 1;
+			}
+		}
 		ft_delelem_m(&g_shell->master, g_shell->master);
 		waiting();
 		dup2(g_shell->std_out, STDOUT_FILENO);
