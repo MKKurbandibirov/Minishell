@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 15:56:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 11:28:05 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:40:22 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_strjoin_c_free(char *s1, char s2)
 	if (!new)
 	{
 		free(s1);
-		exit (EXIT_FAILURE);
+		return (NULL);
 	}
 	i = -1;
 	while (s1[++i])

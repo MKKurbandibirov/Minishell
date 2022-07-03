@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:45 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:24:46 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:39:17 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	child_proc(int *fd, char **cmd)
 	if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
 	{
 		g_shell->ret_stat = 0;
-		exit(EXIT_SUCCESS);
+		ft_exit(EXIT_SUCCESS, 0);
 	}
 	else
 	{
@@ -62,7 +62,7 @@ void	child_proc(int *fd, char **cmd)
 		g_shell->ret_stat = errno;
 		perror(cmd[0]);
 		free_split(envp);
-		exit(EXIT_FAILURE);
+		ft_exit(EXIT_FAILURE, 0);
 	}
 }
 
@@ -101,7 +101,7 @@ void	solo_cmd_exe_helper(char **cmd)
 	g_shell->ret_stat = errno;
 	perror(cmd[0]);
 	free_split(envp);
-	exit(EXIT_FAILURE);
+	ft_exit(EXIT_FAILURE, 0);
 }
 
 void	solo_cmd_exe(char **cmd)

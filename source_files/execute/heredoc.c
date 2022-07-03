@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:52 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:31:43 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:41:01 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	heredoc(char *del)
 		if (heredoc_init(del, fd[1]) == 1)
 		{
 			g_shell->ret_stat = 1;
-			exit(1);
+			ft_exit(EXIT_FAILURE, 0);
 		}
-		exit(0);
+		ft_exit(EXIT_SUCCESS, 0);
 	}
 	waitpid(pid, &status, 0);
 	g_shell->ret_stat = status;

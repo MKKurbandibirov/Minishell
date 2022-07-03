@@ -6,18 +6,19 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:01:58 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:38:06 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header_files/builtins.h"
 
-void	ft_exit(int return_stat)
+void	ft_exit(int return_stat, int opt)
 {
 	g_shell->ret_stat = return_stat;
 	free_global();
 	free_inter(NULL);
-	printf("%s\n", "exit");
+	if (opt)
+		printf("%s\n", "exit");
 	exit(return_stat);
 }
 

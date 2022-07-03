@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:41 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:33:50 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:34:04 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	waiting(void)
 {
 	int	status;
 
+	status = g_shell->ret_stat;
 	while (g_shell->pids)
 	{
 		status = g_shell->ret_stat;
@@ -90,7 +91,6 @@ void	ft_exe(void)
 			exe_helper_wrap();
 		ft_delelem_m(&g_shell->master, g_shell->master);
 		waiting();
-		// dup2(g_shell->std_out, STDOUT_FILENO);
 		free_simple_list(g_shell->pids);
 	}
 }
