@@ -6,11 +6,11 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/18 10:36:32 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:14:01 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/execute.h"
+#include "../../header_files/execute.h"
 
 void	path_parse(void)
 {

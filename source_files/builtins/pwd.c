@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 09:58:02 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/11 13:54:59 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:01:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ft_pwd(void)
 {
-	g_shell->return_status = 0;
+	g_shell->ret_stat = 0;
 	printf("%s\n", g_shell->pwd);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 09:42:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 13:21:56 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/07/02 15:18:52 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/07/02 15:31:18 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ char	*identify_cmd(char *cmd);
 void	solo_cmd_exe(char **cmd);
 void	ft_exe(void);
 
+void	ft_pipe(char **cmd);
 void	straight_redirect(char *filename);
 void	reverse_redirect(char *filename);
 void	double_reverse_reirect(char *filename);
 void	heredoc(char *del);
+void	replace_status(char **content);
+char	*ft_here_dollar(char *s);
 
 #endif

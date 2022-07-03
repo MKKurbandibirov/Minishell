@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 09:22:19 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 15:21:03 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/07/02 15:23:38 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/07/02 15:23:39 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_get_arg(char *s, int *group, t_master *prs, int i)
 		if (s[i] && last->type >= 6 && last->type <= 9)
 			ft_get_redirect(&s[i], prs, &add, group);
 		else if (s[i] && (last->type == 1 || last->type == 11
-				|| last->type == 12 || last->type == ERR))
+				|| last->type == 12))
 			ft_get_flags_args(&s[i], prs, &add, group);
 		i += add;
 		while (s[i] && (ft_isspace(s[i]) || s[i] == '('))

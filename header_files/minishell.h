@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 13:21:46 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/06/25 16:09:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_prompt(void);
 void	free_global(void);
 void	free_inter(char *line);
 void	free_simple_list(t_list *lst);
-int 	ft_count_elem_in_start(t_list *lst);
+int		ft_count_elem_in_start(t_list *lst);
 
 t_list	*replace_star(char *pattern);
 

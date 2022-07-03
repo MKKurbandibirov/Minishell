@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 09:42:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 13:22:13 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/07/02 15:24:45 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/07/03 10:39:17 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header_files/execute.h"
+#include "../../header_files/execute.h"
 
 char	**create_cmd(t_plist *node)
 {
@@ -50,19 +50,19 @@ void	child_proc(int *fd, char **cmd)
 	close(fd[1]);
 	if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
 	{
-		g_shell->return_status = 0;
-		ft_exit(EXIT_SUCCESS);
+		g_shell->ret_stat = 0;
+		ft_exit(EXIT_SUCCESS, 0);
 	}
 	else
 	{
 		cmd[0] = identify_cmd(cmd[0]);
 		envp = convert_to_strarr(g_shell->env);
-		g_shell->return_status = 0;
+		g_shell->ret_stat = 0;
 		execve(cmd[0], cmd, envp);
-		g_shell->return_status = errno;
-		perror("[ERROR]");
+		g_shell->ret_stat = errno;
+		perror(cmd[0]);
 		free_split(envp);
-		ft_exit(EXIT_FAILURE);
+		ft_exit(EXIT_FAILURE, 0);
 	}
 }
 
@@ -88,14 +88,29 @@ void	ft_pipe(char **cmd)
 	close(fd[1]);
 }
 
+void	solo_cmd_exe_helper(char **cmd)
+{
+	char	**envp;
+
+	child_sig();
+	dup2(g_shell->std_out, STDOUT_FILENO);
+	cmd[0] = identify_cmd(cmd[0]);
+	envp = convert_to_strarr(g_shell->env);
+	g_shell->ret_stat = 0;
+	execve(cmd[0], cmd, envp);
+	g_shell->ret_stat = errno;
+	perror(cmd[0]);
+	free_split(envp);
+	ft_exit(EXIT_FAILURE, 0);
+}
+
 void	solo_cmd_exe(char **cmd)
 {
 	int		*p_pid;
-	char	**envp;
 
 	if (builtin_parser(cmd, g_shell->env, g_shell->exp) != 0)
 	{
-		g_shell->return_status = 0;
+		g_shell->ret_stat = 0;
 		return ;
 	}
 	p_pid = malloc(sizeof(int));
@@ -107,60 +122,7 @@ void	solo_cmd_exe(char **cmd)
 	if (*p_pid == -1)
 		perror("[ERROR]");
 	else if (*p_pid == 0)
-	{
-		child_sig();
-		cmd[0] = identify_cmd(cmd[0]);
-		envp = convert_to_strarr(g_shell->env);
-		g_shell->return_status = 0;
-		execve(cmd[0], cmd, envp);
-		g_shell->return_status = errno;
-		perror("[ERROR]");
-		free_split(envp);
-		ft_exit(EXIT_FAILURE);
-	}
+		solo_cmd_exe_helper(cmd);
 	dup2(g_shell->std_in, STDIN_FILENO);
-	dup2(g_shell->std_out, STDOUT_FILENO);
-}
-
-void	ft_exe(void)
-{
-	int	status;
-
-	while (g_shell->master != NULL)
-	{
-		while (g_shell->master->content != NULL)
-		{
-			if (g_shell->master->content->type == PIPE)
-				ft_pipe(g_shell->master->content->cmd);
-			else if (g_shell->master->content->type == CMD)
-				solo_cmd_exe(g_shell->master->content->cmd);
-			else if (g_shell->master->content->type == INFILE_RE)
-				straight_redirect(g_shell->master->content->cmd[0]);
-			else if (g_shell->master->content->type == OUTFILE_RE)
-			{
-				reverse_redirect(g_shell->master->content->cmd[0]);
-				if (g_shell->master->content->next->type == PIPE)
-					g_shell->master->content->next->type = CMD;
-			}
-			else if (g_shell->master->content->type == APPEND)
-			{
-				double_reverse_reirect(g_shell->master->content->cmd[0]);
-				if (g_shell->master->content->next->type == PIPE)
-					g_shell->master->content->next->type = CMD;
-			}
-			else if (g_shell->master->content->type == HEREDOC)
-				heredoc(g_shell->master->content->cmd[0]);
-			ft_delelem_s(&g_shell->master->content, g_shell->master->content);
-		}
-		ft_delelem_m(&g_shell->master, g_shell->master);
-	}
-	while (g_shell->pids)
-	{
-		status = g_shell->return_status;
-		waitpid(*(int *)g_shell->pids->content, &status, 0);
-		g_shell->pids = g_shell->pids->next;
-	}
-	if (g_shell->return_status != status)
-		g_shell->return_status = WEXITSTATUS(status);
 	dup2(g_shell->std_out, STDOUT_FILENO);
 }

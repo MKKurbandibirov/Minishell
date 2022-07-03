@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:57:00 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/05/21 10:36:15 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:12:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*key_check(char *key)
 		}
 	}
 	free(key);
+	new[len] = '\0';
 	key = new;
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 11:32:46 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 10:48:52 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:25:55 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void	handler(int sig)
 	(void)sig;
 	rl_on_new_line();
 	rl_redisplay();
-	write(2, "  \n", 3);
+	write(1, "  \n", 3);
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-	g_shell->return_status = 1;
+	g_shell->ret_stat = 1;
 }
 
 void	main_sig(void)

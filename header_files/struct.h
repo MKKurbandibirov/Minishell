@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 09:24:08 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/25 13:21:23 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/07/02 15:23:11 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/07/02 15:23:12 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_minishell
 	char		*pwd;
 	char		*prompt;
 	char		**cmd_path;
-	int			return_status;
+	int			ret_stat;
 	int			std_in;
 	int			std_out;
 }	t_minishell;
@@ -46,7 +46,8 @@ typedef struct s_slave
 typedef struct s_master
 {
 	int			groupe;
-	int			type_connect;
+	int			t_connect;
+	int			flag_del;
 	t_slave		*content;
 	t_master	*next;
 	t_master	*prev;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 09:22:42 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/21 15:24:21 by nfarfetc         ###   ########.fr       */
+/*   Created: 2022/07/02 15:23:29 by gtaggana          #+#    #+#             */
+/*   Updated: 2022/07/02 15:23:31 by gtaggana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_init_master(t_master *master)
 {
+	master->flag_del = 0;
 	master->groupe = START;
 	master->head = NULL;
 	master->content = NULL;
@@ -52,8 +53,6 @@ int	ft_parser_v2(char *s)
 	if (ft_prevalidation(s))
 		return (1);
 	ft_preparsing(&master, s, 0, 0);
-	if (ft_validator(master.head))
-		return (1);
 	g_shell->master = ft_generate_m(&master);
 	return (0);
 }
