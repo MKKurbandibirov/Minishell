@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 14:19:51 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 11:32:59 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:01:04 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_key_val	*create_exp_node(char *env_i, int option)
 	if (!exp_node)
 		return (NULL);
 	exp_node->key = ft_substr(env_i, 0, j);
-	exp_node->key = key_check(exp_node->key);
 	if (exp_node->key == NULL)
 		return (NULL);
 	if (option == 0)

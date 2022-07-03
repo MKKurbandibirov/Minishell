@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:45 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/03 10:39:17 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:54:46 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	solo_cmd_exe_helper(char **cmd)
 	char	**envp;
 
 	child_sig();
-	dup2(g_shell->std_out, STDOUT_FILENO);
 	cmd[0] = identify_cmd(cmd[0]);
 	envp = convert_to_strarr(g_shell->env);
 	g_shell->ret_stat = 0;

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:03:15 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/03 10:38:27 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:01:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_list		*get_envr(char **envr);
 void		ft_env(t_list *my_env);
 
 t_list		*get_expt(char **envr);
-char		*key_check(char *key);
 void		str_bubble(char **arr);
 void		fill(t_list *c, char **s_arr);
 char		**convert_to_strarr(t_list *list);

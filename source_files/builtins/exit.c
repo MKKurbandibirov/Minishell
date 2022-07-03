@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/03 10:38:06 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:00:29 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ void	free_inter(char *line)
 {
 	if (line != NULL)
 		free(line);
-	// free_simple_list(g_shell->pids);
 	free(g_shell->prompt);
 }

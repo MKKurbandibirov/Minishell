@@ -29,7 +29,7 @@ FILE_PRS	=	parser.c \
 				utils.c slave.c slaveLST.c master.c get_cmd_plist.c utils2.c
 
 FILE_BUIL	=	cd.c\
-				echo_n.c env.c exit.c export_utils1.c export_utils2.c export.c pwd.c unset.c cd_utils.c utils.c
+				echo_n.c env.c exit.c export_utils1.c export.c pwd.c unset.c cd_utils.c utils.c
 
 FILE_EXE	=	execute.c \
 				find_cmd.c redirects.c execute_utils.c heredoc.c help_pars_here.c 
