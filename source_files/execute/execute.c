@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:24:41 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/03 10:34:04 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/03 12:32:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ void	exe_helper_wrap(void)
 
 void	waiting(void)
 {
-	int	status;
+	int		status;
+	t_list	*curr;
 
+	curr = g_shell->pids;
 	status = g_shell->ret_stat;
-	while (g_shell->pids)
+	while (curr)
 	{
 		status = g_shell->ret_stat;
-		waitpid(*(int *)g_shell->pids->content, &status, 0);
-		g_shell->pids = g_shell->pids->next;
+		waitpid(*(int *)curr->content, &status, 0);
+		curr = curr->next;
 	}
 	if (status != g_shell->ret_stat)
 		g_shell->ret_stat = WEXITSTATUS(status);
