@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:01:45 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/06/20 15:01:47 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:05:08 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
 

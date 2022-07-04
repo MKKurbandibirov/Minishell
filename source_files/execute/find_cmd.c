@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:15:21 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 16:14:01 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:02:58 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	path_parse(void)
 	}
 	if (curr == NULL)
 	{
-		write(2, "[ERROR]: No such file or directory", 34);
+		write(2, "[ERROR]: No such file or directory\n", 35);
 		g_shell->cmd_path = NULL;
 		return ;
 	}

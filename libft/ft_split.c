@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:13:31 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/11 14:32:03 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:03:35 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	free_split(char **res)
 	int	i;
 
 	i = 0;
+	if (res == NULL)
+		return ;
 	while (res[i])
 	{
 		free(res[i]);

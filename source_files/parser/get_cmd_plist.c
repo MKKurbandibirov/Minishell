@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_plist.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaggana <gtaggana@student.21-school       +#+  +:+       +#+        */
+/*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 15:23:24 by gtaggana          #+#    #+#             */
-/*   Updated: 2022/07/02 15:23:25 by gtaggana         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:01:19 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ char	**ft_get_cmd(t_plist **head, int i, int len)
 	while (*head && ((*head)->type == CMD
 			|| (*head)->type == FLAG || (*head)->type == ARG))
 	{
-		len = 0;
-		if ((*head)->data[0] == '$')
-			tmp[i++] = ft_strdup(ft_ifdollar(&(*head)->data[1], &len));
-		else if (ft_strchr((*head)->data, '*'))
+		(void) len;
+		if (ft_strchr((*head)->data, '*'))
 		{
 			lst = replace_star((*head)->data);
 			i = ft_haramshik(tmp, i, lst);

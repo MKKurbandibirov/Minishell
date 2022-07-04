@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:21:18 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/07/03 17:00:29 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:01:50 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_exit(int return_stat, int opt)
 
 void	free_global(void)
 {
-	free_split(g_shell->cmd_path);
 	free_list(g_shell->env);
 	free_list(g_shell->exp);
 	free(g_shell->pwd);
@@ -37,5 +36,6 @@ void	free_inter(char *line)
 {
 	if (line != NULL)
 		free(line);
+	free_split(g_shell->cmd_path);
 	free(g_shell->prompt);
 }

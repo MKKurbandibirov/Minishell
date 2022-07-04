@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 13:05:55 by nfarfetc          #+#    #+#             */
-/*   Updated: 2022/06/25 16:09:50 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:04:21 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <dirent.h>
-
 # include "../libft/libft.h"
 # include "struct.h"
 # include "readline/readline.h"

@@ -6,7 +6,7 @@
 /*   By: nfarfetc <nfarfetc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 13:49:55 by magomed           #+#    #+#             */
-/*   Updated: 2022/07/03 17:00:37 by nfarfetc         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:01:35 by nfarfetc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_minishell	*init_shell(int argc, char **argv, char **envr)
 	shlvl = change_shlvl();
 	ft_export(shlvl, g_shell->exp, g_shell->env);
 	free(shlvl);
-	path_parse();
 	return (g_shell);
 }
 
@@ -63,6 +62,7 @@ int	main(int argc, char **argv, char **envr)
 	while (1)
 	{
 		main_sig();
+		path_parse();
 		g_shell->prompt = get_prompt();
 		line = readline(g_shell->prompt);
 		if (!line
